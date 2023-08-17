@@ -1,0 +1,50 @@
+{% load static %}{% include "partials/head.html" %}
+    <link rel="stylesheet" href="{% static 'login/css/login.css' %}">
+    <title>KEPLER</title>
+</head>
+<body>
+    <div class="container-div">
+        <div class="container-form">
+
+            {% if user.is_authenticated %}
+            <p class="loginReady">Your account doesn't have access to this page because you are already logged in.</p>
+            {% else %}
+            <form id="container-form" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-title">
+                        <div class="img-logo">&nbsp;</div>
+                        <span class="title-logo">KEPLER</span>
+                </div>
+                <div class="form-content">
+                    <div class="inputLogin">
+                        <label class="item-login" for="id_username"><i class="fas fa-user-tie"></i></label>
+                        {{ form.username }}
+                    </div>
+                    <div class="inputLogin">
+                        <label class="item-login" for="id_password"><i class="fas fa-lock"></i></label>
+                        {{ form.password }}
+                    </div>
+                    
+                    <div class="forgot">
+                        <a href="{% url 'password_reset' %}">¿Olvidó la contraseña?</a>
+                    </div>
+                    <div class="errorsContainer">
+                        {% if form.errors %}
+                        {% for key, value in form.errors.items %}
+                        <strong>{{ value }}</strong> {% endfor %} {{forms.ValidationError}} {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn btn-login">LOGIN<span class="icon-buttons icon-upload"><i class="fas fa-sign-in-alt"></i></span></button>
+                    <!-- <a href="{% url 'novedad' %}" class="btn btn-login">REGISTRO DE NOVEDADES<span class="icon-buttons icon-upload"></span></a> -->
+                </div>
+            </form>
+            {% endif %}
+            
+        </div>
+    </div>
+    {% include "partials/footer.html" %}
+    <script src="{% static 'login/js/login.js' %}"></script>
+
+</body>
+
+</html>

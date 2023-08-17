@@ -30,7 +30,6 @@ ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
-
 COMMON_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -136,12 +135,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'Inventory/static'), os.path.join(BASE_DIR, 'User/static'),  os.path.join(BASE_DIR, 'Movement/static'),  os.path.join(BASE_DIR, 'Interaction/static'),)
+STATICFILES_DIRS += (BASE_DIR/'static', )
+STATICFILES_DIRS += (BASE_DIR/'media', )
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'login'
 AUTH_USER_MODEL = 'User.UserProfile'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
