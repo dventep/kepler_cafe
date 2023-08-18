@@ -89,11 +89,13 @@ WSGI_APPLICATION = 'kepler_cafe.wsgi.application'
 # }
 DATABASES = {
     'default': {
-        'ENGINE': 'django_tenants.postgresql_backend',
+        # 'ENGINE': 'django_tenants.postgresql_backend',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'kepler_db',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'localhost'
+        'HOST': 'postgres',
+        'PORT': 5432,
     }
 }
 

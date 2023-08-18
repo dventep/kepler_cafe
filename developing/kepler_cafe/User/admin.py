@@ -15,7 +15,10 @@ class UserProfileAdmin(ImportExportModelAdmin):
         return obj.creation_date.strftime("%d/%m/%Y %H:%M:%S")
     @admin.display(description="Fecha de inactivo", ordering="inactive_date")
     def formated_inactive_date(self, obj):
+      if obj.inactive_date:
         return obj.inactive_date.strftime("%d/%m/%Y %H:%M:%S")
+      else:
+        return "-"
 
     list_display = (
 		"pk",
