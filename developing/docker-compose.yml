@@ -30,9 +30,9 @@ services:
   web:
     tty: true
     build: ./kepler_cafe/
-    # working_dir:
-    # volumes:
-    #   - ./:/kepler_cafe
+    volumes:
+      - "./templates:/kepler_cafe/templates"
+      - "./static:/kepler_cafe/static"
     ports:
       - "8000:8000"
     env_file:
@@ -42,8 +42,6 @@ services:
     networks:
       - developing_net
     container_name: web
-    # command: python manage.py runserver 0.0.0.0:8000
     command: gunicorn -b 0.0.0.0:8000 kepler_cafe.wsgi:application
-    # command: ./manage.py runserver 0.0.0.0:8000
 networks:
   developing_net:

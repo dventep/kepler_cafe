@@ -1,2 +1,4 @@
+# Exclude
 desktop.ini
 **/desktop.ini
+venv
