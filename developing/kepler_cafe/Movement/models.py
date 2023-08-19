@@ -32,6 +32,7 @@ class Product_Shopping_Car(models.Model):
 	"""
 	quantity = models.IntegerField('Cantidad', default=0)
 	creation_date = models.DateTimeField('creation date', auto_now_add = True)
+	description = models.CharField('Descripción', max_length=200, default=None, blank=True, null=True)
 	user = models.ForeignKey('User.UserProfile', related_name="userprofile_product_shopping_car", on_delete = models.CASCADE, verbose_name = "Usuario")
 	product = models.ForeignKey('Inventory.Product', related_name="product_product_shopping_car", on_delete = models.CASCADE, verbose_name = "Producto")
 	
@@ -70,7 +71,7 @@ class Main_Purchase(models.Model):
 	class Meta:
 		verbose_name = "Compra principal"
 		verbose_name_plural = "Compras principales"
-		ordering = ["creation_date", "delivery_date", "money_total_value", "point_total_value"] 
+		ordering = ["creation_date", "delivery_date", "money_total_value", "point_total_value"]
 
 	def __str__(self):
 		return f"ID {str(self.pk)} - {self.user.first_name} {self.user.last_name} -> {self.money_total_value} ~ {self.point_total_value}"
@@ -96,6 +97,8 @@ class Purchase_Detail(models.Model):
 	money_unit_value = models.FloatField('Valor unitario monetario', default=None, blank=True, null=True)
 	point_unit_value = models.IntegerField('Valor unitario en puntos', default=None, blank=True, null=True)
 	quantity = models.IntegerField('Cantidad', default=0)
+	description = models.CharField('Descripción', max_length=200, default=None, blank=True, null=True)
+	status = models.CharField("Estado de orden", max_length=50, default="", choices=Select_Order_Status)
 	main_purchase = models.ForeignKey('Main_Purchase', related_name="main_purchase_purchase_detail", on_delete = models.CASCADE, verbose_name = "Compra principal")
 	product = models.ForeignKey('Inventory.Product', related_name="product_purchase_detail", on_delete = models.CASCADE, verbose_name = "Producto")
 	
@@ -136,37 +139,6 @@ class Point_Transaction(models.Model):
 	def __str__(self):
 		return f"ID {str(self.pk)} - {self.purchase_detail.user.first_name} {self.purchase_detail.user.last_name} -> {self.action}"
 
-class Custom_Order(models.Model):
-    """
-	----------
-	Description
-	    En está clase se almacenarán las ordenes personalizadas realizadas por usuarios.
-	----------
-	Parameters
-        description : Char
-            Descripción.
-        creation_date : Datetime
-            Fecha de creación.
-        status : Char
-            Estado de orden.
-        purchase_detail : FK Purchase_Detail
-            Relación con la tabla Detalle de Compra.
-        product_shopping_car : FK Product_Shopping_Car
-            Relación con la tabla Carrito de Compra.
-    """
-    description = models.CharField('Descripción', max_length=200, default=None, blank=True, null=True)
-    creation_date = models.DateTimeField('Fecha de creación', auto_now_add = True)
-    status = models.CharField("Estado de orden", max_length=50, default="", choices=Select_Order_Status)
-    purchase_detail = models.ForeignKey('Purchase_Detail', related_name="purchase_detail_custom_order", on_delete = models.CASCADE, verbose_name = "Detalle de compra")
-    product_shopping_car = models.ForeignKey('Product_Shopping_Car', related_name="product_shopping_car_custom_order", on_delete = models.CASCADE, verbose_name = "Carrito de compra")
-	
-    class Meta:
-        verbose_name = "Orden personalizada"
-        verbose_name_plural = "Ordenes personalizadas"
-        ordering = ["creation_date", "product_shopping_car", "purchase_detail"] 
-
-    def __str__(self):
-        return f"ID {str(self.pk)} - {self.user.first_name} {self.user.last_name} -> {self.purchase_detail.money_total_value} ~ {self.purchase_detail.point_total_value}"
 
 
 

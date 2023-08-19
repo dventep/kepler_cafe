@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from .models import Product_Shopping_Car, Main_Purchase, Purchase_Detail, Point_Transaction, Custom_Order
+from .models import Product_Shopping_Car, Main_Purchase, Purchase_Detail, Point_Transaction
 
 @admin.register(Product_Shopping_Car)
 class Product_Shopping_CarAdmin(ImportExportModelAdmin):
@@ -79,6 +79,7 @@ class Purchase_DetailAdmin(ImportExportModelAdmin):
 		"pk",
 		"fullname_user",
 		"product_name",
+        "status",
 		"money_unit_value",
 		"point_unit_value",
 		"quantity",
@@ -127,51 +128,3 @@ class Point_TransactionAdmin(ImportExportModelAdmin):
 		'action',
 		'purchase_detail__product__name',
     	)
-
-@admin.register(Custom_Order)
-class Custom_OrderAdmin(ImportExportModelAdmin):
-    @admin.display(description="Usuario", ordering="user__identification")
-    def fullname_user(self, obj):
-        if obj.purchase_detail:
-            return f"{obj.purchase_detail.user.first_name} {obj.purchase_detail.user.lastname}"
-        elif obj.product_shopping_car:
-            return f"{obj.product_shopping_car.user.first_name} {obj.product_shopping_car.user.lastname}"
-        else:
-            return f"-"
-    @admin.display(description="Producto")
-    def product_name(self, obj):
-        if obj.purchase_detail:
-            return f"{obj.purchase_detail.product.name}"
-        elif obj.product_shopping_car:
-            return f"{obj.product_shopping_car.product.name}"
-        else:
-            return f"-"
-    @admin.display(description="Fecha de creación", ordering="creation_date")
-    def formated_creation_date(self, obj):
-        return obj.creation_date.strftime("%d/%m/%Y %H:%M:%S")
-
-    list_display = (
-		"pk",
-		"fullname_user",
-		"product_name",
-		"status",
-		"formated_creation_date",
-		)
-
-    search_fields = (
-		'pk',
-		'purchase_detail__product__name',
-        "purchase_detail__user__identification",
-        'purchase_detail__user__first_name',
-        'purchase_detail__user__last_name'
-		'product_shopping_car__product__name',
-        "product_shopping_car__user__identification",
-        'product_shopping_car__user__first_name',
-        'product_shopping_car__user__last_name'
-        )
-
-    list_filter = (
-		'purchase_detail__product__name',
-		'product_shopping_car__product__name',
-    	)
-    date_hierarchy = 'creation_date'
