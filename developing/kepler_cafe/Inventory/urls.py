@@ -4,5 +4,5 @@ from django.urls import include
 from .views import aguita
 
 urlpatterns = [
-    path('agua/', aguita),
+    path('shop/', aguita),
 ]
