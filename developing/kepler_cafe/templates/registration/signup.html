@@ -1,0 +1,18 @@
+{% load static %}{% include "partials/head.html" %}
+    <link rel="stylesheet" href="{% static 'registration/signup/signup.css' %}">
+    <title>KEPLER</title>
+</head>
+
+{% if user.is_authenticated %} {# Para verificar si está autenticada la persona #}
+{% endif %}
+    <form action="post">
+        {% csrf_token %}
+        holaaa forms
+    </form>
+    {{ errors }}
+    {% include "partials/footer.html" %}
+    <script src="{% static 'registration/signup/signup.js' %}"></script>
+
+</body>
+
+</html>

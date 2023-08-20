@@ -1,0 +1,135 @@
+body {
+    background: url(../../image/background/login-pc.jpg) no-repeat top/cover;
+    background-attachment: fixed;
+}
+.container-div {
+    padding: 0;
+}
+.content-input input{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+.container-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 35%; */
+}
+form#container-form {
+    /* width: 100%;
+    position: relative; */
+}
+.form-title {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -18%;
+    border-radius: 10px 10px 0 0;
+}
+.img-logo {
+    background: url(../../image/Produempak_Logo.png) no-repeat center/contain;
+    height: 8vw;
+    width: 8vw;
+    background-color: white;
+    border: 1px #ff7000 solid;
+    border-radius: 100px;
+}
+span.title-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.form-content {
+    padding: 15vh 5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: #ff7000e0;
+    border-radius: 10px;
+}
+.forgot {
+    width: auto;
+    text-align: right;
+}
+.forgot a {
+    text-decoration: none;
+    color: #204180;
+    font-size: 1.1rem;
+    font-style: italic;
+}
+input:hover, input:focus, input:target {
+    border: 0;
+    outline: 0;
+    color:#204180;    
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+.inputLogin {
+    margin: 0.5rem 0;
+    position: relative;
+}
+.inputLogin input {
+    width: 100%;
+    border-radius: 6px;
+    border: 0;
+    padding: 0.5rem 3rem;
+    color:#204180 !important;    
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+.inputLogin input::-webkit-input-placeholder::before {
+    content: "Hola";
+    width: 2rem;
+}
+.item-login {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    font-size: 1.8rem;
+}
+.btn-login {
+    background-color: #204180;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+.btn-login:hover {
+    color: white;
+}
+.icon-buttons {
+    position: absolute;
+    right: 0.5rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    transition: 1s all;
+}
+.icon-upload {    
+    right: -2rem;
+    top: 0;
+    bottom: 0;
+}
+.btn-login:hover .icon-upload{
+    transition: 1s all;
+    right: 0.5rem;
+}
+.container-form {
+    width: 100%;
+}
+@media screen and (max-width: 998px) {
+    /* For mobile phones: */
+  }
