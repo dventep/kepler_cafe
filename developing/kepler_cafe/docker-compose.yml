@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    restart: always
+    volumes:
+      - "./sql:/docker-entrypoint-initdb.d"
+    env_file:
+      - ./process.env
+    ports:
+      - '5432:5432'
+    networks:
+      - developing_net
+    container_name: postgres
+
+  # pgadmin: #! Administrador de Base de datos
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+  #     PGADMIN_DEFAULT_PASSWORD: "admin"
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - developing_net
+  #   container_name: pgadmin
+      
+  web:
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./templates:/kepler_cafe/templates"
+      - "./static:/kepler_cafe/static"
+      - "./media:/kepler_cafe/media"
+      - "./User:/kepler_cafe/User"
+      - "./Inventory:/kepler_cafe/Inventory"
+      - "./Interaction:/kepler_cafe/Interaction"
+      - "./Movement:/kepler_cafe/Movement"
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./process.env
+    depends_on:
+      - postgres
+    networks:
+      - developing_net
+    container_name: web
+    command: bash -c "python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"
+networks:
+  developing_net:
