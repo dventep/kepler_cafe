@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
 # Application definition
 COMMON_APPS = [
     'django.contrib.admin',
@@ -37,6 +36,7 @@ COMMON_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_admin_reset',
 ]
 ADD_APPS = [
     'import_export',

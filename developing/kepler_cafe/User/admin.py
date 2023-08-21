@@ -1,9 +1,14 @@
-from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
+
+from django.contrib import admin
+from django_admin_reset.admin import PasswordResetUserAdmin
+
 from .models import UserProfile, Charge
 
+if admin.site.is_registered(UserProfile):
+    admin.site.unregister(UserProfile)
 @admin.register(UserProfile)
-class UserProfileAdmin(ImportExportModelAdmin):
+class UserProfileAdmin(ImportExportModelAdmin, PasswordResetUserAdmin):
     @admin.display(description="Usuario", ordering="user__identification")
     def charge_name(self, obj):
         if obj.charge:
@@ -21,18 +26,18 @@ class UserProfileAdmin(ImportExportModelAdmin):
         return "-"
 
     list_display = (
-		"pk",
-		"identification",
-		"first_name",
-		"last_name",
-		"email",
-		"is_active",
-		"is_staff",
-		"is_superuser",
-		"charge_name",
-		"formated_creation_date",
-		"formated_inactive_date",
-		)
+      "pk",
+      "identification",
+      "first_name",
+      "last_name",
+      "email",
+      "is_active",
+      "is_staff",
+      "is_superuser",
+      "charge_name",
+      "formated_creation_date",
+      "formated_inactive_date",
+      )
     search_fields = (
 		'pk',
         "identification",
