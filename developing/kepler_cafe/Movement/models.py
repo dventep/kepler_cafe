@@ -14,7 +14,7 @@ Select_Order_Status = (
 	("success", 'Realizada'),
 )
 
-class Product_Shopping_Car(models.Model):
+class Shopping_Car(models.Model):
 	"""
 	----------
 	Description
@@ -33,8 +33,8 @@ class Product_Shopping_Car(models.Model):
 	quantity = models.IntegerField('Cantidad', default=0)
 	creation_date = models.DateTimeField('creation date', auto_now_add = True)
 	description = models.CharField('Descripción', max_length=200, default=None, blank=True, null=True)
-	user = models.ForeignKey('User.UserProfile', related_name="userprofile_product_shopping_car", on_delete = models.CASCADE, verbose_name = "Usuario")
-	product = models.ForeignKey('Inventory.Product', related_name="product_product_shopping_car", on_delete = models.CASCADE, verbose_name = "Producto")
+	user = models.ForeignKey('User.UserProfile', related_name="userprofile_shopping_car", on_delete = models.CASCADE, verbose_name = "Usuario")
+	product = models.ForeignKey('Inventory.Product', related_name="product_shopping_car", on_delete = models.CASCADE, verbose_name = "Producto")
 	
 	class Meta:
 		verbose_name = "Carrito de compra"

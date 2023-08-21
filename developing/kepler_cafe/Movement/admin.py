@@ -1,9 +1,9 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from .models import Product_Shopping_Car, Main_Purchase, Purchase_Detail, Point_Transaction
+from .models import Shopping_Car, Main_Purchase, Purchase_Detail, Point_Transaction
 
-@admin.register(Product_Shopping_Car)
-class Product_Shopping_CarAdmin(ImportExportModelAdmin):
+@admin.register(Shopping_Car)
+class Shopping_CarAdmin(ImportExportModelAdmin):
     @admin.display(description="Usuario", ordering="user__identification")
     def fullname_user(self, obj):
         return f"{obj.user.first_name} {obj.user.lastname}"

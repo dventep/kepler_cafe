@@ -58,13 +58,15 @@ class Category(models.Model):
 	----------
 	Parameters
 		name : char
-			Nombre del cargo
+			Nombre de la categoría
+		description : char
+			Descripción de la categoría
 	"""
 	name = models.CharField('Nombre', max_length=50, default='', unique=True)
 	description = models.CharField('Descripción', max_length=250, default='')
 
 	class Meta:
-		verbose_name = "Cargo"
-		verbose_name_plural = 'Cargos'
+		verbose_name = "Categoría"
+		verbose_name_plural = 'Categorías'
 	def __str__(self):
 		return f"ID {self.pk} - {self.name}"
