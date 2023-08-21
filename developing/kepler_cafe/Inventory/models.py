@@ -34,7 +34,7 @@ class Product(models.Model):
 	name = models.CharField('name', max_length = 255, null=False)
 	money_unit_price = models.FloatField('Valor monetario unitario', default=0)
 	point_unit_price = models.IntegerField('Valor de puntos unitario', default=0)
-	description = models.CharField('description', max_length = 250, default="")
+	description = models.CharField('Descripción', max_length = 250, default="")
 	quantity = models.IntegerField('Cantidad', default=0)
 	weight = models.FloatField('Peso', default=None, null=True, blank=True)
 	measure_unit = models.CharField('Unidad de medida', max_length = 50, null=True, blank=True, default=None)
