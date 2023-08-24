@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
-from .views import *
+from .views import add_product_shopping_car, remove_product_shopping_car, look_product_shopping_car
 
 urlpatterns = [
-    # path('accounts/save_profile/', save_profile),
+    path('shopping_car/', look_product_shopping_car),
+    path('shopping_car/add/', add_product_shopping_car),
+    path('shopping_car/remove/', remove_product_shopping_car),
 ]

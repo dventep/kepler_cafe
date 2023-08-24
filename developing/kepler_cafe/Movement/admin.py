@@ -6,7 +6,7 @@ from .models import Shopping_Car, Main_Purchase, Purchase_Detail, Point_Transact
 class Shopping_CarAdmin(ImportExportModelAdmin):
     @admin.display(description="Usuario", ordering="user__identification")
     def fullname_user(self, obj):
-        return f"{obj.user.first_name} {obj.user.lastname}"
+        return f"{obj.user.first_name} {obj.user.last_name}"
     @admin.display(description="Producto", ordering="product__name")
     def product_name(self, obj):
         return f"{obj.product.name}"
