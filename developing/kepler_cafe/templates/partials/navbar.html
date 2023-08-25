@@ -1,94 +1,26 @@
 {% load static %}
-    <nav class="profile">
-        <a href="/"><div class="content-profile content-title">
-            <div class="img-logo">&nbsp;</div>
-            <span class="text-logo">KEPLER</span>
-        </div></a>
-        <div class="content-profile info-profile">
-            <span class="text-profile">
-                {% if user.first_name and user.last_name and user.operation_center %} 
-                    {{ user.get_name_oc }}
-                {% elif user.first_name and user.last_name and user.operation_center == None %} 
-                    {{ user.get_first_names }} 
-                {% else %}
-                    Nombre Usuario - Centro
-                {% endif %}
-            </span>
-            {% if request.user.is_staff %}
-                <a href="/admin"><span class="icon-profile"><i class="fas fa-chalkboard-teacher"></i></span></a>
-            {% endif %}
-            <a href="{% url 'logout' %}"><span class="icon-profile"><i class="fas fa-sign-out-alt"></i></span></a>
-        </div>
-    </nav>
-    <nav class="nav-main">
-        <section class="sect-navbar">
-            <ul class="content-navbar">
-                <li><a class="logo-description-nav logo-description-nav-hover" href="/">
-                    <div class="logo-page {% if request.path == '/' %}item-nav-active{% else %}animate-logo-page{% endif %}">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <div class="description-page">
-                        <p>Inicio</p>
-                    </div>
-                </a></li>
-                
-                <li>
-                    <a class="logo-description-nav logo-description-nav-hover" href="{% url 'novedad' %}">
-                        <div class="logo-page {% if 'novedad' in request.path %}item-nav-active{% else %}animate-logo-page{% endif %}">
-                            <!-- <i class="fas fa-users-cog"></i> -->
-                            <i class="far fa-id-badge"></i>
-                        </div>
-                        <div class="description-page user-list">
-                            <p>Administrar novedades</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a class="logo-description-nav logo-description-nav-hover" href="/usuarios/">
-                        <div class="logo-page {% if 'usuarios' in request.path %}item-nav-active{% else %}animate-logo-page{% endif %}">
-                            <i class="fas fa-users-cog"></i>
-                        </div>
-                        <div class="description-page user-list">
-                            <p>Administrar usuarios</p>
-                        </div>
-                    </a>
-                </li>
-                <li><a class="logo-description-nav logo-description-nav-hover add-size" href="/programacion">
-                <div class="logo-page {% if 'programacion' in request.path %}item-nav-active{% else %}animate-logo-page{% endif %}">
-                    <i class="far fa-address-book"></i>
-                </div>
-                    <div class="description-page">
-                        <p>Administrar Programación</p>
-                    </div>
-                </a></li>
-                <li><a class="logo-description-nav logo-description-nav-hover" href="/marcaciones">
-                    <div class="logo-page {% if 'marcaciones' in request.path %}item-nav-active{% else %}animate-logo-page{% endif %}">
-                        <i class="far fa-edit"></i>
-                    </div>
-                    <div class="description-page">
-                        <p>Cargar Marcaciones</p>
-                    </div>
-                </a></li>
-                <li><a class="logo-description-nav logo-description-nav-hover add-size" href="/reporte">
-                    <div class="logo-page {% if 'reporte' in request.path %}item-nav-active{% else %}animate-logo-page{% endif %}">
-                        <i class="fas fa-print"></i>
-                    </div>
-                    <div class="description-page">
-                        <p>Administrar Reportes</p>
-                    </div>
-                </a></li>
-            </ul>
-        </section>
-        {% if request.path != "/" %}
-        <section class="sect-errors {% if quantity_failed %}errors-exist{% endif %}">
-            <div class="content-errors">
-                <span class="num-errors">{% if quantity_failed > 9 %}9+{% elif quantity_failed <= 9 %}{{quantity_failed}}{% else %}0{% endif %}</span>
-                <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <p>Errores</p>
-        </section>
-        {% endif %}
-    </nav>
-    <script>        
-	    window.CSRF_TOKEN = "{{ csrf_token }}"; 
-    </script>
+<nav class="nav container">
+    <div class="nav__logo">
+        <h2 class="nav__tittle">Kepler</h2>
+    </div>
+    <ul class="nav__link  nav__link--menu">
+        <li class="nav__items">
+            <a href="{% url 'home' %}" class="nav__links">Inicio</a>
+        </li>
+        <li class="nav__items">
+            <a href="{% url 'home' %}" class="nav__links">Nosotros</a>
+        </li>
+        <li class="nav__items">
+            <a href="{% url 'shop' %}" class="nav__links">Tienda</a>
+        </li>
+        <li class="nav__items">
+            <a href="#" class="nav__links">Login</a>
+        </li>
+        <img src="{% static 'image/close.svg' %}" alt="" class="nav__close">
+    </ul>
+    <div class="nav__menu">
+        <img src="{% static 'image/menu.svg' %}" alt="" class="nav__img">
+
+    </div>
+
+</nav>

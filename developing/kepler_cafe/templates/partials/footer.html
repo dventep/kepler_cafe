@@ -1,20 +1,37 @@
 {% load static %}
+<footer class="footer">
+    <section class="footer__container container">
+        <nav class="nav nav--footer">
+            <h2 class="footer__title">Kepler</h2>
 
-<div class="container-load">
-    <section>
-        <span class="circle circle-1">&nbsp;</span>
-        <span class="circle circle-2">&nbsp;</span>
-        <span class="circle circle-3">&nbsp;</span>
+            <ul class="nav__link nav__link--footer">
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Inicio</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Nosotros</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Productos</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Login</a>
+                </li>
+            </ul>
+        </nav>
     </section>
-    <p class="loading">Cargando<span class="point point-1">.</span><span class="point point-2">.</span><span class="point point-3">.</span></p>
-    <p class="timer-wait">00:00:00</p>
-    {% if 'reporte' in request.path %}
-        <span id="closeLoad"><i class="fa-solid fa-x"></i></span>
-    {% endif %}
-</div>
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="{% static 'js/main.js' %}"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+    <section class="footer__copy container">
+        <div class="footer__social">
+            <a href="#" class="footer__icons"><img src="{% static 'image/bd.svg' %}" class="footer__img"></a>
+            <a href="#" class="footer__icons"><img src="{% static 'image/django.svg' %}" class="footer__img"></a>
+            <a href="#" class="footer__icons"><img src="{% static 'image/git.svg' %}" class="footer__img"></a>
+        </div>
+
+        <h3 class="footer__copyright">Tienda de Cafe Kepler</h3>
+    </section>
+</footer>
+
+<script src="{% static 'js/beneficios.js' %}"></script>
+<script src="{% static 'js/menu.js' %}"></script>
+<script src="{% static 'js/link.js' %}"></script>

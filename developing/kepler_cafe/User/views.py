@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from .models import UserProfile, Charge
 
 def home(request):
-    return render(request, "user/index.html")
+    return render(request, "index.html")
 
 def validate_register(identification_validate, errors_list, identification, first_name, last_name, email, password, phone_number, updating = False):
     """

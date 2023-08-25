@@ -1,0 +1,158 @@
+{% load static %} {# include "partials/head.html" #}
+    <!-- <link rel="stylesheet" href="{# static 'user/home/home.css' #}">
+    <title>KEPLER</title>
+</head>
+    Hola, My Friend.
+    {# include "partials/footer.html" #}
+    <script src="{# static 'user/home/home.js' #}"></script>
+
+</body> -->
+
+</html>
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include 'partials/head.html' %}
+    <title>Kepler</title>
+  </head>
+  <body>
+    <header class="hero">
+        {% include 'partials/navbar.html' %}
+        <section class=" hero__container container">
+            <h1 class="hero__title">Tienda de Cafe Kepler</h1>
+            <p class="hero__paragraph">Sabores celestiales, café terrenal</p>
+            <a href="#" class="cta">Ingresa</a>
+        </section>   
+    </header>
+
+    <main>
+        <section class="container about">
+            <h2 class="subtitle">Nuestros Productos</h2>
+            <p class="about__paragraph">¡Descubre el sabor celestial con nuestra exclusiva colección de cafés temáticos espaciales! </p>
+
+            <div class="about__main">
+                <article class="about__icons">
+                    <img src="{% static 'image/bebida.svg' %}" class="about__icon">
+                    <h3 class="about__title">Bebidas</h3>
+                    <p class="about__paragrah">Cada taza te transportará a un viaje único a través de las galaxias mientras disfrutas de aromas y sabores que desafían la gravedad.</p>
+                </article>
+
+                <article class="about__icons">
+                    <img src="{% static 'image/cook.svg' %}" class="about__icon">
+                    <h3 class="about__title">Comestibles</h3>
+                    <p class="about__paragrah">Cada bocado te llevará a un viaje galáctico de sabores y texturas que te dejarán maravillado</p>
+                </article>
+
+                <article class="about__icons">
+                    <img src="{% static 'image/planeta.svg' %}" class="about__icon">
+                    <h3 class="about__title">Fertilizantes</h3>
+                    <p class="about__paragrah">Revitaliza tus cultivos con nuestra línea de fertilizantes cósmicos, diseñados para hacer crecer tus plantas como si estuvieran en el espacio exterior</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="knowledge" id="about_us">
+            <div class="knowledge__container container">
+                <div class="knowledege__texts">
+                    <h2 class="subtitle">Nosotros</h2>
+                    <p class="knowledge__paragraph">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi,
+                        aliquam nemo in facere suscipit at delectus unde labore ad officia iste accusantium eaque
+                        aperiam laborum est voluptate totam? Modi, obcaecati?</p>
+                    <a href="#" class="cta">Entra al curso</a>
+                </div>
+
+                <figure class="knowledge__picture">
+                    <img src="{% static 'image/alien planet-pana.png' %}" class="knowledge__img">
+                </figure>
+            </div>
+        </section>
+
+
+        <section class="price container">
+            <h2 class="subtitle">Compra nuestros Productos</h2>
+
+            <div class="price__table">
+                <div class="price__element">
+                    <p class="price__name">Bebidas</p>
+                    <h3 class="price__price">Galáctico </h3>
+
+                    <div class="price__items">
+                        <p class="price__features">Latte</p>
+                        <p class="price__features">Café Espacial</p>
+                        <p class="price__features">Café Eclipse</p>
+                    </div>
+
+                    <a href="#" class="price__cta">Comprar</a>
+                </div>
+                <div class="price__element price__element--best">
+                    <p class="price__name">Comestibles</p>
+                    <h3 class="price__price">Tarta de Luna Llena</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">Pastel de Café Viajero</p>
+                        <p class="price__features">Dona Nebulosa de Caramelo</p>
+                        <p class="price__features">Tiramisú de Cometa</p>
+                    </div>
+
+                    <a href="#" class="price__cta">Comprar</a>
+                </div>
+                <div class="price__element">
+                    <p class="price__name">Fertilizantes</p>
+                    <h3 class="price__price">Energía Solar</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">Planeta Verde Orgánico</p>
+                        <p class="price__features">Luna Creciente</p>
+                        <p class="price__features">Estelar Todo en Uno</p>
+                    </div>
+
+                    <a href="#" class="price__cta">Compra</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="questions container">
+            <h2 class="subtitle">Beneficios Kepler</h2>
+            <p class="questions__paragraph">En Café Kepler, no solo ofrecemos una experiencia única en términos de sabor y personalización, sino que también te brindamos una serie de beneficios que hacen que tu visita sea inolvidable.</p>
+
+            <section class="questions__container">
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">Puntos 
+                            <span class="questions__arrow">
+                                <img src="{% static 'image/cohete.svg' %}" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <p class="questions__show">holaldksolkdlkdlskdsl</p>
+                    </div>
+                </article>
+
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">Productos Personalizados
+                            <span class="questions__arrow">
+                                <img src="{% static 'image/estrella.svg' %}" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <p class="questions__show">blablabla</p>
+                    </div>
+                </article>
+
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">Descuentos 
+                            <span class="questions__arrow">
+                                <img src="{% static 'image/mundo.svg' %}" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <p class="questions__show">jejejejje</p>
+                    </div>
+                </article>
+            </section>
+        </section>
+        {% include "partials/footer.html" %}
+  </body>
+</html>
