@@ -1,0 +1,34 @@
+<div class='content-section'>
+    <table class='table table-striped table-bordered table-hovet'>
+        <thead class='thead-dark'>
+            <tr>
+                <th scope='col'>name</th>
+                <th scope='col'>money_unit_price</th>
+                <th scope='col'>point_unit_price</th>
+                <th scope='col'>description</th>
+                <th scope='col'>quantity</th>
+                <th scope='col'>weight</th>
+                <th scope='col'>measure_unit</th>
+                <th scope='col'>status</th>
+                <th scope='col'>creation_date</th>
+                <th scope='col'>category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for product in Product%}
+                <tr style='cursor: pointer; cursor : hand;'>
+                    <th scope='row'>{{forloop.counter}}</th>
+                    <th scope='row'>{{Product.name}}</th>
+                    <th scope='row'>{{Product.money_unit_price}}</th>
+                    <th scope='row'>{{Product.point_unit_price}}</th>
+                    <th scope='row'>{{Product.description}}</th>
+                    <th scope='row'>{{Product.quantity}}</th>
+                    <th scope='row'>{{Product.weight}}</th>
+                    <th scope='row'>{{Product.measure_unit}}</th>
+                    <th scope='row'>{{Product.status}}</th>
+                    <th scope='row'>{{Product.creation_date}}</th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
