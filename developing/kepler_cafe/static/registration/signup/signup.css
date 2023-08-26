@@ -1,11 +1,11 @@
-body{
-    background-image: url('../imagenes/fondo.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    align-items: center;
-    background-attachment: fixed;
-    height: 100vh;
+body {
+  background-image: url('../imagenes/fondo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  align-items: center;
+  background-attachment: fixed;
+  height: 100vh;
 }
 
   .container {
