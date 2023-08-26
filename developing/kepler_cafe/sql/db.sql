@@ -5,7 +5,7 @@
 -- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.2
 
--- Started on 2023-08-21 00:45:18
+-- Started on 2023-08-26 12:56:21
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -156,7 +156,8 @@ CREATE TABLE public."Inventory_product" (
     measure_unit character varying(50),
     creation_date timestamp with time zone NOT NULL,
     category_id bigint NOT NULL,
-    status boolean NOT NULL
+    status boolean NOT NULL,
+    image_product character varying(100)
 );
 
 
@@ -196,7 +197,7 @@ CREATE TABLE public."Movement_main_purchase" (
     money_total_value double precision,
     point_total_value integer,
     creation_date timestamp with time zone NOT NULL,
-    delivery_date timestamp with time zone NOT NULL,
+    delivery_date timestamp with time zone,
     user_id bigint NOT NULL
 );
 
@@ -896,9 +897,9 @@ INSERT INTO public."Inventory_category" (id, name, description) VALUES (2, 'Bebi
 -- Data for Name: Inventory_product; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status) VALUES (2, 'Café Qbano', 5122, 421, 'Cafecito', 51, 400, 'mililitros', '2023-08-20 23:32:22.565324-05', 1, true);
-INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status) VALUES (3, 'Café Alcabo', 2512, 160, 'Papita pal cuello', 155, 600, 'mililitros', '2023-08-20 23:33:10.258459-05', 2, true);
-INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status) VALUES (1, 'Café Alcanfort', 4122, 400, 'Cafecitos', 51, 400, 'mililitros', '2023-08-20 23:32:22.529467-05', 1, true);
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (3, 'Café Alcabo', 2512, 160, 'Papita pal cuello', 155, 600, 'mililitros', '2023-08-20 23:33:10.258459-05', 2, true, NULL);
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (1, 'Café Alcanfort', 4122, 400, 'Cafecitos', 51, 400, 'mililitros', '2023-08-20 23:32:22.529467-05', 1, true, NULL);
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (2, 'Café Qbano', 5122, 421, 'Cafecito', 51, 400, 'mililitros', '2023-08-20 23:32:22.565324-05', 1, true, 'inventory/products/bebida.svg');
 
 
 --
@@ -931,6 +932,7 @@ INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_p
 -- Data for Name: Movement_shopping_car; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public."Movement_shopping_car" (id, quantity, creation_date, description, product_id, user_id) VALUES (2, 2, '2023-08-24 09:06:23.763075-05', NULL, 1, 4512);
 
 
 --
@@ -947,9 +949,9 @@ INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_p
 -- Data for Name: User_userprofile; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined) VALUES ('pbkdf2_sha256$600000$bXZFo1g7hPZcoyZW23uImf$Nswziai5e5sjNusiFC5el7UY9c6aRDLWLk1j3KQUupA=', '2023-08-20 08:54:51.607794-05', 4512, 'Camargo', 'Castañeda', 'camargo@gmail.com', '5123', 0, 0, '2023-08-18 22:57:22.956075-05', '2023-08-18 22:57:22.956075-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22.491677-05');
 INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined) VALUES ('pbkdf2_sha256$600000$hg4wgfrge2h1aGtdcDgFBB$qRTrPh3be5EXrfTgaMrdxfz6HR/89OzU1nYbgit/rTU=', '2023-08-20 20:57:16.59866-05', 12345151, 'Admin Kepler', 'Papita Amarilla', 'admin@kepler.com', '', 0, 0, '2023-08-16 14:57:18.303094-05', '2023-08-16 14:57:18.303094-05', NULL, true, true, true, NULL, '2023-08-20 08:46:22.491677-05');
 INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined) VALUES ('pbkdf2_sha256$600000$sxQoGnAmSwh2pel7S87XIk$Jyv8HXEbvHHdmI4ynan9hawd8Tigsdo8O3R8PNgqR+E=', '2023-08-20 10:41:55.875309-05', 4513, 'Camargo Alf', 'Calargo', 'camargo1@gmail.com', '441232', 0, NULL, '2023-08-19 14:26:25.475358-05', '2023-08-19 14:26:25.475358-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05');
+INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined) VALUES ('pbkdf2_sha256$600000$Z6yoc7jpWJGLv1UNGwwT3i$VM8QEIu2BtLCHvO7c48UaiATJGwBCux91AcMXKMyxvo=', '2023-08-23 23:37:06.835715-05', 4512, 'Camargo', 'Castañeda', 'camargo@gmail.com', '5123', 0, 0, '2023-08-18 22:57:22.956075-05', '2023-08-18 22:57:22.956075-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22.491677-05');
 
 
 --
@@ -1073,6 +1075,7 @@ INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, ac
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (5, '2023-08-20 23:33:07.94817-05', '2', 'ID 2 - Bebidas frías', 1, '[{"added": {}}]', 4, 12345151);
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (6, '2023-08-20 23:33:10.265415-05', '3', 'ID 3 - Café Alcabo', 1, '[{"added": {}}]', 5, 12345151);
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (7, '2023-08-20 23:34:05.224375-05', '1', 'ID 1 - Café Alcanfort', 2, '[{"changed": {"fields": ["Name", "Valor monetario unitario", "Valor de puntos unitario", "Descripci\u00f3n"]}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (8, '2023-08-25 22:42:49.833972-05', '2', 'ID 2 - Café Qbano', 2, '[{"changed": {"fields": ["Image product"]}}]', 5, 12345151);
 
 
 --
@@ -1137,6 +1140,8 @@ INSERT INTO public.django_migrations (id, app, name, applied) VALUES (28, 'User'
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (29, 'Inventory', '0003_alter_product_description', '2023-08-20 23:23:49.798712-05');
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (30, 'Movement', '0005_shopping_car_delete_product_shopping_car', '2023-08-20 23:23:50.19766-05');
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (31, 'User', '0003_alter_userprofile_salary', '2023-08-20 23:23:50.216441-05');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (32, 'Inventory', '0004_alter_category_options_product_image_product', '2023-08-25 22:41:11.023676-05');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (33, 'Movement', '0006_alter_main_purchase_delivery_date', '2023-08-26 09:03:42.482404-05');
 
 
 --
@@ -1147,8 +1152,9 @@ INSERT INTO public.django_migrations (id, app, name, applied) VALUES (31, 'User'
 
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('iv1o4f3qg18hxohe334xzl8uk63jw7cn', '.eJxVjr0OwyAQg9-FuUJH-Asdu-cZ0AFHSVsRKSRT1XcvkTK0iwd_tuU387hvxe-NVj8ndmVikEoLLdjlFwWMT6oHTw-s94XHpW7rHPgR4SdtfFoSvW5n9m-gYCu9LYOkAQC0AjQ2ZwUwEnZJNpMRKGL3nUGK0cUsjTL9y4jJCFConGWfL9iNOL8:1qWMea:FrDbCMlnnWryOoGVo_NueoePBdWLkgHRTcYUozQDV64', '2023-08-30 14:58:04.803488-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('0fhgxpaesu8qcb3tpxx74v7rb8d2ihlf', '.eJxVjr0OwyAQg9-FuUJH-Asdu-cZ0AFHSVsRKSRT1XcvkTK0iwd_tuU387hvxe-NVj8ndmVikEoLLdjlFwWMT6oHTw-s94XHpW7rHPgR4SdtfFoSvW5n9m-gYCu9LYOkAQC0AjQ2ZwUwEnZJNpMRKGL3nUGK0cUsjTL9y4jJCFConGWfL9iNOL8:1qX51W:k4dU8ImySHbBzAp-sfUz_PkjkUOBxdFUYOz67FhLPL0', '2023-09-01 14:20:42.330158-05');
-INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('gkmdrgkpnwxebjpamuu6z7xn4wrzf6ep', '.eJxVjMsOwiAQRf-FtSHlMQVcuvcbyAwDtmpKUtqV8d-VpAvd3eScc18i4r5NcW95jTOLs1DaWFCgxOkXEaZHXjrnOy63KlNdtnUm2RV50CavlfPzcrh_BxO2qddcvLYFR2WVA0_AAJoDBrIAYSijceSCJ-2Lx-SsxQG_M5SkyTAq8f4A5Wk5UA:1qXivH:iLkJY12mURLvq2dj5JId7IYSxPm21fHd_M6ZzZXdSuY', '2023-09-03 08:56:55.470247-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('vwa5hl5yxgta7jgkv4xvmpphu6qusuou', '.eJxVjMsOwiAUBf-FtSFQ3i7d9xsIXC5SNZCUdmX8d0vShW7PzJw38WHfit87rn5J5Eqk4oJcfucY4Il1sPQI9d4otLqtS6RDoSftdG4JX7fT_TsooZejztZY52ACEIAGwGamRBKBOwOcGRXjgXFiLpuoh6WZwJyjNDpIdIx8vmEEOLg:1qXkYt:mYr7Y36XnSQ7bP1oM-Cb35qxOALyc0nEh91W7NeNMG4', '2023-09-03 10:41:55.879303-05');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('gkmdrgkpnwxebjpamuu6z7xn4wrzf6ep', '.eJxVjMsOwiAQRf-FtSHlMQVcuvcbyAwDtmpKUtqV8d-VpAvd3eScc18i4r5NcW95jTOLs1DaWFCgxOkXEaZHXjrnOy63KlNdtnUm2RV50CavlfPzcrh_BxO2qddcvLYFR2WVA0_AAJoDBrIAYSijceSCJ-2Lx-SsxQG_M5SkyTAq8f4A5Wk5UA:1qZ252:rCg1fx-EcRRHwpojn9GsHviinlHjpmj52YwCpLJ66Vs', '2023-09-06 23:36:24.849502-05');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('ufar9jq88vm3i4obadvdtc0pwmnombyc', '.eJxVjDEOwjAMRe-SGUWNEzsVIztniOw4JQXUSk07Ie4OlTrA-t97_2USb2tNWytLGtWcTUAH5vQ7C-dHmXamd55us83ztC6j2F2xB232Omt5Xg7376Byq996iADaY4yhMAYgzIFAgLNToaKdkM_eB5KIDjtB7Zl87MPgIYIrZN4fP6A3pw:1qZ25i:_OkYvCjqMsZwCyuM9uJXDoygunsIC92OaSg0_El2XrE', '2023-09-06 23:37:06.837698-05');
 
 
 --
@@ -1220,7 +1226,7 @@ SELECT pg_catalog.setval('public."Movement_purchase_detail_id_seq"', 1, false);
 -- Name: Movement_shopping_car_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Movement_shopping_car_id_seq"', 1, false);
+SELECT pg_catalog.setval('public."Movement_shopping_car_id_seq"', 2, true);
 
 
 --
@@ -1283,7 +1289,7 @@ SELECT pg_catalog.setval('public.auth_permission_id_seq', 68, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 7, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 8, true);
 
 
 --
@@ -1301,7 +1307,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 17, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 31, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 33, true);
 
 
 --
@@ -1944,7 +1950,7 @@ ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_User_user" FOREIGN KEY (user_id) REFERENCES public."User_userprofile"(identification) DEFERRABLE INITIALLY DEFERRED;
 
 
--- Completed on 2023-08-21 00:45:19
+-- Completed on 2023-08-26 12:56:22
 
 --
 -- PostgreSQL database dump complete

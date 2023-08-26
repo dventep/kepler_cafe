@@ -65,7 +65,7 @@ class Main_Purchase(models.Model):
 	money_total_value = models.FloatField('Valor total monetario', default=None, blank=True, null=True)
 	point_total_value = models.IntegerField('Valor total en puntos', default=None, blank=True, null=True)
 	creation_date = models.DateTimeField('Fecha de creación', auto_now_add = True)
-	delivery_date = models.DateTimeField('Fecha de entrega')
+	delivery_date = models.DateTimeField('Fecha de entrega', null=True, blank=True)
 	user = models.ForeignKey('User.UserProfile', related_name="userprofile_main_purchase", on_delete = models.CASCADE, verbose_name = "Usuario")
 	
 	class Meta:

@@ -5,12 +5,13 @@ from django.urls import include
 
 # urlpatterns = [
 #     path('shop/', products_list),
-#     path('product/', Product_Description),
-from .views import inventory_list, per_product_view
+from .views import inventory_list, Product_Description
+# per_product_view
 # , add_product, delete_product
 
 urlpatterns = [
     path('inventory/', inventory_list, name="shop"),
+    path('product/', Product_Description, name="product_description"),
     # path('product/<int:pk>', per_product_view, name="Product Detail"),
     # path('add_inventory/', add_product, name="add_inventory"),
     # path('delete/<int:pk>', delete_product, name="delete_product")

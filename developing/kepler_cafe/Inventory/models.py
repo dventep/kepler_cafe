@@ -41,6 +41,7 @@ class Product(models.Model):
 	status = models.BooleanField('Estado', default=True)
 	creation_date = models.DateTimeField('creation date', auto_now_add = True)
 	category = models.ForeignKey('Category', related_name="category_product", on_delete = models.CASCADE, verbose_name = "Categoría")
+	image_product = models.FileField(upload_to="inventory/products/", null=True, blank=True)
 	
 	class Meta:
 		verbose_name = "Producto"

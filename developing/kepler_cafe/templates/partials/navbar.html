@@ -8,14 +8,20 @@
             <a href="{% url 'home' %}" class="nav__links">Inicio</a>
         </li>
         <li class="nav__items">
-            <a href="{% url 'home' %}" class="nav__links">Nosotros</a>
+            <a href="#about_us" class="nav__links">Nosotros</a>
         </li>
         <li class="nav__items">
             <a href="{% url 'shop' %}" class="nav__links">Tienda</a>
         </li>
+        {% if not user.is_authenticated %}
         <li class="nav__items">
-            <a href="#" class="nav__links">Login</a>
+            <a href="/accounts/login/" class="nav__links">Iniciar sesión</a>
         </li>
+        {% else %}
+        <li class="nav__items">
+            <a href="/accounts/logout/" class="nav__links">Cerrar sesión</a>
+        </li>
+        {% endif %}
         <img src="{% static 'image/close.svg' %}" alt="" class="nav__close">
     </ul>
     <div class="nav__menu">

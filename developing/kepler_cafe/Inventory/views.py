@@ -55,35 +55,35 @@ from Movement.models import Shopping_Car
 #     }
 #     return render(request, 'inventory/products_shop.html', context)
 
-# def Product_Description(request):
-#     """
-#         Description:
-#             This function has the objective to get information about the Product selected. 
-#     """
-#     return_content = {'errors': [], 'message': {}}
-#     return_errors = []
+def Product_Description(request):
+    """
+        Description:
+            This function has the objective to get information about the Product selected. 
+    """
+    return_content = {'errors': [], 'message': {}}
+    return_errors = []
 
-#     id_product = request.GET.get('id', None)
-#     if not id_product or id_product == "":
-#         return_errors.append({ 'title': 'Producto', 'content': 'No se recibió información de algún producto.' })
-#     elif not Product.objects.filter(pk = id_product).exists():
-#         return_errors.append({ 'title': 'Producto', 'content': f'No existe el producto con identificación {id_product}.' })
-#     else:
-#         product_info = Product.objects.filter(pk = id_product).values("name", "money_unit_price", "point_unit_price", "quantity", "weight", "measure_unit", "category_name", category_name = F("category__name")).get()
-#         print(product_info)
-#         return_content
-#         return_content.update(product_info)
+    id_product = request.GET.get('id', None)
+    if not id_product or id_product == "":
+        return_errors.append({ 'title': 'Producto', 'content': 'No se recibió información de algún producto.' })
+    elif not Product.objects.filter(pk = id_product).exists():
+        return_errors.append({ 'title': 'Producto', 'content': f'No existe el producto con identificación {id_product}.' })
+    else:
+        product_info = Product.objects.filter(pk = id_product).values("name", "money_unit_price", "point_unit_price", "quantity", "weight", "measure_unit", "category_name", 'image_product', category_name = F("category__name")).get()
+        print(product_info)
+        return_content
+        return_content.update(product_info)
 
-#     return_content['errors'] = return_errors
-#     return render(request, 'inventory/product_detail.html', return_content)
-#     # return JsonResponse(return_content)
-#     # return redirect("/")
+    return_content['errors'] = return_errors
+    return render(request, 'inventory/product_detail.html', return_content)
+    # return JsonResponse(return_content)
+    # return redirect("/")
 # from .forms import Add_inventory, UpdateInventoryForm
 
 # Create your views here.
 
 
-@login_required
+# @login_required
 def inventory_list(request):
     search_product = ""
     selected_category = None
@@ -99,13 +99,15 @@ def inventory_list(request):
         products_list = products_list.filter(name__contains = search_product)
     
     products_list = list(products_list.values(
+        'pk',
         'name',
         'money_unit_price',
         'point_unit_price',
         'quantity',
         'weight',
         'measure_unit',
-        category_name = F('category__name'),
+        'image_product',
+        category_name = F('category__name')
         ))
     categories_list = list(Category.objects.all().values(
         'pk',
@@ -127,13 +129,13 @@ def inventory_list(request):
     }
     return render(request, 'inventory/products_shop.html', context=context)
 
-@login_required
-def per_product_view (request, pk):
-    inventory = get_object_or_404(Product, pk=pk)
-    context = {
-        'inventory' : inventory
-    }
-    return render(request, 'inventory/detalleProducto.html', context=context)
+# @login_required
+# def per_product_view (request, pk):
+#     inventory = get_object_or_404(Product, pk=pk)
+#     context = {
+#         'inventory' : inventory
+#     }
+#     return render(request, 'inventory/product_detail.html', context=context)
 
 # @login_required
 # def add_product(request):

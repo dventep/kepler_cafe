@@ -60,7 +60,7 @@ def register_html(request):
         phone_number = request.POST.get('phone_number', '')
         datetime_tz = datetime.now(tz=pytz.timezone('America/Bogota'))
 
-        return_errors = validate_register(request=request, errors_list=return_errors, identification=identification, first_name=first_name, last_name=last_name, email=email, password=password, phone_number=phone_number)
+        return_errors = validate_register(identification_validate=request.user.identification, errors_list=return_errors, identification=identification, first_name=first_name, last_name=last_name, email=email, password=password, phone_number=phone_number)
         return_content['errors'] = return_errors
         print("return_content:", return_content)
         if len(return_errors) == 0:
@@ -118,7 +118,7 @@ def manage_profile(request):
         password = request.POST.get('password', '')
         phone_number = request.POST.get('phone_number', '')
 
-        return_errors = validate_register(request=request, errors_list=return_errors, identification=identification, first_name=first_name, last_name=last_name, email=email, password=password, phone_number=phone_number, updating=True)
+        return_errors = validate_register(identification_validate=identification, errors_list=return_errors, identification=identification, first_name=first_name, last_name=last_name, email=email, password=password, phone_number=phone_number, updating=True)
         return_content['errors'] = return_errors
         
         if len(return_errors) == 0:

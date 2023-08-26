@@ -65,20 +65,27 @@
 			</div>
 		</header>
 		<div class="container-items">
+			{% for item in products_list %}
 			<div class="item">
 				<figure>
-					<img
+					<!-- <img
 						src="https://images.unsplash.com/photo-1627998691167-4dab0dfcae9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
 						alt="producto"
+					/> -->
+					<img
+						src="/media/{{item.image_product}}"
+						alt="{{item.name}}"
 					/>
 				</figure>
 				<div class="info-product">
-					<h2>Malteada</h2>
-					<p class="price">$7000</p>
-					<button class="btn-add-cart">Añadir al carrito</button>
+					<h2>{{ item.name}}</h2>
+					<p class="price">${{item.money_unit_price}}</p>
+					<p class="price">{{item.point_unit_price}}</p>
+					<a href="{% url 'product_description' %}?id={{item.pk}}" class="btn-add-cart">Ver detalle</a>
 				</div>
 			</div>
-			<div class="item">
+			{% endfor %}
+			<!-- <div class="item">
 				<figure>
 					<img
 						src="https://images.unsplash.com/photo-1549814343-56bebd9e31fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
@@ -143,9 +150,9 @@
 					<p class="price">$5000</p>
 					<button class="btn-add-cart">Añadir al carrito</button>
 				</div>
-			</div>
+			</div> -->
 		</div>
         {% include "partials/footer.html" %}
-		<script src="/js/pro.js"></script>
+		<script src="{% static 'inventory/pro.js' %}"></script>
 	</body>
 </html>
