@@ -31,6 +31,7 @@ class UserProfileAdmin(ImportExportModelAdmin, PasswordResetUserAdmin):
       "first_name",
       "last_name",
       "email",
+      "point",
       "is_active",
       "is_staff",
       "is_superuser",

@@ -1,5 +1,60 @@
 <html>
-    <body>
-        Hola, bienvenido
+    <head>
+        <style>
+            body {
+                font-family: 'Courier New', Courier, monospace;
+            }
+            .display_flex {
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            #contentTable {
+                flex-direction: column;
+            }
+            th, td {
+                border: 1px solid;
+            }
+        </style>        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body style="width: 100%; height: 100%">
+        <p>Hola {{ request.user.first_name }} {{ request.user.last_name }}. Esta es tu factura:</p>
+        <div class="display_flex" style="flex-direction: column; text-align:center">
+            <div style="font-weight: 600;">
+                FACTURA DE PRODUCTOS KEPLER
+            </div>
+            <table class="table table-dark table-bordered" style="width: 100%;" class="d-flex justify-content-center">
+                <tr>
+                    <th scope="col" colspan="6">Orden de compra #{{ order_purchase }}</th>
+                </tr>
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio unitario</th>
+                    <th scope="col">Precio total</th>
+                    <th scope="col">Valor en puntos unitario</th>
+                    <th scope="col">Valor en puntos total</th>
+                </tr>
+                {% for shopping_car in shopping_car_list %}
+                <tr>
+                    <td>{{ shopping_car.product__name }}</td>
+                    <td>{{ shopping_car.quantity }}</td>
+                    <td>{% if shopping_car.money_unit_value %}${{ shopping_car.money_unit_value }}{% else %}0{% endif %}</td>
+                    <td>{% if shopping_car.money_total_price %}${{ shopping_car.money_total_price }}{% else %}0{% endif %}</td>
+                    <td>{% if sshopping_car.point_unit_value %}${{ sshopping_car.point_unit_value }}{% else %}0{% endif %}</td>
+                    <td>{% if shopping_car.point_total_price %}${{ shopping_car.point_total_price }}{% else %}0{% endif %}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td>${{ money_total_value }}</td>
+                    <td></td>
+                    <td>{{ point_total_value }}</td>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>

@@ -64,17 +64,20 @@ def remove_product_shopping_car(request):
         return_content['errors'] = return_errors
     return JsonResponse(return_content)
 
-def send_check_email(request, email):
-    print("send_check_email se llama")
+def send_check_email(request, shopping_car_list, money_total_value, point_total_value, order_purchase):
     template = get_template("movement/email_check/send.html")
     content = template.render({
-        'email': "holaaaa agua"
+        'request': request,
+        'shopping_car_list': shopping_car_list,
+        'money_total_value': money_total_value,
+        'point_total_value': point_total_value,
+        'order_purchase': order_purchase
     })
     msg = EmailMultiAlternatives(
         'Gracias por tu compra - Kepler',
         'Hola, te enviamos un correo con tu factura',
         settings.EMAIL_HOST_USER,
-        [email]
+        [request.user.email]
     )
     msg.attach_alternative(content, 'text/html')
     msg.send()
@@ -85,7 +88,7 @@ def make_purchasing(request):
     errors_list = []
     money_total_value = 0
     point_total_value = 0
-    shopping_car_list = Shopping_Car.objects.filter(user__pk = request.user.pk).values('pk','product__pk', 'quantity', 'product__money_unit_price', 'product__point_unit_price', money_total_price = F('product__money_unit_price') * F('quantity'), point_total_price = F('product__point_unit_price') * F('quantity'))
+    shopping_car_list = Shopping_Car.objects.filter(user__pk = request.user.pk).values('pk','product__name', 'product__pk', 'quantity', 'description', 'product__money_unit_price', 'product__point_unit_price', money_total_price = F('product__money_unit_price') * F('quantity'), point_total_price = F('product__point_unit_price') * F('quantity'))
     creation_date = datetime.now(tz=pytz.timezone('America/Bogota'))
     if len(shopping_car_list) > 0:
         main_purchase = Main_Purchase.objects.create(
@@ -130,30 +133,41 @@ def make_purchasing(request):
                         transaction_date = creation_date,
                         purchase_detail = purchase_detail
                     )
+                quantity_point = 5 * shopping_car['quantity']
                 Point_Transaction.objects.create(  # Puntos que recibe por comprar
-                    quantity_point = 5 * shopping_car['quantity'],
+                    quantity_point = quantity_point,
                     action = 'in',
                     transaction_date = creation_date,
                     purchase_detail = purchase_detail
                 )
+                UserProfile.objects.filter(pk = request.user.pk).update(point = total_points + quantity_point)
         # Actualización de los valores de la compra principal.
         main_purchase.money_total_value = money_total_value
         main_purchase.point_total_value = point_total_value
         main_purchase.save()
         
         # Crear factura:
+        send_check_email(request, Purchase_Detail.objects.filter(main_purchase_id = main_purchase.pk).values(
+            "main_purchase__pk",
+            "quantity",
+            "money_unit_value",
+            "point_unit_value",
+            "product__name",
+            money_total_price = F('money_unit_value') * F('quantity'),
+            point_total_price = F('point_unit_value') * F('quantity')),
+        money_total_value, point_total_value, main_purchase.pk)
+        Shopping_Car.objects.filter(user__pk = request.user.pk).delete()
     else:
         errors_list.append({ 'title': 'Compra no realizada', 'content': 'No hay productos que comprar.' })
     return errors_list
 
 def look_product_shopping_car(request):
-    # send_check_email(request, "davidventepolo@gmail.com")
     return_content = {'errors': [], 'shopping_car_quantity': 0}
     return_errors = []
-    print("aa")
     if not (request.user and request.user.is_authenticated):
         return_errors.append({ 'title': 'Iniciar sesión', 'content': 'Debes iniciar sesión para tener un carrito.' })
     else:
+        return_content['shopping_car_quantity'] = Shopping_Car.objects.filter(user_id = request.user.pk).count()
         if request.POST:
             if not request.POST.get('use_points', False):
                 return_errors.append({ 'title': 'Indicador de uso de puntos', 'content': 'No se recibió el indicador de uso de puntos.' })
@@ -174,7 +188,7 @@ def look_product_shopping_car(request):
                     money_total_price = F('product__money_unit_price') * F('quantity'),
                     point_unit_price = F('product__point_unit_price'),
                     point_total_price = F('product__point_unit_price') * F('quantity'),
-                    use_points = False,
+                    use_points = Value(False),
                     image_product = F('product__image_product'),
                 )
                 return_content['shopping_car_quantity'] = Shopping_Car.objects.filter(user_id = request.user.pk).count()

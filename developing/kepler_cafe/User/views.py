@@ -10,6 +10,7 @@ from django.utils.timezone import make_aware, utc
 from django.contrib.auth.decorators import login_required
 
 from .models import UserProfile, Charge
+from Movement.models import Shopping_Car
 
 def home(request):
     return render(request, "index.html")
@@ -135,149 +136,10 @@ def manage_profile(request):
                 'content': 'Se han presentado problemas en la actualización.'
             }   
     return_content['errors'] = return_errors
+    shopping_car_quantity = 0
+    if  request.user and request.user.is_authenticated:
+        shopping_car_quantity = Shopping_Car.objects.filter(user_id = request.user.identification).count()
     if request.user.is_staff or request.user.is_superuser:
         return_content['charge_list'] = list(Charge.objects.all().values('pk', 'name').order_by('name', 'pk'))
-
+    return_content['shopping_car_quantity'] = shopping_car_quantity
     return render(request, 'user/user.html', return_content)
-
-@login_required
-def get_profiles(request):
-    """
-        Description:
-            This function has the objective to return all users information except the admin user. 
-    """
-    return_content = {'errors': [], 'message': {}}
-    return_errors = []
-    if request.user.is_superuser:
-        users_list = list(UserProfile.objects.all().exclude(pk = request.user.pk).values(
-            'identification',
-            'first_name',
-            'last_name',
-            'email',
-            'phone_number',
-            'salary',
-            'entrance_date',
-            'is_staff',
-            'is_superuser',
-            charge_name = F('charge__name'),
-        ))
-        return_content['errors'] = return_errors
-        return_content['users_list'] = users_list
-
-        return render(request, 'user/profiles.html', return_content)
-
-    return redirect("/")
-        
-@login_required
-def get_profile(request):
-    """
-        Description:
-            This function has the objective to return user record to be updated.
-    """
-    return_content = {'errors': [], 'message': {}}
-    if request.user.is_superuser and request.POST:
-        user_info = {}
-        return_errors = []
-        
-        identification = request.POST.get('identification', '')
-        if identification and identification != '':
-            if UserProfile.objects.filter(identification = identification).exists():
-                user_info = list(UserProfile.objects.filter(identification = identification).values(
-                    'identification',
-                    'first_name',
-                    'last_name',
-                    'email',
-                    'phone_number',
-                    'salary',
-                    'is_staff',
-                    'is_superuser',
-                    'charge_id'
-                ).annotate(
-                    entrance_date=Func(
-                        F('entrance_date'),
-                        Value('DD-MM-YYYY HH:MM:SS'),
-                        function='to_char',
-                        output_field=CharField()
-                    )
-                    )
-                )[0]
-            else:
-                return_errors.append({ 'title': 'Identificación del usuario', 'content': f"No existe algún usuario con la identificación '{identification}'." })
-        else:
-            return_errors.append({ 'title': 'Identificación del usuario', 'content': 'No se recibió la identificación del usuario para obtener la información.' })
-
-        return_content['charge_list'] = list(Charge.objects.all().values('pk', 'name').order_by('name', 'pk'))
-        return_content['errors'] = return_errors
-        return_content['user_info'] = user_info
-
-        return render(request, 'user/profile.html', return_content)
-        # return JsonResponse(return_content)
-
-    return redirect("/")
-        
-@login_required
-def save_profile(request):
-    """
-        Description:
-            This function has the objective to update the user with his information. 
-    """
-    return_content = {'errors': [], 'message': {}}
-    try:
-        if request.user.is_superuser and request.POST:
-            user_info = {}
-            return_errors = []
-            
-            identification = request.POST.get("identification", "")
-            first_name = request.POST.get('first_name', '')
-            last_name = request.POST.get('last_name', '')
-            email = request.POST.get('email', '')
-            phone_number = request.POST.get('phone_number', '')
-            password = " "
-            salary = request.POST.get('salary', '')
-            is_staff = request.POST.get('is_staff', '')
-            is_superuser = request.POST.get('is_superuser', '')
-            charge_id = request.POST.get('charge_id', '')
-
-            return_errors = validate_register(identification_validate=identification, errors_list=return_errors, identification=identification, first_name=first_name, last_name=last_name, email=email, password=password, phone_number=phone_number, updating=True)
-
-            if charge_id != '' and not Charge.objects.filter(pk = charge_id).exists():
-                return_errors.append({ 'title': 'Cargo del usuario', 'content': f"No existe el cargo seleccionado '{charge_id}'." })
-            if charge_id == "":
-                charge_id = None
-            if salary != '' and not salary.isdigit():
-                return_errors.append({ 'title': 'Salario del usuario', 'content': f"El salario del usuario no es válido: '{salary}'." })
-            if salary == "":
-                salary = None
-            
-            if len(return_errors) == 0:
-                if UserProfile.objects.filter(identification = identification).exists():
-                    UserProfile.objects.filter(identification = identification).update(
-                        first_name = first_name,
-                        last_name = last_name,
-                        email = email,
-                        phone_number = phone_number,
-                        salary = salary,
-                        is_staff = is_staff,
-                        is_superuser = is_superuser,
-                        charge_id = charge_id
-                    )
-                else:
-                    return_errors.append({ 'title': 'Identificación del usuario', 'content': f"No existe algún usuario con la identificación '{identification}'." })
-                print("6")
-
-            if len(return_errors) == 0:
-                return_content['message'] = {
-                    'title': 'Actualización exitosa',
-                    'content': 'Se ha actualizado usuario con éxito.'
-                    }
-            else:
-                return_content['message'] = {
-                    'title': 'Actualización interrumpida',
-                    'content': 'Se han presentado problemas en la actualización.'
-                    }
-            
-            return_content['errors'] = return_errors
-    except:
-        print(traceback.format_exc())
-
-    return JsonResponse(return_content)

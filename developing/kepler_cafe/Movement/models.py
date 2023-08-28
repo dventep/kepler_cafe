@@ -137,7 +137,7 @@ class Point_Transaction(models.Model):
 		ordering = ["transaction_date", "action", "purchase_detail",]
 
 	def __str__(self):
-		return f"ID {str(self.pk)} - {self.purchase_detail.user.first_name} {self.purchase_detail.user.last_name} -> {self.action}"
+		return f"ID {str(self.pk)} - {self.purchase_detail.main_purchase.user.first_name} {self.purchase_detail.main_purchase.user.last_name} -> {self.action}"
 
 
 

@@ -38,13 +38,15 @@ class Shopping_CarAdmin(ImportExportModelAdmin):
 class Main_PurchaseAdmin(ImportExportModelAdmin):
     @admin.display(description="Usuario", ordering="user__identification")
     def fullname_user(self, obj):
-        return f"{obj.user.first_name} {obj.user.lastname}"
+        return f"{obj.user.first_name} {obj.user.last_name}"
     @admin.display(description="Fecha de creación", ordering="creation_date")
     def formated_creation_date(self, obj):
         return obj.creation_date.strftime("%d/%m/%Y %H:%M:%S")
     @admin.display(description="Fecha de entrega", ordering="delivery_date")
     def formated_delivery_date(self, obj):
-        return obj.delivery_date.strftime("%d/%m/%Y %H:%M:%S")
+        if obj.delivery_date:
+            return obj.delivery_date.strftime("%d/%m/%Y %H:%M:%S")
+        return "-"
 
     list_display = (
 		"pk",
@@ -67,7 +69,7 @@ class Main_PurchaseAdmin(ImportExportModelAdmin):
 class Purchase_DetailAdmin(ImportExportModelAdmin):
     @admin.display(description="Usuario", ordering="user__identification")
     def fullname_user(self, obj):
-        return f"{obj.main_purchase.user.first_name} {obj.main_purchase.user.lastname}"
+        return f"{obj.main_purchase.user.first_name} {obj.main_purchase.user.last_name}"
     @admin.display(description="Producto", ordering="product__name")
     def product_name(self, obj):
         return f"{obj.product.name}"
@@ -100,7 +102,7 @@ class Purchase_DetailAdmin(ImportExportModelAdmin):
 class Point_TransactionAdmin(ImportExportModelAdmin):
     @admin.display(description="Usuario", ordering="purchase_detail__user__identification")
     def fullname_user(self, obj):
-        return f"{obj.purchase_detail.main_purchase.user.first_name} {obj.purchase_detail.main_purchase.user.lastname}"
+        return f"{obj.purchase_detail.main_purchase.user.first_name} {obj.purchase_detail.main_purchase.user.last_name}"
     @admin.display(description="Producto", ordering="purchase_detail__product__name")
     def product_name(self, obj):
         return f"{obj.purchase_detail.product.name}"

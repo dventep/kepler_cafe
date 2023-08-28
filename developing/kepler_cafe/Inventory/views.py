@@ -75,6 +75,11 @@ def Product_Description(request):
         return_content.update(product_info)
 
     return_content['errors'] = return_errors
+    shopping_car_quantity = 0
+    if request.user.is_authenticated:
+        shopping_car_quantity = Shopping_Car.objects.filter(user_id = request.user.identification).count()
+    
+    return_content['shopping_car_quantity'] = shopping_car_quantity
     return render(request, 'inventory/product_detail.html', return_content)
     # return JsonResponse(return_content)
     # return redirect("/")
@@ -150,11 +155,11 @@ def inventory_list(request):
 #         add_form = Add_inventory()
 #     return render(request, "inventory/inventory_add.html", {"form": add_form})
 
-@login_required
-def delete_product(request, pk):
-    inventory = get_object_or_404(Product, pk=pk)
-    inventory.delete()
-    return redirect("/inventory/")
+# @login_required
+# def delete_product(request, pk):
+#     inventory = get_object_or_404(Product, pk=pk)
+#     inventory.delete()
+#     return redirect("/inventory/")
 
 # @login_required
 # def update_inventory(request, pk):
