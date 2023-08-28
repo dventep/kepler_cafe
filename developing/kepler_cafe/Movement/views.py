@@ -8,6 +8,9 @@ from django.db.models import F
 from django.http import HttpResponse, JsonResponse
 from django.utils.timezone import make_aware, utc
 from django.contrib.auth.decorators import login_required
+from django.template.loader import get_template
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 
 from .models import Shopping_Car, Main_Purchase, Purchase_Detail, Point_Transaction
 from Inventory.models import Product
@@ -60,6 +63,22 @@ def remove_product_shopping_car(request):
         return_content['shopping_car_quantity'] = Shopping_Car.objects.filter(user_id = request.user.pk).count()
         return_content['errors'] = return_errors
     return JsonResponse(return_content)
+
+def send_check_email(request, email):
+    print("send_check_email se llama")
+    template = get_template("movement/email_check/send.html")
+    content = template.render({
+        'email': "holaaaa agua"
+    })
+    msg = EmailMultiAlternatives(
+        'Gracias por tu compra - Kepler',
+        'Hola, te enviamos un correo con tu factura',
+        settings.EMAIL_HOST_USER,
+        [email]
+    )
+    msg.attach_alternative(content, 'text/html')
+    msg.send()
+    return True
 
 def make_purchasing(request):
     use_points = request.POST['use_points']
@@ -128,6 +147,7 @@ def make_purchasing(request):
     return errors_list
 
 def look_product_shopping_car(request):
+    # send_check_email(request, "davidventepolo@gmail.com")
     return_content = {'errors': [], 'shopping_car_quantity': 0}
     return_errors = []
     print("aa")
