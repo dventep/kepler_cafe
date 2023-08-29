@@ -13,7 +13,10 @@ from .models import UserProfile, Charge
 from Movement.models import Shopping_Car
 
 def home(request):
-    return render(request, "index.html")
+    shopping_car_quantity = 0
+    if  request.user and request.user.is_authenticated:
+        shopping_car_quantity = Shopping_Car.objects.filter(user_id = request.user.identification).count()
+    return render(request, "index.html", {'shopping_car_quantity': shopping_car_quantity})
 
 def validate_register(identification_validate, errors_list, identification, first_name, last_name, email, password, phone_number, updating = False):
     """
