@@ -5,7 +5,7 @@
 -- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.2
 
--- Started on 2023-08-26 12:56:21
+-- Started on 2023-08-28 20:29:50
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -31,7 +31,8 @@ CREATE TABLE public."Interaction_question" (
     id bigint NOT NULL,
     name character varying(50) NOT NULL,
     description character varying(300) NOT NULL,
-    creation_date timestamp with time zone NOT NULL
+    creation_date timestamp with time zone NOT NULL,
+    with_product boolean NOT NULL
 );
 
 
@@ -48,7 +49,8 @@ CREATE TABLE public."Interaction_question_answer" (
     description character varying(250),
     creation_date timestamp with time zone NOT NULL,
     product_id bigint,
-    question_id bigint NOT NULL
+    question_id bigint NOT NULL,
+    user_id bigint NOT NULL
 );
 
 
@@ -70,7 +72,7 @@ CREATE SEQUENCE public."Interaction_question_answer_id_seq"
 ALTER TABLE public."Interaction_question_answer_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3552 (class 0 OID 0)
+-- TOC entry 3554 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: Interaction_question_answer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -94,7 +96,7 @@ CREATE SEQUENCE public."Interaction_question_id_seq"
 ALTER TABLE public."Interaction_question_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3553 (class 0 OID 0)
+-- TOC entry 3555 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: Interaction_question_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -132,7 +134,7 @@ CREATE SEQUENCE public."Inventory_category_id_seq"
 ALTER TABLE public."Inventory_category_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3554 (class 0 OID 0)
+-- TOC entry 3556 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: Inventory_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -179,7 +181,7 @@ CREATE SEQUENCE public."Inventory_product_id_seq"
 ALTER TABLE public."Inventory_product_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3555 (class 0 OID 0)
+-- TOC entry 3557 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: Inventory_product_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -220,7 +222,7 @@ CREATE SEQUENCE public."Movement_main_purchase_id_seq"
 ALTER TABLE public."Movement_main_purchase_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3556 (class 0 OID 0)
+-- TOC entry 3558 (class 0 OID 0)
 -- Dependencies: 234
 -- Name: Movement_main_purchase_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -260,7 +262,7 @@ CREATE SEQUENCE public."Movement_point_transaction_id_seq"
 ALTER TABLE public."Movement_point_transaction_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3557 (class 0 OID 0)
+-- TOC entry 3559 (class 0 OID 0)
 -- Dependencies: 236
 -- Name: Movement_point_transaction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -303,7 +305,7 @@ CREATE SEQUENCE public."Movement_purchase_detail_id_seq"
 ALTER TABLE public."Movement_purchase_detail_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3558 (class 0 OID 0)
+-- TOC entry 3560 (class 0 OID 0)
 -- Dependencies: 238
 -- Name: Movement_purchase_detail_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -372,7 +374,7 @@ CREATE SEQUENCE public."User_charge_id_seq"
 ALTER TABLE public."User_charge_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3559 (class 0 OID 0)
+-- TOC entry 3561 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: User_charge_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -438,7 +440,7 @@ CREATE SEQUENCE public."User_userprofile_groups_id_seq"
 ALTER TABLE public."User_userprofile_groups_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3560 (class 0 OID 0)
+-- TOC entry 3562 (class 0 OID 0)
 -- Dependencies: 230
 -- Name: User_userprofile_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -476,7 +478,7 @@ CREATE SEQUENCE public."User_userprofile_user_permissions_id_seq"
 ALTER TABLE public."User_userprofile_user_permissions_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3561 (class 0 OID 0)
+-- TOC entry 3563 (class 0 OID 0)
 -- Dependencies: 232
 -- Name: User_userprofile_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -514,7 +516,7 @@ CREATE SEQUENCE public.auth_group_id_seq
 ALTER TABLE public.auth_group_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3562 (class 0 OID 0)
+-- TOC entry 3564 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -552,7 +554,7 @@ CREATE SEQUENCE public.auth_group_permissions_id_seq
 ALTER TABLE public.auth_group_permissions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3563 (class 0 OID 0)
+-- TOC entry 3565 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -592,7 +594,7 @@ CREATE SEQUENCE public.auth_permission_id_seq
 ALTER TABLE public.auth_permission_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3564 (class 0 OID 0)
+-- TOC entry 3566 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -637,7 +639,7 @@ CREATE SEQUENCE public.django_admin_log_id_seq
 ALTER TABLE public.django_admin_log_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3565 (class 0 OID 0)
+-- TOC entry 3567 (class 0 OID 0)
 -- Dependencies: 240
 -- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -676,7 +678,7 @@ CREATE SEQUENCE public.django_content_type_id_seq
 ALTER TABLE public.django_content_type_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3566 (class 0 OID 0)
+-- TOC entry 3568 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -715,7 +717,7 @@ CREATE SEQUENCE public.django_migrations_id_seq
 ALTER TABLE public.django_migrations_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3567 (class 0 OID 0)
+-- TOC entry 3569 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -866,23 +868,26 @@ ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 3518 (class 0 OID 226382)
+-- TOC entry 3520 (class 0 OID 226382)
 -- Dependencies: 216
 -- Data for Name: Interaction_question; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public."Interaction_question" (id, name, description, creation_date, with_product) VALUES (1, 'Calificación de servicio de la aplicación', '¿Cómo calificas nuestro servicio?', '2023-08-28 19:34:06-05', false);
+INSERT INTO public."Interaction_question" (id, name, description, creation_date, with_product) VALUES (2, 'Calificación del producto', '¿Cómo calificas nuestro producto?', '2023-08-28 19:58:42-05', true);
 
 
 --
--- TOC entry 3520 (class 0 OID 226391)
+-- TOC entry 3522 (class 0 OID 226391)
 -- Dependencies: 218
 -- Data for Name: Interaction_question_answer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public."Interaction_question_answer" (id, score, description, creation_date, product_id, question_id, user_id) VALUES (1, 5, 'mee gggs', '2023-08-28 20:25:20.211727-05', 1, 2, 4512);
 
 
 --
--- TOC entry 3514 (class 0 OID 226357)
+-- TOC entry 3516 (class 0 OID 226357)
 -- Dependencies: 212
 -- Data for Name: Inventory_category; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -892,7 +897,7 @@ INSERT INTO public."Inventory_category" (id, name, description) VALUES (2, 'Bebi
 
 
 --
--- TOC entry 3516 (class 0 OID 226366)
+-- TOC entry 3518 (class 0 OID 226366)
 -- Dependencies: 214
 -- Data for Name: Inventory_product; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -903,40 +908,42 @@ INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_p
 
 
 --
--- TOC entry 3537 (class 0 OID 226544)
+-- TOC entry 3539 (class 0 OID 226544)
 -- Dependencies: 235
 -- Data for Name: Movement_main_purchase; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public."Movement_main_purchase" (id, money_total_value, point_total_value, creation_date, delivery_date, user_id) VALUES (9, 8244, 0, '2023-08-27 21:45:46.12528-05', NULL, 4512);
 
 
 --
--- TOC entry 3539 (class 0 OID 226551)
+-- TOC entry 3541 (class 0 OID 226551)
 -- Dependencies: 237
 -- Data for Name: Movement_point_transaction; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public."Movement_point_transaction" (id, quantity_point, action, transaction_date, purchase_detail_id) VALUES (8, 10, 'in', '2023-08-27 21:45:46.121351-05', 8);
 
 
 --
--- TOC entry 3541 (class 0 OID 226558)
+-- TOC entry 3543 (class 0 OID 226558)
 -- Dependencies: 239
 -- Data for Name: Movement_purchase_detail; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public."Movement_purchase_detail" (id, money_unit_value, point_unit_value, quantity, main_purchase_id, product_id, description, status) VALUES (8, 4122, NULL, 2, 9, 1, NULL, 'waiting');
 
 
 --
--- TOC entry 3546 (class 0 OID 234852)
+-- TOC entry 3548 (class 0 OID 234852)
 -- Dependencies: 244
 -- Data for Name: Movement_shopping_car; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Movement_shopping_car" (id, quantity, creation_date, description, product_id, user_id) VALUES (2, 2, '2023-08-24 09:06:23.763075-05', NULL, 1, 4512);
 
 
 --
--- TOC entry 3530 (class 0 OID 226469)
+-- TOC entry 3532 (class 0 OID 226469)
 -- Dependencies: 228
 -- Data for Name: User_charge; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -944,18 +951,18 @@ INSERT INTO public."Movement_shopping_car" (id, quantity, creation_date, descrip
 
 
 --
--- TOC entry 3531 (class 0 OID 226477)
+-- TOC entry 3533 (class 0 OID 226477)
 -- Dependencies: 229
 -- Data for Name: User_userprofile; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined) VALUES ('pbkdf2_sha256$600000$hg4wgfrge2h1aGtdcDgFBB$qRTrPh3be5EXrfTgaMrdxfz6HR/89OzU1nYbgit/rTU=', '2023-08-20 20:57:16.59866-05', 12345151, 'Admin Kepler', 'Papita Amarilla', 'admin@kepler.com', '', 0, 0, '2023-08-16 14:57:18.303094-05', '2023-08-16 14:57:18.303094-05', NULL, true, true, true, NULL, '2023-08-20 08:46:22.491677-05');
 INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined) VALUES ('pbkdf2_sha256$600000$sxQoGnAmSwh2pel7S87XIk$Jyv8HXEbvHHdmI4ynan9hawd8Tigsdo8O3R8PNgqR+E=', '2023-08-20 10:41:55.875309-05', 4513, 'Camargo Alf', 'Calargo', 'camargo1@gmail.com', '441232', 0, NULL, '2023-08-19 14:26:25.475358-05', '2023-08-19 14:26:25.475358-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05');
-INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined) VALUES ('pbkdf2_sha256$600000$Z6yoc7jpWJGLv1UNGwwT3i$VM8QEIu2BtLCHvO7c48UaiATJGwBCux91AcMXKMyxvo=', '2023-08-23 23:37:06.835715-05', 4512, 'Camargo', 'Castañeda', 'camargo@gmail.com', '5123', 0, 0, '2023-08-18 22:57:22.956075-05', '2023-08-18 22:57:22.956075-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22.491677-05');
+INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined) VALUES ('pbkdf2_sha256$600000$Z6yoc7jpWJGLv1UNGwwT3i$VM8QEIu2BtLCHvO7c48UaiATJGwBCux91AcMXKMyxvo=', '2023-08-27 20:13:22.352742-05', 4512, 'Camargo', 'Castañeda', 'davidventepolo@gmail.com', '5123', 10, 0, '2023-08-18 22:57:22.956075-05', '2023-08-18 22:57:22.956075-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05');
 
 
 --
--- TOC entry 3533 (class 0 OID 226487)
+-- TOC entry 3535 (class 0 OID 226487)
 -- Dependencies: 231
 -- Data for Name: User_userprofile_groups; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -963,7 +970,7 @@ INSERT INTO public."User_userprofile" (password, last_login, identification, fir
 
 
 --
--- TOC entry 3535 (class 0 OID 226494)
+-- TOC entry 3537 (class 0 OID 226494)
 -- Dependencies: 233
 -- Data for Name: User_userprofile_user_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -971,7 +978,7 @@ INSERT INTO public."User_userprofile" (password, last_login, identification, fir
 
 
 --
--- TOC entry 3526 (class 0 OID 226427)
+-- TOC entry 3528 (class 0 OID 226427)
 -- Dependencies: 224
 -- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -979,7 +986,7 @@ INSERT INTO public."User_userprofile" (password, last_login, identification, fir
 
 
 --
--- TOC entry 3528 (class 0 OID 226436)
+-- TOC entry 3530 (class 0 OID 226436)
 -- Dependencies: 226
 -- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -987,7 +994,7 @@ INSERT INTO public."User_userprofile" (password, last_login, identification, fir
 
 
 --
--- TOC entry 3524 (class 0 OID 226420)
+-- TOC entry 3526 (class 0 OID 226420)
 -- Dependencies: 222
 -- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1063,7 +1070,7 @@ INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES 
 
 
 --
--- TOC entry 3543 (class 0 OID 226620)
+-- TOC entry 3545 (class 0 OID 226620)
 -- Dependencies: 241
 -- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1076,10 +1083,21 @@ INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, ac
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (6, '2023-08-20 23:33:10.265415-05', '3', 'ID 3 - Café Alcabo', 1, '[{"added": {}}]', 5, 12345151);
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (7, '2023-08-20 23:34:05.224375-05', '1', 'ID 1 - Café Alcanfort', 2, '[{"changed": {"fields": ["Name", "Valor monetario unitario", "Valor de puntos unitario", "Descripci\u00f3n"]}}]', 5, 12345151);
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (8, '2023-08-25 22:42:49.833972-05', '2', 'ID 2 - Café Qbano', 2, '[{"changed": {"fields": ["Image product"]}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (9, '2023-08-27 20:12:49.84323-05', '4512', '4512 - Camargo Castañeda', 2, '[{"changed": {"fields": ["Email"]}}]', 16, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (10, '2023-08-27 21:09:59.77374-05', '1', 'ID 1 - Camargo Castañeda -> None ~ None', 3, '', 8, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (11, '2023-08-27 21:41:27.794727-05', '2', 'ID 2 - Camargo Castañeda -> 8244.0 ~ 0', 3, '', 8, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (12, '2023-08-27 21:41:27.798229-05', '3', 'ID 3 - Camargo Castañeda -> 8244.0 ~ 0', 3, '', 8, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (13, '2023-08-27 21:41:27.799207-05', '4', 'ID 4 - Camargo Castañeda -> 8244.0 ~ 0', 3, '', 8, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (14, '2023-08-27 21:41:27.800175-05', '5', 'ID 5 - Camargo Castañeda -> 8244.0 ~ 0', 3, '', 8, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (15, '2023-08-27 21:41:27.801147-05', '6', 'ID 6 - Camargo Castañeda -> 8244.0 ~ 0', 3, '', 8, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (16, '2023-08-27 21:41:27.802123-05', '7', 'ID 7 - Camargo Castañeda -> 8244.0 ~ 0', 3, '', 8, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (17, '2023-08-27 21:41:27.8031-05', '8', 'ID 8 - Camargo Castañeda -> 8244.0 ~ 0', 3, '', 8, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (18, '2023-08-28 19:34:31.190989-05', '1', 'ID 1 - Calificación de servicio de la aplicación', 1, '[{"added": {}}]', 13, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (19, '2023-08-28 19:58:58.039892-05', '2', 'ID 2 - Calificación del producto', 1, '[{"added": {}}]', 13, 12345151);
 
 
 --
--- TOC entry 3522 (class 0 OID 226411)
+-- TOC entry 3524 (class 0 OID 226411)
 -- Dependencies: 220
 -- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1104,7 +1122,7 @@ INSERT INTO public.django_content_type (id, app_label, model) VALUES (17, 'Movem
 
 
 --
--- TOC entry 3512 (class 0 OID 226348)
+-- TOC entry 3514 (class 0 OID 226348)
 -- Dependencies: 210
 -- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1142,10 +1160,12 @@ INSERT INTO public.django_migrations (id, app, name, applied) VALUES (30, 'Movem
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (31, 'User', '0003_alter_userprofile_salary', '2023-08-20 23:23:50.216441-05');
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (32, 'Inventory', '0004_alter_category_options_product_image_product', '2023-08-25 22:41:11.023676-05');
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (33, 'Movement', '0006_alter_main_purchase_delivery_date', '2023-08-26 09:03:42.482404-05');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (34, 'Interaction', '0003_question_with_product', '2023-08-28 00:33:48.53678-05');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (35, 'Interaction', '0004_question_answer_user', '2023-08-28 19:18:42.934049-05');
 
 
 --
--- TOC entry 3544 (class 0 OID 226641)
+-- TOC entry 3546 (class 0 OID 226641)
 -- Dependencies: 242
 -- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1155,28 +1175,29 @@ INSERT INTO public.django_session (session_key, session_data, expire_date) VALUE
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('vwa5hl5yxgta7jgkv4xvmpphu6qusuou', '.eJxVjMsOwiAUBf-FtSFQ3i7d9xsIXC5SNZCUdmX8d0vShW7PzJw38WHfit87rn5J5Eqk4oJcfucY4Il1sPQI9d4otLqtS6RDoSftdG4JX7fT_TsooZejztZY52ACEIAGwGamRBKBOwOcGRXjgXFiLpuoh6WZwJyjNDpIdIx8vmEEOLg:1qXkYt:mYr7Y36XnSQ7bP1oM-Cb35qxOALyc0nEh91W7NeNMG4', '2023-09-03 10:41:55.879303-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('gkmdrgkpnwxebjpamuu6z7xn4wrzf6ep', '.eJxVjMsOwiAQRf-FtSHlMQVcuvcbyAwDtmpKUtqV8d-VpAvd3eScc18i4r5NcW95jTOLs1DaWFCgxOkXEaZHXjrnOy63KlNdtnUm2RV50CavlfPzcrh_BxO2qddcvLYFR2WVA0_AAJoDBrIAYSijceSCJ-2Lx-SsxQG_M5SkyTAq8f4A5Wk5UA:1qZ252:rCg1fx-EcRRHwpojn9GsHviinlHjpmj52YwCpLJ66Vs', '2023-09-06 23:36:24.849502-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('ufar9jq88vm3i4obadvdtc0pwmnombyc', '.eJxVjDEOwjAMRe-SGUWNEzsVIztniOw4JQXUSk07Ie4OlTrA-t97_2USb2tNWytLGtWcTUAH5vQ7C-dHmXamd55us83ztC6j2F2xB232Omt5Xg7376Byq996iADaY4yhMAYgzIFAgLNToaKdkM_eB5KIDjtB7Zl87MPgIYIrZN4fP6A3pw:1qZ25i:_OkYvCjqMsZwCyuM9uJXDoygunsIC92OaSg0_El2XrE', '2023-09-06 23:37:06.837698-05');
-
-
---
--- TOC entry 3568 (class 0 OID 0)
--- Dependencies: 217
--- Name: Interaction_question_answer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Interaction_question_answer_id_seq"', 1, false);
-
-
---
--- TOC entry 3569 (class 0 OID 0)
--- Dependencies: 215
--- Name: Interaction_question_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Interaction_question_id_seq"', 1, false);
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('l4gsoo7bpb02oat8n70r036hwfoqp1dv', '.eJxVjDEOwjAMRe-SGUWNEzsVIztniOw4JQXUSk07Ie4OlTrA-t97_2USb2tNWytLGtWcTUAH5vQ7C-dHmXamd55us83ztC6j2F2xB232Omt5Xg7376Byq996iADaY4yhMAYgzIFAgLNToaKdkM_eB5KIDjtB7Zl87MPgIYIrZN4fP6A3pw:1qaQok:l6G3DtKM_Je5iPja_nX6EEt9T4U0-yJFDoTrFKwYomo', '2023-09-10 20:13:22.355674-05');
 
 
 --
 -- TOC entry 3570 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: Interaction_question_answer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Interaction_question_answer_id_seq"', 1, true);
+
+
+--
+-- TOC entry 3571 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: Interaction_question_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Interaction_question_id_seq"', 2, true);
+
+
+--
+-- TOC entry 3572 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: Inventory_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1185,7 +1206,7 @@ SELECT pg_catalog.setval('public."Inventory_category_id_seq"', 2, true);
 
 
 --
--- TOC entry 3571 (class 0 OID 0)
+-- TOC entry 3573 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: Inventory_product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1194,34 +1215,34 @@ SELECT pg_catalog.setval('public."Inventory_product_id_seq"', 3, true);
 
 
 --
--- TOC entry 3572 (class 0 OID 0)
+-- TOC entry 3574 (class 0 OID 0)
 -- Dependencies: 234
 -- Name: Movement_main_purchase_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Movement_main_purchase_id_seq"', 1, false);
-
-
---
--- TOC entry 3573 (class 0 OID 0)
--- Dependencies: 236
--- Name: Movement_point_transaction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Movement_point_transaction_id_seq"', 1, false);
-
-
---
--- TOC entry 3574 (class 0 OID 0)
--- Dependencies: 238
--- Name: Movement_purchase_detail_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public."Movement_purchase_detail_id_seq"', 1, false);
+SELECT pg_catalog.setval('public."Movement_main_purchase_id_seq"', 9, true);
 
 
 --
 -- TOC entry 3575 (class 0 OID 0)
+-- Dependencies: 236
+-- Name: Movement_point_transaction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Movement_point_transaction_id_seq"', 8, true);
+
+
+--
+-- TOC entry 3576 (class 0 OID 0)
+-- Dependencies: 238
+-- Name: Movement_purchase_detail_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Movement_purchase_detail_id_seq"', 8, true);
+
+
+--
+-- TOC entry 3577 (class 0 OID 0)
 -- Dependencies: 243
 -- Name: Movement_shopping_car_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1230,7 +1251,7 @@ SELECT pg_catalog.setval('public."Movement_shopping_car_id_seq"', 2, true);
 
 
 --
--- TOC entry 3576 (class 0 OID 0)
+-- TOC entry 3578 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: User_charge_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1239,7 +1260,7 @@ SELECT pg_catalog.setval('public."User_charge_id_seq"', 1, false);
 
 
 --
--- TOC entry 3577 (class 0 OID 0)
+-- TOC entry 3579 (class 0 OID 0)
 -- Dependencies: 230
 -- Name: User_userprofile_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1248,7 +1269,7 @@ SELECT pg_catalog.setval('public."User_userprofile_groups_id_seq"', 1, false);
 
 
 --
--- TOC entry 3578 (class 0 OID 0)
+-- TOC entry 3580 (class 0 OID 0)
 -- Dependencies: 232
 -- Name: User_userprofile_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1257,7 +1278,7 @@ SELECT pg_catalog.setval('public."User_userprofile_user_permissions_id_seq"', 1,
 
 
 --
--- TOC entry 3579 (class 0 OID 0)
+-- TOC entry 3581 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1266,7 +1287,7 @@ SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
 
 
 --
--- TOC entry 3580 (class 0 OID 0)
+-- TOC entry 3582 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1275,7 +1296,7 @@ SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
 
 
 --
--- TOC entry 3581 (class 0 OID 0)
+-- TOC entry 3583 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1284,16 +1305,16 @@ SELECT pg_catalog.setval('public.auth_permission_id_seq', 68, true);
 
 
 --
--- TOC entry 3582 (class 0 OID 0)
+-- TOC entry 3584 (class 0 OID 0)
 -- Dependencies: 240
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 8, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 19, true);
 
 
 --
--- TOC entry 3583 (class 0 OID 0)
+-- TOC entry 3585 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1302,12 +1323,12 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 17, true);
 
 
 --
--- TOC entry 3584 (class 0 OID 0)
+-- TOC entry 3586 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 33, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 35, true);
 
 
 --
@@ -1365,7 +1386,7 @@ ALTER TABLE ONLY public."Inventory_product"
 
 
 --
--- TOC entry 3332 (class 2606 OID 226549)
+-- TOC entry 3333 (class 2606 OID 226549)
 -- Name: Movement_main_purchase Movement_main_purchase_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1374,7 +1395,7 @@ ALTER TABLE ONLY public."Movement_main_purchase"
 
 
 --
--- TOC entry 3335 (class 2606 OID 226556)
+-- TOC entry 3336 (class 2606 OID 226556)
 -- Name: Movement_point_transaction Movement_point_transaction_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1383,7 +1404,7 @@ ALTER TABLE ONLY public."Movement_point_transaction"
 
 
 --
--- TOC entry 3339 (class 2606 OID 226563)
+-- TOC entry 3340 (class 2606 OID 226563)
 -- Name: Movement_purchase_detail Movement_purchase_detail_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1392,7 +1413,7 @@ ALTER TABLE ONLY public."Movement_purchase_detail"
 
 
 --
--- TOC entry 3350 (class 2606 OID 234856)
+-- TOC entry 3351 (class 2606 OID 234856)
 -- Name: Movement_shopping_car Movement_shopping_car_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1401,7 +1422,7 @@ ALTER TABLE ONLY public."Movement_shopping_car"
 
 
 --
--- TOC entry 3310 (class 2606 OID 226476)
+-- TOC entry 3311 (class 2606 OID 226476)
 -- Name: User_charge User_charge_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1410,7 +1431,7 @@ ALTER TABLE ONLY public."User_charge"
 
 
 --
--- TOC entry 3312 (class 2606 OID 226474)
+-- TOC entry 3313 (class 2606 OID 226474)
 -- Name: User_charge User_charge_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1419,7 +1440,7 @@ ALTER TABLE ONLY public."User_charge"
 
 
 --
--- TOC entry 3316 (class 2606 OID 226485)
+-- TOC entry 3317 (class 2606 OID 226485)
 -- Name: User_userprofile User_userprofile_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1428,7 +1449,7 @@ ALTER TABLE ONLY public."User_userprofile"
 
 
 --
--- TOC entry 3321 (class 2606 OID 226492)
+-- TOC entry 3322 (class 2606 OID 226492)
 -- Name: User_userprofile_groups User_userprofile_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1437,7 +1458,7 @@ ALTER TABLE ONLY public."User_userprofile_groups"
 
 
 --
--- TOC entry 3324 (class 2606 OID 226509)
+-- TOC entry 3325 (class 2606 OID 226509)
 -- Name: User_userprofile_groups User_userprofile_groups_userprofile_id_group_id_6ef09298_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1446,7 +1467,7 @@ ALTER TABLE ONLY public."User_userprofile_groups"
 
 
 --
--- TOC entry 3318 (class 2606 OID 226483)
+-- TOC entry 3319 (class 2606 OID 226483)
 -- Name: User_userprofile User_userprofile_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1455,7 +1476,7 @@ ALTER TABLE ONLY public."User_userprofile"
 
 
 --
--- TOC entry 3326 (class 2606 OID 226523)
+-- TOC entry 3327 (class 2606 OID 226523)
 -- Name: User_userprofile_user_permissions User_userprofile_user_pe_userprofile_id_permissio_b23258ac_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1464,7 +1485,7 @@ ALTER TABLE ONLY public."User_userprofile_user_permissions"
 
 
 --
--- TOC entry 3329 (class 2606 OID 226499)
+-- TOC entry 3330 (class 2606 OID 226499)
 -- Name: User_userprofile_user_permissions User_userprofile_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1473,7 +1494,7 @@ ALTER TABLE ONLY public."User_userprofile_user_permissions"
 
 
 --
--- TOC entry 3299 (class 2606 OID 226466)
+-- TOC entry 3300 (class 2606 OID 226466)
 -- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1482,7 +1503,7 @@ ALTER TABLE ONLY public.auth_group
 
 
 --
--- TOC entry 3304 (class 2606 OID 226452)
+-- TOC entry 3305 (class 2606 OID 226452)
 -- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1491,7 +1512,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 
 
 --
--- TOC entry 3307 (class 2606 OID 226441)
+-- TOC entry 3308 (class 2606 OID 226441)
 -- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1500,7 +1521,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 
 
 --
--- TOC entry 3301 (class 2606 OID 226432)
+-- TOC entry 3302 (class 2606 OID 226432)
 -- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1509,7 +1530,7 @@ ALTER TABLE ONLY public.auth_group
 
 
 --
--- TOC entry 3294 (class 2606 OID 226443)
+-- TOC entry 3295 (class 2606 OID 226443)
 -- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1518,7 +1539,7 @@ ALTER TABLE ONLY public.auth_permission
 
 
 --
--- TOC entry 3296 (class 2606 OID 226425)
+-- TOC entry 3297 (class 2606 OID 226425)
 -- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1527,7 +1548,7 @@ ALTER TABLE ONLY public.auth_permission
 
 
 --
--- TOC entry 3343 (class 2606 OID 226628)
+-- TOC entry 3344 (class 2606 OID 226628)
 -- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1536,7 +1557,7 @@ ALTER TABLE ONLY public.django_admin_log
 
 
 --
--- TOC entry 3289 (class 2606 OID 226418)
+-- TOC entry 3290 (class 2606 OID 226418)
 -- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1545,7 +1566,7 @@ ALTER TABLE ONLY public.django_content_type
 
 
 --
--- TOC entry 3291 (class 2606 OID 226416)
+-- TOC entry 3292 (class 2606 OID 226416)
 -- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1563,7 +1584,7 @@ ALTER TABLE ONLY public.django_migrations
 
 
 --
--- TOC entry 3347 (class 2606 OID 226647)
+-- TOC entry 3348 (class 2606 OID 226647)
 -- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1585,6 +1606,14 @@ CREATE INDEX "Interaction_question_answer_product_id_d8f450e9" ON public."Intera
 --
 
 CREATE INDEX "Interaction_question_answer_question_id_dfe4f2fd" ON public."Interaction_question_answer" USING btree (question_id);
+
+
+--
+-- TOC entry 3288 (class 1259 OID 234926)
+-- Name: Interaction_question_answer_user_id_39ecd8fb; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "Interaction_question_answer_user_id_39ecd8fb" ON public."Interaction_question_answer" USING btree (user_id);
 
 
 --
@@ -1612,7 +1641,7 @@ CREATE INDEX "Inventory_product_category_id_abccaca3" ON public."Inventory_produ
 
 
 --
--- TOC entry 3333 (class 1259 OID 226616)
+-- TOC entry 3334 (class 1259 OID 226616)
 -- Name: Movement_main_purchase_user_id_7f326411; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1620,7 +1649,7 @@ CREATE INDEX "Movement_main_purchase_user_id_7f326411" ON public."Movement_main_
 
 
 --
--- TOC entry 3336 (class 1259 OID 226615)
+-- TOC entry 3337 (class 1259 OID 226615)
 -- Name: Movement_point_transaction_purchase_detail_id_9da1d112; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1628,7 +1657,7 @@ CREATE INDEX "Movement_point_transaction_purchase_detail_id_9da1d112" ON public.
 
 
 --
--- TOC entry 3337 (class 1259 OID 226581)
+-- TOC entry 3338 (class 1259 OID 226581)
 -- Name: Movement_purchase_detail_main_purchase_id_e59d2237; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1636,7 +1665,7 @@ CREATE INDEX "Movement_purchase_detail_main_purchase_id_e59d2237" ON public."Mov
 
 
 --
--- TOC entry 3340 (class 1259 OID 226582)
+-- TOC entry 3341 (class 1259 OID 226582)
 -- Name: Movement_purchase_detail_product_id_6a5e6043; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1644,7 +1673,7 @@ CREATE INDEX "Movement_purchase_detail_product_id_6a5e6043" ON public."Movement_
 
 
 --
--- TOC entry 3351 (class 1259 OID 234867)
+-- TOC entry 3352 (class 1259 OID 234867)
 -- Name: Movement_shopping_car_product_id_01e4ffef; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1652,7 +1681,7 @@ CREATE INDEX "Movement_shopping_car_product_id_01e4ffef" ON public."Movement_sho
 
 
 --
--- TOC entry 3352 (class 1259 OID 234868)
+-- TOC entry 3353 (class 1259 OID 234868)
 -- Name: Movement_shopping_car_user_id_b60f18ce; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1660,7 +1689,7 @@ CREATE INDEX "Movement_shopping_car_user_id_b60f18ce" ON public."Movement_shoppi
 
 
 --
--- TOC entry 3308 (class 1259 OID 226500)
+-- TOC entry 3309 (class 1259 OID 226500)
 -- Name: User_charge_name_23ef2c6a_like; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1668,7 +1697,7 @@ CREATE INDEX "User_charge_name_23ef2c6a_like" ON public."User_charge" USING btre
 
 
 --
--- TOC entry 3313 (class 1259 OID 226507)
+-- TOC entry 3314 (class 1259 OID 226507)
 -- Name: User_userprofile_charge_id_908db123; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1676,7 +1705,7 @@ CREATE INDEX "User_userprofile_charge_id_908db123" ON public."User_userprofile" 
 
 
 --
--- TOC entry 3314 (class 1259 OID 226506)
+-- TOC entry 3315 (class 1259 OID 226506)
 -- Name: User_userprofile_email_0cda51af_like; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1684,7 +1713,7 @@ CREATE INDEX "User_userprofile_email_0cda51af_like" ON public."User_userprofile"
 
 
 --
--- TOC entry 3319 (class 1259 OID 226521)
+-- TOC entry 3320 (class 1259 OID 226521)
 -- Name: User_userprofile_groups_group_id_508a2183; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1692,7 +1721,7 @@ CREATE INDEX "User_userprofile_groups_group_id_508a2183" ON public."User_userpro
 
 
 --
--- TOC entry 3322 (class 1259 OID 226520)
+-- TOC entry 3323 (class 1259 OID 226520)
 -- Name: User_userprofile_groups_userprofile_id_6b5554d1; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1700,7 +1729,7 @@ CREATE INDEX "User_userprofile_groups_userprofile_id_6b5554d1" ON public."User_u
 
 
 --
--- TOC entry 3327 (class 1259 OID 226535)
+-- TOC entry 3328 (class 1259 OID 226535)
 -- Name: User_userprofile_user_permissions_permission_id_948bcf18; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1708,7 +1737,7 @@ CREATE INDEX "User_userprofile_user_permissions_permission_id_948bcf18" ON publi
 
 
 --
--- TOC entry 3330 (class 1259 OID 226534)
+-- TOC entry 3331 (class 1259 OID 226534)
 -- Name: User_userprofile_user_permissions_userprofile_id_4e02c612; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1716,7 +1745,7 @@ CREATE INDEX "User_userprofile_user_permissions_userprofile_id_4e02c612" ON publ
 
 
 --
--- TOC entry 3297 (class 1259 OID 226467)
+-- TOC entry 3298 (class 1259 OID 226467)
 -- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1724,7 +1753,7 @@ CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (nam
 
 
 --
--- TOC entry 3302 (class 1259 OID 226463)
+-- TOC entry 3303 (class 1259 OID 226463)
 -- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1732,7 +1761,7 @@ CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permi
 
 
 --
--- TOC entry 3305 (class 1259 OID 226464)
+-- TOC entry 3306 (class 1259 OID 226464)
 -- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1740,7 +1769,7 @@ CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_
 
 
 --
--- TOC entry 3292 (class 1259 OID 226449)
+-- TOC entry 3293 (class 1259 OID 226449)
 -- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1748,7 +1777,7 @@ CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission 
 
 
 --
--- TOC entry 3341 (class 1259 OID 226639)
+-- TOC entry 3342 (class 1259 OID 226639)
 -- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1756,7 +1785,7 @@ CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_lo
 
 
 --
--- TOC entry 3344 (class 1259 OID 226640)
+-- TOC entry 3345 (class 1259 OID 226640)
 -- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1764,7 +1793,7 @@ CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING 
 
 
 --
--- TOC entry 3345 (class 1259 OID 226649)
+-- TOC entry 3346 (class 1259 OID 226649)
 -- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1772,7 +1801,7 @@ CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING 
 
 
 --
--- TOC entry 3348 (class 1259 OID 226648)
+-- TOC entry 3349 (class 1259 OID 226648)
 -- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1780,7 +1809,7 @@ CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session U
 
 
 --
--- TOC entry 3355 (class 2606 OID 226652)
+-- TOC entry 3356 (class 2606 OID 226652)
 -- Name: Interaction_question_answer Interaction_question_product_id_d8f450e9_fk_Inventory; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1789,7 +1818,7 @@ ALTER TABLE ONLY public."Interaction_question_answer"
 
 
 --
--- TOC entry 3354 (class 2606 OID 226403)
+-- TOC entry 3355 (class 2606 OID 226403)
 -- Name: Interaction_question_answer Interaction_question_question_id_dfe4f2fd_fk_Interacti; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1798,7 +1827,16 @@ ALTER TABLE ONLY public."Interaction_question_answer"
 
 
 --
--- TOC entry 3353 (class 2606 OID 226375)
+-- TOC entry 3357 (class 2606 OID 234921)
+-- Name: Interaction_question_answer Interaction_question_user_id_39ecd8fb_fk_User_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Interaction_question_answer"
+    ADD CONSTRAINT "Interaction_question_user_id_39ecd8fb_fk_User_user" FOREIGN KEY (user_id) REFERENCES public."User_userprofile"(identification) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3354 (class 2606 OID 226375)
 -- Name: Inventory_product Inventory_product_category_id_abccaca3_fk_Inventory_category_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1807,7 +1845,7 @@ ALTER TABLE ONLY public."Inventory_product"
 
 
 --
--- TOC entry 3364 (class 2606 OID 226599)
+-- TOC entry 3366 (class 2606 OID 226599)
 -- Name: Movement_main_purchase Movement_main_purcha_user_id_7f326411_fk_User_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1816,7 +1854,7 @@ ALTER TABLE ONLY public."Movement_main_purchase"
 
 
 --
--- TOC entry 3365 (class 2606 OID 226594)
+-- TOC entry 3367 (class 2606 OID 226594)
 -- Name: Movement_point_transaction Movement_point_trans_purchase_detail_id_9da1d112_fk_Movement_; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1825,7 +1863,7 @@ ALTER TABLE ONLY public."Movement_point_transaction"
 
 
 --
--- TOC entry 3366 (class 2606 OID 226571)
+-- TOC entry 3368 (class 2606 OID 226571)
 -- Name: Movement_purchase_detail Movement_purchase_de_main_purchase_id_e59d2237_fk_Movement_; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1834,7 +1872,7 @@ ALTER TABLE ONLY public."Movement_purchase_detail"
 
 
 --
--- TOC entry 3367 (class 2606 OID 226576)
+-- TOC entry 3369 (class 2606 OID 226576)
 -- Name: Movement_purchase_detail Movement_purchase_de_product_id_6a5e6043_fk_Inventory; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1843,7 +1881,7 @@ ALTER TABLE ONLY public."Movement_purchase_detail"
 
 
 --
--- TOC entry 3370 (class 2606 OID 234857)
+-- TOC entry 3372 (class 2606 OID 234857)
 -- Name: Movement_shopping_car Movement_shopping_ca_product_id_01e4ffef_fk_Inventory; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1852,7 +1890,7 @@ ALTER TABLE ONLY public."Movement_shopping_car"
 
 
 --
--- TOC entry 3371 (class 2606 OID 234862)
+-- TOC entry 3373 (class 2606 OID 234862)
 -- Name: Movement_shopping_car Movement_shopping_ca_user_id_b60f18ce_fk_User_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1861,7 +1899,7 @@ ALTER TABLE ONLY public."Movement_shopping_car"
 
 
 --
--- TOC entry 3359 (class 2606 OID 226501)
+-- TOC entry 3361 (class 2606 OID 226501)
 -- Name: User_userprofile User_userprofile_charge_id_908db123_fk_User_charge_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1870,7 +1908,7 @@ ALTER TABLE ONLY public."User_userprofile"
 
 
 --
--- TOC entry 3360 (class 2606 OID 226510)
+-- TOC entry 3362 (class 2606 OID 226510)
 -- Name: User_userprofile_groups User_userprofile_gro_userprofile_id_6b5554d1_fk_User_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1879,7 +1917,7 @@ ALTER TABLE ONLY public."User_userprofile_groups"
 
 
 --
--- TOC entry 3361 (class 2606 OID 226515)
+-- TOC entry 3363 (class 2606 OID 226515)
 -- Name: User_userprofile_groups User_userprofile_groups_group_id_508a2183_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1888,7 +1926,7 @@ ALTER TABLE ONLY public."User_userprofile_groups"
 
 
 --
--- TOC entry 3363 (class 2606 OID 226529)
+-- TOC entry 3365 (class 2606 OID 226529)
 -- Name: User_userprofile_user_permissions User_userprofile_use_permission_id_948bcf18_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1897,7 +1935,7 @@ ALTER TABLE ONLY public."User_userprofile_user_permissions"
 
 
 --
--- TOC entry 3362 (class 2606 OID 226524)
+-- TOC entry 3364 (class 2606 OID 226524)
 -- Name: User_userprofile_user_permissions User_userprofile_use_userprofile_id_4e02c612_fk_User_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1906,7 +1944,7 @@ ALTER TABLE ONLY public."User_userprofile_user_permissions"
 
 
 --
--- TOC entry 3358 (class 2606 OID 226458)
+-- TOC entry 3360 (class 2606 OID 226458)
 -- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1915,7 +1953,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 
 
 --
--- TOC entry 3357 (class 2606 OID 226453)
+-- TOC entry 3359 (class 2606 OID 226453)
 -- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1924,7 +1962,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 
 
 --
--- TOC entry 3356 (class 2606 OID 226444)
+-- TOC entry 3358 (class 2606 OID 226444)
 -- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1933,7 +1971,7 @@ ALTER TABLE ONLY public.auth_permission
 
 
 --
--- TOC entry 3368 (class 2606 OID 226629)
+-- TOC entry 3370 (class 2606 OID 226629)
 -- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1942,7 +1980,7 @@ ALTER TABLE ONLY public.django_admin_log
 
 
 --
--- TOC entry 3369 (class 2606 OID 226634)
+-- TOC entry 3371 (class 2606 OID 226634)
 -- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_User_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1950,7 +1988,7 @@ ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_User_user" FOREIGN KEY (user_id) REFERENCES public."User_userprofile"(identification) DEFERRABLE INITIALLY DEFERRED;
 
 
--- Completed on 2023-08-26 12:56:22
+-- Completed on 2023-08-28 20:29:52
 
 --
 -- PostgreSQL database dump complete
