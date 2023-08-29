@@ -10,8 +10,8 @@ from .views import inventory_list, Product_Description
 # , add_product, delete_product
 
 urlpatterns = [
-    path('inventory/', inventory_list, name="shop"),
-    path('product/', Product_Description, name="product_description"),
+    path('shop/', inventory_list, name="shop"),
+    path('shop/product/', Product_Description, name="product_description"),
     # path('product/<int:pk>', per_product_view, name="Product Detail"),
     # path('add_inventory/', add_product, name="add_inventory"),
     # path('delete/<int:pk>', delete_product, name="delete_product")

@@ -5,7 +5,6 @@ from django.utils import timezone
 from django.contrib.auth.hashers import make_password
 
 class Question(models.Model):
-
 	"""
 	----------
 	Description
@@ -21,6 +20,7 @@ class Question(models.Model):
 	"""
 	name = models.CharField('Nombre', max_length=50, default='', unique=True)
 	description = models.CharField('Descripción', max_length=300, default='')
+	with_product = models.BooleanField('Pregunta con producto', default=True)
 	creation_date = models.DateTimeField('Fecha de creación', default=timezone.now)
 	
 	class Meta:
@@ -54,7 +54,7 @@ class Question_Answer(models.Model):
 	creation_date = models.DateTimeField('Fecha de creación', default=timezone.now)
 	question = models.ForeignKey('Question', related_name="question_question_answer", on_delete = models.CASCADE, verbose_name = "Pregunta")
 	product = models.ForeignKey('Inventory.Product', related_name="product_question_answer", on_delete = models.CASCADE, verbose_name = "Producto", blank=True, null=True, default=None)
-
+	user = models.ForeignKey('User.UserProfile', related_name="userprofile_question_answer", on_delete = models.CASCADE, verbose_name = "Usuario")
 
 	class Meta:
 		verbose_name = ""
