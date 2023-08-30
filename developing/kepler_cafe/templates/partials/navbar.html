@@ -14,13 +14,22 @@
             <a href="{% url 'shop' %}" class="nav__links">Tienda</a>
         </li>
         {% if not user.is_authenticated %}
-        <li class="nav__items">
-            <a href="/accounts/login/" class="nav__links">Iniciar sesión</a>
-        </li>
+            <li class="nav__items">
+                <a href="/accounts/login/" class="nav__links">Iniciar sesión</a>
+            </li>
         {% else %}
-        <li class="nav__items">
-            <a href="/accounts/logout/" class="nav__links">Cerrar sesión</a>
-        </li>
+            <li class="nav__items">
+                Puntos: {{ user.point }}
+            </li>
+            <li class="nav__items">
+                <a href="/surveys/me/" class="nav__links">Encuestas</a>
+            </li>
+            <li class="nav__items">
+                <a href="/accounts/logout/" class="nav__links">Cerrar sesión</a>
+            </li>
+            <li class="nav__items">
+                Carrito: {{ shopping_car_quantity }}
+            </li>
         {% endif %}
         <img src="{% static 'image/close.svg' %}" alt="" class="nav__close">
     </ul>

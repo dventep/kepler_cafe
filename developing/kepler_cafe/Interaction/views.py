@@ -151,13 +151,13 @@ def Survey_Do(request):
                 else:
                     return redirect("/")
             else:
-                question_info = Question.objects.filter(pk = survey_id).values("description", "with_product").get()
-                product_info = Product.objects.filter(pk = product_id).values("name").get()
+                question_info = Question.objects.filter(pk = survey_id).values("description", "with_product", "name").get()
+                # product_info = Product.objects.filter(pk = product_id).values("name").get()
                 
                 return_content["name"] = question_info['name']
                 return_content["question_description"] = question_info['description']
                 return_content["with_product"] = question_info['name']
-                return_content["product_name"] = product_info['name']
+                return_content["product_name"] = None
         else:
             return redirect("/")
         
