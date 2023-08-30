@@ -57,7 +57,7 @@ class Question_Answer(models.Model):
 	user = models.ForeignKey('User.UserProfile', related_name="userprofile_question_answer", on_delete = models.CASCADE, verbose_name = "Usuario")
 
 	class Meta:
-		verbose_name = ""
-		verbose_name_plural = 'Cargos'
+		verbose_name = "Respuesta a pregunta"
+		verbose_name_plural = 'Respuestas a preguntas'
 	def __str__(self):
-		return f"ID {self.pk} - {self.name}"
+		return f"ID {self.pk} - {self.question.name}"

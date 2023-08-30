@@ -1,158 +1,80 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		{% include 'partials/head.html' %}
-		<title>Tienda - Kepler</title>
-		<link rel="stylesheet" href="{% static 'inventory/pro.css' %}" />
-	</head>
-	<body>
-		<header>
-			{% include 'partials/navbar.html' %}
-			<h1>Tienda</h1>
-			<div class="container-icon">
-				<div class="container-cart-icon">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						class="icon-cart"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-						/>
-					</svg>
-					<div class="count-products">
-						<span id="contador-productos">0</span>
-					</div>
-				</div>
+<head>
+    {% include 'partials/head.html' %}
+    <title>Tienda en línea</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        {% include 'partials/navbar.html' %}
+        </header>
+    <div class="container mt-5">
+        <h1>Tienda en línea</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <h3>Filtrar por Categoría</h3>
+                <select id="pk" class="form-control">
+                    <option value="">Todas las categorías</option>
+                    <option value="category_name">Bebidas</option>
+                    <option value="category_name">Comestibles</option>
+                    <option value="category_name">Fertilizantes</option>
+                </select>
+            </div>
+            <div class="col-md-9">
+                <h3>Productos</h3>
 
-				<div class="container-cart-products hidden-cart">
-					<div class="row-product hidden">
-						<div class="cart-product">
-							<div class="info-cart-product">
-								<span class="cantidad-producto-carrito">1</span>
-								<p class="titulo-producto-carrito">Zapatos Nike</p>
-								<span class="precio-producto-carrito">$80</span>
-							</div>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="currentColor"
-								class="icon-close"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M6 18L18 6M6 6l12 12"
-								/>
-							</svg>
-						</div>
-					</div>
-
-					<div class="cart-total hidden">
-						<h3>Total:</h3>
-						<span class="total-pagar">$20000</span>
-					</div>
-					<p class="cart-empty">El carrito está vacío</p>
-				</div>
-			</div>
-		</header>
-		<div class="container-items">
-			{% for item in products_list %}
-			<div class="item">
-				<figure>
-					<!-- <img
-						src="https://images.unsplash.com/photo-1627998691167-4dab0dfcae9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
-						alt="producto"
-					/> -->
-					<img
-						src="/media/{{item.image_product}}"
-						alt="{{item.name}}"
-					/>
-				</figure>
-				<div class="info-product">
-					<h2>{{ item.name}}</h2>
-					<p class="price">${{item.money_unit_price}}</p>
-					<p class="price">{{item.point_unit_price}}</p>
+	<form method="" action="/shop/">
+					{% csrf_token %}
+				<h2>{{ item.name}}</h2>
+                <div id="products-container" class="row">
+					<p class="name">Nombre : ${{name}}</p>
+					<p class="money_unit_price">Precio : {{money_unit_price}}</p>
+					<p class="point_unit_price">Puntos : {{point_unit_price}}</p>
+					<p class="weight">Peso : {{weight}}</p>
+					<p class="category_name">Categoria : {{category_name}}</p>
 					<a href="{% url 'product_description' %}?id={{item.pk}}" class="btn-add-cart">Ver detalle</a>
 				</div>
-			</div>
-			{% endfor %}
-			<!-- <div class="item">
-				<figure>
-					<img
-						src="https://images.unsplash.com/photo-1549814343-56bebd9e31fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
-						alt="producto"
-					/>
-				</figure>
-				<div class="info-product">
-					<h2>Cafe</h2>
-					<p class="price">$2000</p>
-					<button class="btn-add-cart">Añadir al carrito</button>
-				</div>
-			</div>
-			<div class="item">
-				<figure>
-					<img
-						src="https://images.unsplash.com/photo-1578899952107-9c390f1af1b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
-						alt="producto"
-					/>
-				</figure>
-				<div class="info-product">
-					<h2>Latte</h2>
-					<p class="price">$5000</p>
-					<button class="btn-add-cart">Añadir al carrito</button>
-				</div>
-			</div>
-			<div class="item">
-				<figure>
-					<img
-						src="https://images.unsplash.com/photo-1598839950984-034f6dc7b495?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Z2FsbGV0YXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
-						alt="producto"
-					/>
-				</figure>
-				<div class="info-product">
-					<h2>Galletas</h2>
-					<p class="price">$4000</p>
-					<button class="btn-add-cart">Añadir al carrito</button>
-				</div>
-			</div>
-			<div class="item">
-				<figure>
-					<img
-						src="https://images.unsplash.com/photo-1631397833242-fc6213046352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZG9uYXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
-						alt="producto"
-					/>
-				</figure>
-				<div class="info-product">
-					<h2>Dona</h2>
-					<p class="price">$5000</p>
-					<button class="btn-add-cart">Añadir al carrito</button>
-				</div>
-			</div>
+                <a href="carrito.html" class="btn btn-primary">Agregar al Carrito</a>
+            
 
-            <div class="item">
-				<figure>
-					<img
-						src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBvc3RyZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
-						alt="producto"
-					/>
-				</figure>
-				<div class="info-product">
-					<h2>Postre</h2>
-					<p class="price">$5000</p>
-					<button class="btn-add-cart">Añadir al carrito</button>
-				</div>
-			</div> -->
+
+			     <div id="products-container" class="row">
+					<p class="name">Nombre : ${{name}}</p>
+					<p class="money_unit_price">Precio : {{money_unit_price}}</p>
+					<p class="point_unit_price">Puntos : {{point_unit_price}}</p>
+					<p class="weight">Peso : {{weight}}</p>
+					<p class="category_name">Categoria : {{category_name}}</p>
+			 		<a href="{% url 'product_description' %}?id={{item.pk}}" class="btn-add-cart">Ver detalle</a>
+			    </div>
+				<a href="carrito.html" class="btn btn-primary">Agregar al Carrito</a>
+
+			    <div id="products-container" class="row">
+					<p class="name">Nombre : ${{name}}</p>
+					<p class="money_unit_price">Precio : {{money_unit_price}}</p>
+					<p class="point_unit_price">Puntos : {{point_unit_price}}</p>
+					<p class="weight">Peso : {{weight}}</p>
+					<p class="category_name">Categoria : {{category_name}}</p>
+					<a href="{% url 'product_description' %}?id={{item.pk}}" class="btn-add-cart">Ver detalle</a>
+		        </div>
+				<a href="carrito.html" class="btn btn-primary">Agregar al Carrito</a>
+			    </div>
+			    </div>
+			
+
+
+
+
+
+			<a href="carrito.html" class="btn btn-primary">Ver Carrito</a>
 		</div>
-        {% include "partials/footer.html" %}
-		<script src="{% static 'inventory/pro.js' %}"></script>
-	</body>
+        </div>
+    </div>
+
+    {% include "partials/footer.html" %}
+	<script src="{% static 'products.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script></script>
+</body>
 </html>
