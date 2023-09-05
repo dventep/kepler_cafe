@@ -11,6 +11,7 @@
 body{
 
     font-family: 'Poppins', sans-serif;
+    
 
 }
 
@@ -93,3 +94,4 @@ body{
 .nav__close {
     display: var(--show, none);
 }
+

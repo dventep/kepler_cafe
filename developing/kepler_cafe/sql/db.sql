@@ -5,7 +5,7 @@
 -- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.2
 
--- Started on 2023-08-28 20:29:50
+-- Started on 2023-08-31 14:19:34
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -404,7 +404,8 @@ CREATE TABLE public."User_userprofile" (
     is_staff boolean NOT NULL,
     is_superuser boolean NOT NULL,
     charge_id bigint,
-    date_joined timestamp with time zone NOT NULL
+    date_joined timestamp with time zone NOT NULL,
+    birth_date date NOT NULL
 );
 
 
@@ -956,9 +957,9 @@ INSERT INTO public."Movement_purchase_detail" (id, money_unit_value, point_unit_
 -- Data for Name: User_userprofile; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined) VALUES ('pbkdf2_sha256$600000$hg4wgfrge2h1aGtdcDgFBB$qRTrPh3be5EXrfTgaMrdxfz6HR/89OzU1nYbgit/rTU=', '2023-08-20 20:57:16.59866-05', 12345151, 'Admin Kepler', 'Papita Amarilla', 'admin@kepler.com', '', 0, 0, '2023-08-16 14:57:18.303094-05', '2023-08-16 14:57:18.303094-05', NULL, true, true, true, NULL, '2023-08-20 08:46:22.491677-05');
-INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined) VALUES ('pbkdf2_sha256$600000$sxQoGnAmSwh2pel7S87XIk$Jyv8HXEbvHHdmI4ynan9hawd8Tigsdo8O3R8PNgqR+E=', '2023-08-20 10:41:55.875309-05', 4513, 'Camargo Alf', 'Calargo', 'camargo1@gmail.com', '441232', 0, NULL, '2023-08-19 14:26:25.475358-05', '2023-08-19 14:26:25.475358-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05');
-INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined) VALUES ('pbkdf2_sha256$600000$Z6yoc7jpWJGLv1UNGwwT3i$VM8QEIu2BtLCHvO7c48UaiATJGwBCux91AcMXKMyxvo=', '2023-08-27 20:13:22.352742-05', 4512, 'Camargo', 'Castañeda', 'davidventepolo@gmail.com', '5123', 10, 0, '2023-08-18 22:57:22.956075-05', '2023-08-18 22:57:22.956075-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05');
+INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$hg4wgfrge2h1aGtdcDgFBB$qRTrPh3be5EXrfTgaMrdxfz6HR/89OzU1nYbgit/rTU=', '2023-08-20 20:57:16.59866-05', 12345151, 'Admin Kepler', 'Papita Amarilla', 'admin@kepler.com', '', 0, 0, '2023-08-16 14:57:18.303094-05', '2023-08-16 14:57:18.303094-05', NULL, true, true, true, NULL, '2023-08-20 08:46:22.491677-05', '2023-09-08');
+INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$sxQoGnAmSwh2pel7S87XIk$Jyv8HXEbvHHdmI4ynan9hawd8Tigsdo8O3R8PNgqR+E=', '2023-08-20 10:41:55.875309-05', 4513, 'Camargo Alf', 'Calargo', 'camargo1@gmail.com', '441232', 0, NULL, '2023-08-19 14:26:25.475358-05', '2023-08-19 14:26:25.475358-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05', '2023-09-08');
+INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$Z6yoc7jpWJGLv1UNGwwT3i$VM8QEIu2BtLCHvO7c48UaiATJGwBCux91AcMXKMyxvo=', '2023-08-27 20:13:22.352742-05', 4512, 'Camargo', 'Castañeda', 'davidventepolo@gmail.com', '5123', 10, 0, '2023-08-18 22:57:22.956075-05', '2023-08-18 22:57:22.956075-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05', '2023-09-08');
 
 
 --
@@ -1162,6 +1163,8 @@ INSERT INTO public.django_migrations (id, app, name, applied) VALUES (32, 'Inven
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (33, 'Movement', '0006_alter_main_purchase_delivery_date', '2023-08-26 09:03:42.482404-05');
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (34, 'Interaction', '0003_question_with_product', '2023-08-28 00:33:48.53678-05');
 INSERT INTO public.django_migrations (id, app, name, applied) VALUES (35, 'Interaction', '0004_question_answer_user', '2023-08-28 19:18:42.934049-05');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (36, 'Interaction', '0005_alter_question_answer_options', '2023-08-30 11:37:28.321033-05');
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (37, 'User', '0004_userprofile_birth_date', '2023-08-30 11:51:17.761795-05');
 
 
 --
@@ -1328,7 +1331,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 17, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 35, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 37, true);
 
 
 --
@@ -1988,7 +1991,7 @@ ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_User_user" FOREIGN KEY (user_id) REFERENCES public."User_userprofile"(identification) DEFERRABLE INITIALLY DEFERRED;
 
 
--- Completed on 2023-08-28 20:29:52
+-- Completed on 2023-08-31 14:19:35
 
 --
 -- PostgreSQL database dump complete

@@ -99,6 +99,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 	salary = models.FloatField("Salario", default=None, null=True, blank=True)
 	creation_date = models.DateTimeField('Fecha de creación', default=timezone.now)
 	entrance_date = models.DateTimeField('Fecha de ingreso', default=timezone.now)
+	birth_date = models.DateField('Fecha de nacimiento')
 	inactive_date = models.DateTimeField('Fecha de inactivación', default=None, null=True, blank=True)
 	date_joined = models.DateTimeField("date joined", default=timezone.now)
 	is_active = models.BooleanField('Está activo', default = True, choices=SELECT_YESNO)

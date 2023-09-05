@@ -12,20 +12,6 @@ services:
     networks:
       - developing_net
     container_name: postgres
-
-  # pgadmin: #! Administrador de Base de datos
-  #   image: dpage/pgadmin4
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
-  #     PGADMIN_DEFAULT_PASSWORD: "admin"
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - developing_net
-  #   container_name: pgadmin
       
   web:
     tty: true
@@ -50,5 +36,20 @@ services:
       - developing_net
     container_name: web
     command: bash -c "python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"
+
+  # pgadmin: #! Administrador de Base de datos
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+  #     PGADMIN_DEFAULT_PASSWORD: "admin"
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - developing_net
+  #   container_name: pgadmin
+
 networks:
   developing_net:

@@ -69,7 +69,7 @@ def Product_Description(request):
     elif not Product.objects.filter(pk = id_product).exists():
         return_errors.append({ 'title': 'Producto', 'content': f'No existe el producto con identificación {id_product}.' })
     else:
-        product_info = Product.objects.filter(pk = id_product).values("name", "money_unit_price", "point_unit_price", "quantity", "weight", "measure_unit", "category_name", 'image_product', category_name = F("category__name")).get()
+        product_info = Product.objects.filter(pk = id_product).values("name", "money_unit_price", "point_unit_price", "quantity", "weight", "measure_unit", "category_name", 'image_product', category_name = F("category__name"), product_id = F("id")).get()
         print(product_info)
         return_content
         return_content.update(product_info)

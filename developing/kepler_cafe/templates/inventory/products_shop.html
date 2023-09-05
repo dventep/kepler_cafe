@@ -5,76 +5,202 @@
     {% include 'partials/head.html' %}
     <title>Tienda en línea</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <style>
+        /* Estilos para el encabezado */
+        header {
+            background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url('/static/image/max.jpeg');
+            background-size: cover;
+            background-position: center center;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center; /* Centra el texto verticalmente */
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        /* Estilos para el menú de navegación */
+        .navbar {
+            background-color: #fff;
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff;
+        }
+
+        /* Estilos para el botón de filtrar */
+        .btn-filter {
+            background-color: #b5179e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-weight: bold;
+            transition: background-color 0.3s; /* Agrega una transición suave */
+        }
+
+        .btn-filter:hover {
+            background-color: #b5179e;
+        }
+
+        /* Estilos para la lista de productos */
+        .product-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .product-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f2e9e4; /* Color de fondo que desees */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 10px;
+            transition: box-shadow 0.3s; /* Agrega una transición suave al pasar el mouse sobre los productos */
+        }
+        
+
+        .product-item:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-details {
+            text-align: center;
+        }
+
+        .product-name {
+            font-family: Arial;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .product-price {
+            color: green;
+            font-size: 18px;
+        }
+
+        .product-points {
+            color: #b5179e;
+        }
+
+        .product-weight {
+            color: #000;
+        }
+
+        .product-category {
+            font-style: italic;
+            color: #000;
+        }
+
+        .btn-see-details {
+            background-color: #c19875;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s; /* Agrega una transición suave */
+        }
+
+        .btn-see-details:hover {
+            background-color: #c19875;
+        }
+
+        .filter-select {
+        background-color: #c19875; /* Color de fondo deseado */
+        color: #fff; /* Color del texto */
+        padding: 10px; /* Espaciado interno */
+        border-radius: 5px; /* Borde redondeado */
+        margin-bottom: 10px; /* Espaciado inferior */
+        }
+        
+    </style>
 </head>
+
 <body>
     <header>
         {% include 'partials/navbar.html' %}
-        </header>
+        <div class="container text-center">
+            <h1>Tienda en línea</h1>
+        </div>
+    </header>
     <div class="container mt-5">
-        <h1>Tienda en línea</h1>
         <div class="row">
             <div class="col-md-3">
-                <h3>Filtrar por Categoría</h3>
+                <h3 class="filter-select">Categorías</h3>
                 <select id="pk" class="form-control">
                     <option value="">Todas las categorías</option>
-                    <option value="category_name">Bebidas</option>
-                    <option value="category_name">Comestibles</option>
-                    <option value="category_name">Fertilizantes</option>
+                    {% for category in categories_list %}
+                        <option value="{{ category.name }}">{{ category.name }}</option>
+                    {% endfor %}
                 </select>
+                <button class="btn btn-filter mt-3">Filtrar</button>
             </div>
             <div class="col-md-9">
-                <h3>Productos</h3>
-
-	<form method="" action="/shop/">
-					{% csrf_token %}
-				<h2>{{ item.name}}</h2>
-                <div id="products-container" class="row">
-					<p class="name">Nombre : ${{name}}</p>
-					<p class="money_unit_price">Precio : {{money_unit_price}}</p>
-					<p class="point_unit_price">Puntos : {{point_unit_price}}</p>
-					<p class="weight">Peso : {{weight}}</p>
-					<p class="category_name">Categoria : {{category_name}}</p>
-					<a href="{% url 'product_description' %}?id={{item.pk}}" class="btn-add-cart">Ver detalle</a>
-				</div>
-                <a href="carrito.html" class="btn btn-primary">Agregar al Carrito</a>
-            
-
-
-			     <div id="products-container" class="row">
-					<p class="name">Nombre : ${{name}}</p>
-					<p class="money_unit_price">Precio : {{money_unit_price}}</p>
-					<p class="point_unit_price">Puntos : {{point_unit_price}}</p>
-					<p class="weight">Peso : {{weight}}</p>
-					<p class="category_name">Categoria : {{category_name}}</p>
-			 		<a href="{% url 'product_description' %}?id={{item.pk}}" class="btn-add-cart">Ver detalle</a>
-			    </div>
-				<a href="carrito.html" class="btn btn-primary">Agregar al Carrito</a>
-
-			    <div id="products-container" class="row">
-					<p class="name">Nombre : ${{name}}</p>
-					<p class="money_unit_price">Precio : {{money_unit_price}}</p>
-					<p class="point_unit_price">Puntos : {{point_unit_price}}</p>
-					<p class="weight">Peso : {{weight}}</p>
-					<p class="category_name">Categoria : {{category_name}}</p>
-					<a href="{% url 'product_description' %}?id={{item.pk}}" class="btn-add-cart">Ver detalle</a>
-		        </div>
-				<a href="carrito.html" class="btn btn-primary">Agregar al Carrito</a>
-			    </div>
-			    </div>
-			
-
-
-
-
-
-			<a href="carrito.html" class="btn btn-primary">Ver Carrito</a>
-		</div>
+                <h3 class="filter-select">Productos</h3>
+                <ul class="product-list">
+                    {% for item in products_list %}
+                        <li class="product-item {% if item.category_name != selected_category %}d-none{% endif %}">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="/media/{{ item.image_product }}" alt="{{ item.name }}" class="product-image img-fluid" />
+                                </div>
+                                <div class="col-md-8 product-details">
+                                    <p class="product-name">{{ item.name }}</p>
+                                    <p class="product-price">Precio: ${{ item.money_unit_price }}</p>
+                                    <p class="product-points">Puntos: {{ item.point_unit_price }}</p>
+                                    <p class="product-weight">Peso: {{ item.weight }} {{ item.measure_unit }}</p>
+                                    <p class="product-category">Categoría: {{ item.category_name }}</p>
+                                    <a href="{% url 'product_description' %}?id={{ item.pk }}" class="btn btn-see-details">Ver detalles</a>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 
-    {% include "partials/footer.html" %}
-	<script src="{% static 'products.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+         var selectedCategory = ''; // Inicializa la variable fuera del evento change
+
+document.getElementById('pk').addEventListener('change', function () {
+    // Actualiza la variable selectedCategory con el valor seleccionado
+    selectedCategory = this.value;
+});
+
+document.querySelector('.btn-filter').addEventListener('click', function () {
+    var productItems = document.querySelectorAll('.product-item');
+
+    productItems.forEach(function (item) {
+        if (selectedCategory === '' || item.querySelector('.product-category').textContent.includes(selectedCategory)) {
+            item.classList.remove('d-none');
+        } else {
+            item.classList.add('d-none');
+        }
+    });
+});
+        
+    </script>
 </body>
+{% include "partials/footer.html" %}
 </html>
+
