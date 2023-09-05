@@ -28,7 +28,8 @@ body{
 }
 
 .caja__trasera-register a,
-.caja__trasera-register a {
+.caja__trasera-register a,
+.nav__items {
     font-style: normal;
     font-weight: 600;
     color: white;
