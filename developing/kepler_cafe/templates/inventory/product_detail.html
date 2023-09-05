@@ -1,18 +1,250 @@
-<div class="content-section">
-    <div class="row mx-auto justify-content-center">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    {% include 'partials/head.html' %}
+    <title>Product Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 
-        <div class="card m-4" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="cart-title text-center">Product Name</h5> 
-                <div style-"font-size: 30px;" class="text-center">
-                    <span></span> 
-                </div>
-                <h3 class="text-center"> {{ name }}</h3> 
-                <img
-                    src="/media/{{image_product}}"
-                    alt="{{item.name}}"
-                />
-            </div>
+    <!-- Add any additional stylesheets if needed -->
+    <style>
+        /* Estilos para el encabezado */
+        header {
+            background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url('/static/image/detalle.jpeg');
+            background-size: cover;
+            background-position: center center;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        /* Estilos para el menú de navegación */
+        .navbar {
+            background-color: #fff;
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #fff;
+        }
+  
+        /* Add your custom styles here */
+        body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f0f0f0;
+        }
+
+
+        .content-section {
+            padding: 20px;
+        }
+
+        .product-card {
+            width: 24rem;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card-title {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .product-details {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .product-price,
+        .product-points,
+        .product-quantity,
+        .product-weight,
+        .product-category {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .btn-back-to-store {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: #c19875; /* Change button color as needed */
+            color: #fff;
+            border: none;
+        }
+
+        .btn-back-to-store:hover {
+            background-color: #c19875; /* Change button hover color as needed */
+        }
+
+        /* Estilo personalizado para el botón */
+        .btn-custom {
+        background-color: #fff; /* Cambia este valor al color que desees */
+        color: #000; /* Cambia este valor al color del texto que desees */
+        border: none; /* Elimina el borde si lo deseas */
+        font-weight: bold; /* Añade negrita si lo deseas */
+        text-transform: uppercase; /* Convierte el texto a mayúsculas si lo deseas */
+        padding: 10px 20px; /* Ajusta el espaciado interno según tu diseño */
+        border-radius: 5px; /* Redondea los bordes si lo deseas */
+        transition: background-color 0.3s; /* Agrega una transición suave al color de fondo */
+        }
+
+    /* Cambia el color de fondo cuando el mouse pasa sobre el botón */
+        .btn-custom:hover {
+        background-color: #c19875; /* Cambia este valor al color que deseas en hover */
+        }
+
+
+        .bg-custom {
+        background-color: #c19875; /* Cambia este valor al color que desees */
+        padding: 20px; /* Ajusta el espaciado interno según tu diseño */
+        border-radius: 8px; /* Redondea los bordes si lo deseas */
+        }
+
+        /* Estilos para el botón "Continuar Comprando" */
+        .btn-customer {
+        background-color: #c19875; /* Cambia este valor al color que desees */
+        color: #000; /* Cambia este valor al color del texto que desees */
+        border: none; /* Elimina el borde si lo deseas */
+        font-weight: bold; /* Añade negrita si lo deseas */
+        text-transform: uppercase; /* Convierte el texto a mayúsculas si lo deseas */
+        padding: 10px 20px; /* Ajusta el espaciado interno según tu diseño */
+        border-radius: 5px; /* Redondea los bordes si lo deseas */
+        transition: background-color 0.3s; /* Agrega una transición suave al color de fondo */
+        }
+
+        /* Cambia el color de fondo cuando el mouse pasa sobre el botón "Continuar Comprando" */
+        .btn-customer:hover {
+        background-color: #fff; /* Cambia este valor al color que deseas en hover */
+        }
+
+        .btn-primary {
+        background-color: #c19875; /* Cambia este valor al color que desees */
+        color: #000; /* Cambia este valor al color del texto que desees */
+        border: none; /* Elimina el borde si lo deseas */
+        font-weight: bold; /* Añade negrita si lo deseas */
+        text-transform: uppercase; /* Convierte el texto a mayúsculas si lo deseas */
+        padding: 10px 20px; /* Ajusta el espaciado interno según tu diseño */
+        border-radius: 5px; /* Redondea los bordes si lo deseas */
+        transition: background-color 0.3s; /* Agrega una transición suave al color de fondo */
+        }
+
+        .btn-primary:hover {
+        background-color: #fff; /* Cambia este valor al color que deseas en hover */
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        {% include 'partials/navbar.html' %}
+        <div class="container text-center">
+            <h1>Detalle Producto</h1>
         </div>
-    </div> 
-</div>
+    </header>
+    <div class="content-section">
+        <div class="container">
+            <a href="/shop" class="btn btn-customer">Continuar Comprando</a>
+            <a href="/shopping_car" class="btn btn-primary">Ver Carrito</a>
+
+
+            <form class="product-card" id="addToCartForm" action="POST">
+                <h5 class="product-card-title">Product Name</h5>
+                <img
+                    src="/media/{{ image_product }}"
+                    alt="{{ name }}"
+                    class="img-fluid product-image"
+                />
+                <div class="product-details">
+                    <p class="product-price">{{ name }}</p>
+                    <p class="product-price">Precio: ${{ money_unit_price }}</p>
+                    <p class="product-points">Points: {{ point_unit_price }}</p>
+                    <p class="product-quantity">Quantity: {{ quantity }}</p>
+                    <p class="product-weight">Weight: {{ weight }} {{ measure_unit }}</p>
+                    <p class="product-category">Category: {{ category_name }}</p>
+                    <!-- You can add more product details as needed -->
+                </div>
+                <div class="bg-custom col-12">
+                    <input type="hidden" class="form-control" id="product_id" name="product_id" value="{{ product_id }}">
+                    <div class="form-group">
+                        <label for="quantity">Cantidad: </label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descripción personalizada:</label>
+                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center text-align">
+                        <button type="button" class="btn btn-custom" id="addToCartButton">Agregar al Carrito</button>
+                    </div>
+                </div>  
+            </form>
+        </div>
+    </div>
+    {% include 'partials/footer.html' %}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        window.CSRF_TOKEN = "{{ csrf_token }}"; 
+        // Function to handle the "Agregar al Carrito" button click inside the modal
+        $("#addToCartButton").click(function () {
+            let productId = $("#product_id").val(); // Reemplaza "{{ product_id }}" con el ID del producto actual
+            let quantity = $("#quantity").val();
+            let description = $("#description").val();
+
+            // Envía una solicitud POST al servidor para agregar el producto al carrito
+            $.ajax({
+                url: "/shopping_car/add/", // URL a tu vista
+                method: "POST",
+                data: {
+                    csrfmiddlewaretoken : window.CSRF_TOKEN,
+                    product_id: productId,
+                    quantity: quantity,
+                    description: description,
+                },
+                success: function (data) {
+                    // Maneja la respuesta del servidor
+                    if (data.errors && data.errors.length > 0) {
+                        // Muestra mensajes de error
+                        var errorMessage = "";
+                        data.errors.forEach(function (error) {
+                            errorMessage += error.title + ": " + error.content + "\n";
+                        });
+                        alert(errorMessage);
+                    } else {
+                        // Actualiza la cantidad del carrito de compras
+                        var shoppingCartQuantity = data.shopping_car_quantity;
+                        alert("Producto agregado al carrito. Cantidad en carrito: " + shoppingCartQuantity);
+
+                        // Cierra el modal
+                        $('#addToCartModal').modal('hide');
+                    }
+                },
+                error: function () {
+                    alert("Error al agregar el producto al carrito");
+                },
+            });
+        });
+    </script>
+</body>
+</html>
+
+

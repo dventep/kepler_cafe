@@ -112,25 +112,35 @@ def Survey_Do(request):
     return_content['shopping_car_quantity'] = shopping_car_quantity
     
     if request.POST:
-        survey_id = request.POST.get('survey', None)
-        product_id = request.POST.get('product', None)
+        survey_id = request.POST.get('survey_id', None)
+        product_id = request.POST.get('product_id', "None")
         description = request.POST.get('description', None)
         score = request.POST.get('score', None)
-        
-        if survey_id and product_id and description and score:
-
-            Question_Answer.objects.create(
-                score = score,
-                description = description,
-                question_id = survey_id,
-                product_id = product_id,
-                user_id = request.user.pk,
-                creation_date = datetime.now(tz=pytz.timezone('America/Bogota'))
-            )
+        print("score", score)
+        if survey_id and description and score:
+            if product_id != "None" and product_id and product_id != "":
+                Question_Answer.objects.create(
+                    score = score,
+                    description = description,
+                    question_id = survey_id,
+                    product_id = product_id,
+                    user_id = request.user.pk,
+                    creation_date = datetime.now(tz=pytz.timezone('America/Bogota'))
+                )
+            else:
+                Question_Answer.objects.create(
+                    score = score,
+                    description = description,
+                    question_id = survey_id,
+                    user_id = request.user.pk,
+                    creation_date = datetime.now(tz=pytz.timezone('America/Bogota'))
+                )
 
             return redirect("/surveys/me/")
         else:
             return_content['errors'].append({ 'title': 'Error en recepción de datos', 'content': 'Survey_id, product_id, description o score faltó por enviar' })
+        if len(return_content['errors']) > 0:
+            print(return_content['errors'])
         return render(request, 'interaction/survey.html', return_content)
         # return JsonResponse(return_content)
 

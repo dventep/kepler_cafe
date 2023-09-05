@@ -19,13 +19,16 @@
             </li>
         {% else %}
             <li class="nav__items">
-                Puntos: {{ user.point }}
+                <a href="/accounts/me/" class="nav__links">Mi perfil</a>
             </li>
             <li class="nav__items">
                 <a href="/surveys/me/" class="nav__links">Encuestas</a>
             </li>
             <li class="nav__items">
                 <a href="/accounts/logout/" class="nav__links">Cerrar sesión</a>
+            </li>
+            <li class="nav__items">
+                Puntos: {{ user.point }}
             </li>
             <li class="nav__items">
                 Carrito: {{ shopping_car_quantity }}

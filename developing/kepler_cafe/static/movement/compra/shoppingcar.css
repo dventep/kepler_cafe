@@ -1,0 +1,86 @@
+/* Estilos para el encabezado */
+header {
+    background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url('/static/image/carrito.jpeg');
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+/* Estilos para el menú de navegación */
+.navbar {
+    background-color: #fff;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: #fff;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+}
+
+
+/* Estilos para la tabla */
+.table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px;
+background-color: #fff;
+border: 1px solid #ddd;
+border-radius: 8px;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+padding: 12px;
+text-align: left;
+border-bottom: 1px solid #ddd;
+}
+
+/* Resaltar las filas pares de la tabla con un color de fondo */
+.table tbody tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+/* Estilos para el encabezado de la tabla */
+.table thead {
+background-color: #007bff; /* Color de fondo del encabezado */
+color: #fff; /* Color de texto del encabezado */
+}
+
+/* Estilos para el texto del encabezado de la tabla */
+.table th {
+font-weight: bold;
+text-transform: uppercase;
+}
+
+/* Estilos para el mensaje cuando no hay productos en el carrito */
+.no-products-message {
+font-style: italic;
+color: #777;
+}
+
+/* Alineación del texto en la columna de cantidad */
+.table td:nth-child(2) {
+text-align: center;
+}
+
+/* Estilos para los botones "Continuar Comprando" y "Ver Carrito" */
+.btn-continue-shopping,
+.btn-view-cart {
+margin-top: 10px;
+}
+
+/* Agregar espacio entre los botones "Continuar Comprando" y "Ver Carrito" */
+.btn-continue-shopping {
+margin-right: 10px;
+}
