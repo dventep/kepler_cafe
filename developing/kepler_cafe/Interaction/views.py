@@ -116,7 +116,6 @@ def Survey_Do(request):
         product_id = request.POST.get('product_id', "None")
         description = request.POST.get('description', None)
         score = request.POST.get('score', None)
-        print("score", score)
         if survey_id and description and score:
             if product_id != "None" and product_id and product_id != "":
                 Question_Answer.objects.create(

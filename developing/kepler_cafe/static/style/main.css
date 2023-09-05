@@ -14,6 +14,38 @@ body{
 
 }
 
+.footer a, 
+.footer a:hover, 
+.footer a:focus, 
+.footer a::selection,
+.nav__link--menu a, 
+.nav__link--menu a:hover, 
+.nav__link--menu a:focus, 
+.nav__link--menu a::selection {
+    text-decoration: none;
+    color: white;
+    font-style: normal;
+}
+
+.caja__trasera-register a,
+.caja__trasera-register a {
+    font-style: normal;
+    font-weight: 600;
+    color: white;
+    text-decoration: none
+}
+
+.special-body .nav.container {
+    background-color: white;
+    margin: 0;
+    padding: 0.5vh 4vw;
+    width: 100%;
+    max-width: 100%;
+}
+.special-body .nav.container a {
+    color: #795548
+}
+
 .container {
     width: 90%;
     max-width: 1200px;

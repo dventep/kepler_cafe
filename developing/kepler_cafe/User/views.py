@@ -55,7 +55,6 @@ def register_html(request):
     return_content = {}
     return_errors = []
     if request.POST:
-        print("2")
         identification = request.POST.get("identification", "")
         first_name = request.POST.get('first_name', '')
         last_name = request.POST.get('last_name', '')
@@ -66,7 +65,7 @@ def register_html(request):
 
         return_errors = validate_register(identification_validate=identification, errors_list=return_errors, identification=identification, first_name=first_name, last_name=last_name, email=email, password=password, phone_number=phone_number)
         return_content['errors'] = return_errors
-        print("return_content:", return_content)
+        # print("return_content:", return_content)
         if len(return_errors) == 0:
             user = UserProfile(
                 identification = identification,
@@ -146,3 +145,19 @@ def manage_profile(request):
         return_content['charge_list'] = list(Charge.objects.all().values('pk', 'name').order_by('name', 'pk'))
     return_content['shopping_car_quantity'] = shopping_car_quantity
     return render(request, 'user/user.html', return_content)
+
+def terms_and_conditions(request):
+    """
+        Description:
+            This function has the objective to get the template to edit his data and update him. 
+    """
+    return_content = {'errors': [], 'message': {}}
+    return_errors = []
+    return_content['errors'] = return_errors
+
+    shopping_car_quantity = 0
+    if  request.user and request.user.is_authenticated:
+        shopping_car_quantity = Shopping_Car.objects.filter(user_id = request.user.identification).count()
+    return_content['shopping_car_quantity'] = shopping_car_quantity
+    
+    return render(request, 'user/terms_and_conditions.html', return_content)

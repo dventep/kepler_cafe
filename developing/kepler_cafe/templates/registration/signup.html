@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="{% static 'registration/login/login.css' %}">
     <title>Iniciar sesión - Kepler</title>
 </head>
-<body>
+<body class="special-body">
         {% include 'partials/navbar.html' %}
         <main>
             <!-- {% if user.is_authenticated %} -->
                 <a class="btn btn-info" href="{% url 'home' %}">Kepler</a>
             <!-- {% else %} -->
-            <div class="contenedor__todo">
+            <div class="contenedor__todo mt-5">
                 <div class="caja__trasera">
                     <div class="caja__trasera-login">
                         <h3>¿Aún no tienes una cuenta</h3>
@@ -48,14 +48,16 @@
                         <input id="phone_number" name="phone_number" type="number" placeholder="Celular" value="{{phone_number}}">
 
                         <input id="password" name="password" type="text" placeholder="Contraseña" value="{{password}}">
-
-                       
-
-                      
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="">Fecha de nacimiento</span>
+                            </div>
+                            <input type="date" class="form-control" name="birth_date" id="birth_date">
+                        </div>
                         <!-- <input id="username" name="username" type="text" placeholder="Correo Electronico"> -->
                         <!-- <input id="password" name="password" type="password" placeholder="Contraseña"> -->
                         <!-- <button>Entrar</button> -->
-                        <button type="submit" class="btn btn-signup">Entrar<span class="icon-buttons icon-upload"><i class="fas fa-sign-in-alt"></i></span></button>
+                        <button type="submit" class="btn btn-signup">Registrarse<span class="icon-buttons icon-upload"><i class="fas fa-sign-in-alt"></i></span></button>
                     </form>
                     <div class="errorsContainer">
                         {% if form.errors %}

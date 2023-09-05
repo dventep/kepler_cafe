@@ -6,16 +6,37 @@
 
             <ul class="nav__link nav__link--footer">
                 <li class="nav__items">
-                    <a href="#" class="nav__links">Inicio</a>
+                    <a href="{% url 'home' %}" class="nav__links">Inicio</a>
                 </li>
                 <li class="nav__items">
-                    <a href="#" class="nav__links">Nosotros</a>
+                    <a href="{% url 'home' %}#about_us" class="nav__links">Nosotros</a>
                 </li>
                 <li class="nav__items">
-                    <a href="#" class="nav__links">Productos</a>
+                    <a href="{% url 'shop' %}" class="nav__links">Tienda</a>
                 </li>
+                {% if not user.is_authenticated %}
+                    <li class="nav__items">
+                        <a href="/accounts/login/" class="nav__links">Iniciar sesión</a>
+                    </li>
+                {% else %}
+                    <li class="nav__items">
+                        <a href="/accounts/me/" class="nav__links">Mi perfil</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="/surveys/me/" class="nav__links">Encuestas</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="/accounts/logout/" class="nav__links">Cerrar sesión</a>
+                    </li>
+                    <li class="nav__items">
+                        Puntos: {{ user.point }}
+                    </li>
+                    <li class="nav__items">
+                        Carrito: {{ shopping_car_quantity }}
+                    </li>
+                {% endif %}
                 <li class="nav__items">
-                    <a href="#" class="nav__links">Login</a>
+                    <a href="{% url 'terms' %}" class="nav__links">Términos y condiciones</a>
                 </li>
             </ul>
         </nav>

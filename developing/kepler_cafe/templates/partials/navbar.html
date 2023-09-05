@@ -3,12 +3,12 @@
     <div class="nav__logo">
         <h2 class="nav__tittle">Kepler</h2>
     </div>
-    <ul class="nav__link  nav__link--menu">
+    <ul class="nav__link nav__link--menu">
         <li class="nav__items">
             <a href="{% url 'home' %}" class="nav__links">Inicio</a>
         </li>
         <li class="nav__items">
-            <a href="#about_us" class="nav__links">Nosotros</a>
+            <a href="{% url 'home' %}#about_us" class="nav__links">Nosotros</a>
         </li>
         <li class="nav__items">
             <a href="{% url 'shop' %}" class="nav__links">Tienda</a>
