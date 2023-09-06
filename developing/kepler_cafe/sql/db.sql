@@ -5,7 +5,7 @@
 -- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.2
 
--- Started on 2023-08-31 14:19:34
+-- Started on 2023-09-05 21:31:54
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -957,7 +957,8 @@ INSERT INTO public."Movement_purchase_detail" (id, money_unit_value, point_unit_
 -- Data for Name: User_userprofile; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$hg4wgfrge2h1aGtdcDgFBB$qRTrPh3be5EXrfTgaMrdxfz6HR/89OzU1nYbgit/rTU=', '2023-08-20 20:57:16.59866-05', 12345151, 'Admin Kepler', 'Papita Amarilla', 'admin@kepler.com', '', 0, 0, '2023-08-16 14:57:18.303094-05', '2023-08-16 14:57:18.303094-05', NULL, true, true, true, NULL, '2023-08-20 08:46:22.491677-05', '2023-09-08');
+INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$hg4wgfrge2h1aGtdcDgFBB$qRTrPh3be5EXrfTgaMrdxfz6HR/89OzU1nYbgit/rTU=', '2023-09-05 21:07:54.173823-05', 12345151, 'Admin Kepler', 'Papita Amarilla', 'admin@kepler.com', '', 0, 0, '2023-08-16 14:57:18.303094-05', '2023-08-16 14:57:18.303094-05', NULL, true, true, true, NULL, '2023-08-20 08:46:22.491677-05', '2023-09-08');
+INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$yRjXULy6Vlfw5GK85N8y1B$21yhDND9AIH8Ho/COJ5GcgU2EtXpYPEJb8PJ2xF++mg=', '2023-09-05 21:27:36.882076-05', 5122, 'David', 'Agua', 'shadow@gmail.com', '3125123', 0, NULL, '2023-09-05 20:16:12.788711-05', '2023-09-05 20:16:12.788711-05', NULL, true, false, false, NULL, '2023-09-05 20:16:12.870086-05', '2003-12-29');
 INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$sxQoGnAmSwh2pel7S87XIk$Jyv8HXEbvHHdmI4ynan9hawd8Tigsdo8O3R8PNgqR+E=', '2023-08-20 10:41:55.875309-05', 4513, 'Camargo Alf', 'Calargo', 'camargo1@gmail.com', '441232', 0, NULL, '2023-08-19 14:26:25.475358-05', '2023-08-19 14:26:25.475358-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05', '2023-09-08');
 INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$Z6yoc7jpWJGLv1UNGwwT3i$VM8QEIu2BtLCHvO7c48UaiATJGwBCux91AcMXKMyxvo=', '2023-08-27 20:13:22.352742-05', 4512, 'Camargo', 'Castañeda', 'davidventepolo@gmail.com', '5123', 10, 0, '2023-08-18 22:57:22.956075-05', '2023-08-18 22:57:22.956075-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05', '2023-09-08');
 
@@ -1176,9 +1177,11 @@ INSERT INTO public.django_migrations (id, app, name, applied) VALUES (37, 'User'
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('iv1o4f3qg18hxohe334xzl8uk63jw7cn', '.eJxVjr0OwyAQg9-FuUJH-Asdu-cZ0AFHSVsRKSRT1XcvkTK0iwd_tuU387hvxe-NVj8ndmVikEoLLdjlFwWMT6oHTw-s94XHpW7rHPgR4SdtfFoSvW5n9m-gYCu9LYOkAQC0AjQ2ZwUwEnZJNpMRKGL3nUGK0cUsjTL9y4jJCFConGWfL9iNOL8:1qWMea:FrDbCMlnnWryOoGVo_NueoePBdWLkgHRTcYUozQDV64', '2023-08-30 14:58:04.803488-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('0fhgxpaesu8qcb3tpxx74v7rb8d2ihlf', '.eJxVjr0OwyAQg9-FuUJH-Asdu-cZ0AFHSVsRKSRT1XcvkTK0iwd_tuU387hvxe-NVj8ndmVikEoLLdjlFwWMT6oHTw-s94XHpW7rHPgR4SdtfFoSvW5n9m-gYCu9LYOkAQC0AjQ2ZwUwEnZJNpMRKGL3nUGK0cUsjTL9y4jJCFConGWfL9iNOL8:1qX51W:k4dU8ImySHbBzAp-sfUz_PkjkUOBxdFUYOz67FhLPL0', '2023-09-01 14:20:42.330158-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('vwa5hl5yxgta7jgkv4xvmpphu6qusuou', '.eJxVjMsOwiAUBf-FtSFQ3i7d9xsIXC5SNZCUdmX8d0vShW7PzJw38WHfit87rn5J5Eqk4oJcfucY4Il1sPQI9d4otLqtS6RDoSftdG4JX7fT_TsooZejztZY52ACEIAGwGamRBKBOwOcGRXjgXFiLpuoh6WZwJyjNDpIdIx8vmEEOLg:1qXkYt:mYr7Y36XnSQ7bP1oM-Cb35qxOALyc0nEh91W7NeNMG4', '2023-09-03 10:41:55.879303-05');
-INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('gkmdrgkpnwxebjpamuu6z7xn4wrzf6ep', '.eJxVjMsOwiAQRf-FtSHlMQVcuvcbyAwDtmpKUtqV8d-VpAvd3eScc18i4r5NcW95jTOLs1DaWFCgxOkXEaZHXjrnOy63KlNdtnUm2RV50CavlfPzcrh_BxO2qddcvLYFR2WVA0_AAJoDBrIAYSijceSCJ-2Lx-SsxQG_M5SkyTAq8f4A5Wk5UA:1qZ252:rCg1fx-EcRRHwpojn9GsHviinlHjpmj52YwCpLJ66Vs', '2023-09-06 23:36:24.849502-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('ufar9jq88vm3i4obadvdtc0pwmnombyc', '.eJxVjDEOwjAMRe-SGUWNEzsVIztniOw4JQXUSk07Ie4OlTrA-t97_2USb2tNWytLGtWcTUAH5vQ7C-dHmXamd55us83ztC6j2F2xB232Omt5Xg7376Byq996iADaY4yhMAYgzIFAgLNToaKdkM_eB5KIDjtB7Zl87MPgIYIrZN4fP6A3pw:1qZ25i:_OkYvCjqMsZwCyuM9uJXDoygunsIC92OaSg0_El2XrE', '2023-09-06 23:37:06.837698-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('l4gsoo7bpb02oat8n70r036hwfoqp1dv', '.eJxVjDEOwjAMRe-SGUWNEzsVIztniOw4JQXUSk07Ie4OlTrA-t97_2USb2tNWytLGtWcTUAH5vQ7C-dHmXamd55us83ztC6j2F2xB232Omt5Xg7376Byq996iADaY4yhMAYgzIFAgLNToaKdkM_eB5KIDjtB7Zl87MPgIYIrZN4fP6A3pw:1qaQok:l6G3DtKM_Je5iPja_nX6EEt9T4U0-yJFDoTrFKwYomo', '2023-09-10 20:13:22.355674-05');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('kushy6v82xhqgi5ivm09pkdt34hzr916', '.eJxVjEEOwiAQRe_C2hChDBSX7nsGMjMMUjVtUtqV8e7apAvd_vfef6mE21rT1mRJY1YXBcZadfqdCfkh087yHafbrHme1mUkvSv6oE0Pc5bn9XD_Diq2-q1RrMkAwbtMXVd6AO8wFiieY3Bs-si2ZAnnYHx0JnpGSywknQMUIvX-AE65ONw:1qdi5F:39DEZSdfqXHhBq4xHwcrbLFEr-8OCN3-QJWMRU59F2M', '2023-09-19 21:15:57.180113-05');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('s5ptwczawlazplaeolpxanl2l5ie4mru', '.eJxVjEEOwiAQRe_C2hChDBSX7nsGMjMMUjVtUtqV8e7apAvd_vfef6mE21rT1mRJY1YXBcZadfqdCfkh087yHafbrHme1mUkvSv6oE0Pc5bn9XD_Diq2-q1RrMkAwbtMXVd6AO8wFiieY3Bs-si2ZAnnYHx0JnpGSywknQMUIvX-AE65ONw:1qdi5i:ru4Srv9KuSWQYyDO4MxP8lKjJAPu24p1Gl-hOygmgZk', '2023-09-19 21:16:26.291844-05');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('n8latrksid8efa3d7h04h5zahkvq7m4v', '.eJxVjEEOwiAQRe_C2hChDBSX7nsGMjMMUjVtUtqV8e7apAvd_vfef6mE21rT1mRJY1YXBcZadfqdCfkh087yHafbrHme1mUkvSv6oE0Pc5bn9XD_Diq2-q1RrMkAwbtMXVd6AO8wFiieY3Bs-si2ZAnnYHx0JnpGSywknQMUIvX-AE65ONw:1qdiGW:m5IkTAZBPq-bKQ0_U07HDXwFQViVqorOuIonS2d0LME', '2023-09-19 21:27:36.892693-05');
 
 
 --
@@ -1991,7 +1994,7 @@ ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_User_user" FOREIGN KEY (user_id) REFERENCES public."User_userprofile"(identification) DEFERRABLE INITIALLY DEFERRED;
 
 
--- Completed on 2023-08-31 14:19:35
+-- Completed on 2023-09-05 21:31:55
 
 --
 -- PostgreSQL database dump complete

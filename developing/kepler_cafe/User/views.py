@@ -18,7 +18,7 @@ def home(request):
         shopping_car_quantity = Shopping_Car.objects.filter(user_id = request.user.identification).count()
     return render(request, "index.html", {'shopping_car_quantity': shopping_car_quantity})
 
-def validate_register(identification_validate, errors_list, identification, first_name, last_name, email, password, phone_number, updating = False):
+def validate_register(identification_validate, errors_list, identification, first_name, last_name, email, password, phone_number, birth_date, updating = False):
     """
         Description:
             This function has the objective of validate whether datas gotten are right or not. 
@@ -44,6 +44,8 @@ def validate_register(identification_validate, errors_list, identification, firs
         errors_list.append({ 'title': 'Número de contacto del usuario', 'content': 'Debe ingresar un número de contacto válido.' })
     if not password or password == "":
         errors_list.append({ 'title': 'Contraseña del usuario', 'content': 'Debe ingresar una contraseña.' })
+    if not birth_date or birth_date == "":
+        errors_list.append({ 'title': 'Fecha de nacimiento', 'content': 'Debe ingresar la fecha de nacimiento.' })
         
     return errors_list
 
@@ -54,16 +56,16 @@ def register_html(request):
     """
     return_content = {}
     return_errors = []
+    identification = request.POST.get("identification", "")
+    first_name = request.POST.get('first_name', '')
+    last_name = request.POST.get('last_name', '')
+    email = request.POST.get('email', '')
+    password = request.POST.get('password', '')
+    phone_number = request.POST.get('phone_number', '')
+    birth_date = request.POST.get('birth_date', '')
+    datetime_tz = datetime.now(tz=pytz.timezone('America/Bogota'))
     if request.POST:
-        identification = request.POST.get("identification", "")
-        first_name = request.POST.get('first_name', '')
-        last_name = request.POST.get('last_name', '')
-        email = request.POST.get('email', '')
-        password = request.POST.get('password', '')
-        phone_number = request.POST.get('phone_number', '')
-        datetime_tz = datetime.now(tz=pytz.timezone('America/Bogota'))
-
-        return_errors = validate_register(identification_validate=identification, errors_list=return_errors, identification=identification, first_name=first_name, last_name=last_name, email=email, password=password, phone_number=phone_number)
+        return_errors = validate_register(identification_validate=identification, errors_list=return_errors, identification=identification, first_name=first_name, last_name=last_name, email=email, password=password, phone_number=phone_number, birth_date=birth_date)
         return_content['errors'] = return_errors
         # print("return_content:", return_content)
         if len(return_errors) == 0:
@@ -76,10 +78,20 @@ def register_html(request):
                 phone_number = phone_number,
                 creation_date = datetime_tz,
                 entrance_date = datetime_tz,
+                birth_date = birth_date,
             )
             user.set_password(password)
             user.save()
             return redirect('/accounts/login')
+        
+    return_content["identification"] = request.POST.get("identification", "")
+    return_content["first_name"] = request.POST.get('first_name', '')
+    return_content["last_name"] = request.POST.get('last_name', '')
+    return_content["email"] = request.POST.get('email', '')
+    return_content["password"] = request.POST.get('password', '')
+    return_content["phone_number"] = request.POST.get('phone_number', '')
+    return_content["birth_date"] = request.POST.get('birth_date', '')
+    datetime_tz = datetime.now(tz=pytz.timezone('America/Bogota'))
 
     return render(request, 'registration/signup.html', return_content)
 
@@ -114,14 +126,14 @@ def manage_profile(request):
     return_errors = []
     
     if request.POST:
-        identification = request.POST.get("identification", "")
+        identification = str(request.user.identification)
         first_name = request.POST.get('first_name', '')
         last_name = request.POST.get('last_name', '')
         email = request.POST.get('email', '')
         password = request.POST.get('password', '')
         phone_number = request.POST.get('phone_number', '')
 
-        return_errors = validate_register(identification_validate=identification, errors_list=return_errors, identification=identification, first_name=first_name, last_name=last_name, email=email, password=password, phone_number=phone_number, updating=True)
+        return_errors = validate_register(identification_validate=identification, errors_list=return_errors, identification=identification, first_name=first_name, last_name=last_name, email=email, password=password, phone_number=phone_number, birth_date="NoApply", updating=True)
         return_content['errors'] = return_errors
         
         if len(return_errors) == 0:

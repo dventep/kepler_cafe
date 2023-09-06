@@ -3,65 +3,71 @@
 <html lang="en">
 <head>
     {% include 'partials/head.html' %}
-    <!-- <link rel="stylesheet" href="{# static 'css/loginestilo.css' #}"> -->
     <link rel="stylesheet" href="{% static 'registration/login/login.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <title>Iniciar sesión - Kepler</title>
 </head>
-<body>
+<body class="special-body">
         {% include 'partials/navbar.html' %}
         <main>
             {% if user.is_authenticated %}
                 <a class="btn btn-info" href="{% url 'home' %}">Kepler</a>
             {% else %}
             <div class="contenedor__todo">
-                <div class="caja__trasera">
-                    <div class="caja__trasera-login">
+                <div class="caja__trasera mt-5">
+                    <!-- <div class="caja__trasera-login">
                         <h3>¿Ya tienes una cuenta?</h3>
                         <p>Inicia sesión para entrar en la página</p>
                         <button id="btn__iniciar-sesion">Iniciar Sesión</button>
-                    </div>
+                    </div> -->
                     <div class="caja__trasera-register">
                         <h3>¿Aún no tienes una cuenta?</h3>
                         <p>Regístrate para que puedas iniciar sesión</p>
                         <!-- <button id="btn__registrarse">Regístrarse</button> -->
                         <a href="/accounts/signup/">Regístrarse</a>
                     </div>
-                </div>
-
-                <!--Formulario de Login y registro-->
-                <div class="contenedor__login-register">
-                    <!--Login-->
-                    <!-- <form action="post" class="formulario__login" action="{% url 'login' %}"> -->
-                    <form id="container-form" method="post" action="{% url 'login' %}">
-                        {% csrf_token %}
-                        <h2>Iniciar Sesión</h2>
-                        <label class="item-login" for="id_username"><i class="fas fa-user-tie"></i></label>
-                        {{ form.username }}
-                        <label class="item-login" for="id_password"><i class="fas fa-lock"></i></label>
-                        {{ form.password }}
-                        <!-- <input id="username" name="username" type="text" placeholder="Correo Electronico"> -->
-                        <!-- <input id="password" name="password" type="password" placeholder="Contraseña"> -->
-                        <!-- <button>Entrar</button> -->
-                        <button type="submit" class="btn btn-login">Entrar<span class="icon-buttons icon-upload"><i class="fas fa-sign-in-alt"></i></span></button>
-                    </form>
-                    <div class="errorsContainer">
-                        {% if form.errors %}
-                        {% for key, value in form.errors.items %}
-                        <strong>{{ value }}</strong> {% endfor %} {{forms.ValidationError}} {% endif %}
+                    <!--Formulario de Login y registro-->
+                    <div class="contenedor__login-register">
+                        <!--Login-->
+                        <!-- <form action="post" class="formulario__login" action="{% url 'login' %}"> -->
+                        <form id="container-form" method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <h2>Iniciar Sesión</h2>
+                            <label class="item-login" for="id_username"><i class="fas fa-user-tie"></i> Correo electrónico</label>
+                            {{ form.username }}
+                            <label class="item-login" for="id_password"><i class="fas fa-lock"></i> Contraseña</label>
+                            {{ form.password }}
+                            <!-- <input id="username" name="username" type="text" placeholder="Correo Electronico"> -->
+                            <!-- <input id="password" name="password" type="password" placeholder="Contraseña"> -->
+                            <!-- <button>Entrar</button> -->
+                            <button type="submit" class="btn btn-login">Entrar<span class="icon-buttons icon-upload"><i class="fas fa-sign-in-alt"></i></span></button>
+                        </form>
+                        <div class="errorsContainer">
+                            {% if form.errors %}
+                            {% for key, value in form.errors.items %}
+                            <strong>{{ value }}</strong> {% endfor %} {{forms.ValidationError}} {% endif %}
+                        </div>
+    
+    
+                        <!--Register-->
+                        <form action="" class="formulario__register">
+                            <h2>Regístrarse</h2>
+                            <input type="text" placeholder="Nombre completo">
+                            <input type="text" placeholder="Correo Electronico">
+                            <input type="text" placeholder="Usuario">
+                            <input type="password" placeholder="Contraseña">
+                            <a href="/accounts/signup/">Regístrarse</a>
+                        </form>
                     </div>
-
-
-                    <!--Register-->
-                    <form action="" class="formulario__register">
-                        <h2>Regístrarse</h2>
-                        <input type="text" placeholder="Nombre completo">
-                        <input type="text" placeholder="Correo Electronico">
-                        <input type="text" placeholder="Usuario">
-                        <input type="password" placeholder="Contraseña">
-                        <a href="/accounts/signup/">Regístrarse</a>
-                    </form>
                 </div>
+                <div class="errorsContainer">
+                    {% if errors %}
+                        {% for error in errors %}
+                            <strong class="d-block">{{ error.title }}: {{ error.content }}</strong>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
             </div>
             {% endif %}
         </main>

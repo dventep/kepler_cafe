@@ -55,6 +55,10 @@ body{
     padding: var(--padding-container);
 }
 
+.questions.container .questions__paragraph {
+    text-align: left;
+}
+
 .hero {
     width: 100%;
     height: 100vh;
@@ -100,6 +104,8 @@ body{
     grid-auto-flow: column;
     grid-auto-columns: max-content;
     gap: 2em;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .nav__items {

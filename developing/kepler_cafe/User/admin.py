@@ -53,6 +53,15 @@ class UserProfileAdmin(ImportExportModelAdmin, PasswordResetUserAdmin):
 		'is_superuser',
 		'charge__name',
     	)
+    
+    fieldsets = (
+      ('Información personal', {
+        'fields': ('identification', "first_name", "last_name", "email", "phone_number", "point", "creation_date", "entrance_date", "birth_date", "inactive_date", "is_active", "is_staff", "is_superuser"),
+      }),
+      ('Información empleado', {
+        'fields': ("salary", "charge")
+      })
+    )
 
 @admin.register(Charge)
 class ChargeAdmin(ImportExportModelAdmin):

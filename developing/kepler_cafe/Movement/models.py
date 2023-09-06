@@ -8,6 +8,7 @@ from Inventory.models import Product
 Select_Transaction_Action = (
 	("out", "Compra"),
 	("in", 'Recepción'),
+	("birth_day", 'Cumpleaños'),
 )
 Select_Order_Status = (
 	("waiting", "En espera"),

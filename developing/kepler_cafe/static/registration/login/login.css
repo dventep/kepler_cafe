@@ -40,7 +40,7 @@ main{
 
 }
 
-.caja__trasera div{
+.caja__trasera > div{
     margin: 100px 40px;
     color: white;
     transition: all 500ms;
@@ -79,11 +79,14 @@ main{
     color: #46A2FD;
 }
 
+.errorsContainer {
+    color: #a98467;
+}
 /*Formularios*/
 
 .contenedor__login-register{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     width: 100%;
     max-width: 380px;
     position: relative;
@@ -109,7 +112,7 @@ main{
     color: #a98467;
 }
 
-.contenedor__login-register form input{
+.contenedor__login-register form > input{
     width: 100%;
     margin-top: 20px;
     padding: 10px;
@@ -132,8 +135,14 @@ main{
 }
 
 
-
-
+.item-login {
+    color: #a98467;
+    margin: 1vh;
+}
+.item-login ~ input {
+    margin: 0;
+    margin-top: 0 !important;
+}
 .formulario__login{
     opacity: 1;
     display: block;

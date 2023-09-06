@@ -83,31 +83,37 @@
 <body>
     <div class="container mt-5 container-form">
         <h1 class="mb-4">Editar Perfil de Usuario</h1>
-        <form id="profile-form">
+        <form method="post">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="identification" class="form-label">Identificación</label>
-                <input id="identification" name="identification" type="number" placeholder="Identificación" class="form-control" value="{{identification}}">
+                <input id="identification" name="identification" type="number" placeholder="Identificación" class="form-control" value="{{ user.identification}}" disabled>
             </div>
             <div class="mb-3">
                 <label for="first_name" class="form-label">Nombre</label>
-                <input id="first_name" name="first_name" type="text" placeholder="Nombre" class="form-control" value="{{first_name}}">
+                <input id="first_name" name="first_name" type="text" placeholder="Nombre" class="form-control" value="{{user.first_name}}">
             </div>
             <div class="mb-3">
                 <label for="last_name" class="form-label">Apellido</label>
-                <input id="last_name" name="last_name" type="text" placeholder="Apellido" class="form-control" value="{{last_name}}">
+                <input id="last_name" name="last_name" type="text" placeholder="Apellido" class="form-control" value="{{user.last_name}}">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input id="email" name="email" type="text" placeholder="Correo" class="form-control" value="{{email}}">
+                <input id="email" name="email" type="text" placeholder="Correo" class="form-control" value="{{user.email}}">
             </div>
             <div class="mb-3">
                 <label for="phone_number" class="form-label">Teléfono</label>
-                <input id="phone_number" name="phone_number" type="number" placeholder="Teléfono" class="form-control" value="{{phone_number}}">
+                <input id="phone_number" name="phone_number" type="number" placeholder="Teléfono" class="form-control" value="{{user.phone_number}}">
+            </div>
+            <div class="mb-3">
+                <label for="birth_day" class="form-label">Fecha de nacimiento</label>
+                <span class="form-control disabled">
+                    {{user.birth_date}}
+                </span>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
-                <input id="password" name="password" type="password" placeholder="Contraseña" class="form-control" value="{{password}}">
+                <input id="password" name="password" type="text" placeholder="Contraseña" class="form-control" value="">
             </div>
             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
         </form>

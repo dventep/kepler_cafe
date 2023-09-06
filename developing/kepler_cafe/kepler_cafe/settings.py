@@ -120,6 +120,19 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_HEADERS = "*"
 
+CORS_ALLOW_CREDENTIALS = True
+
+
+CSRF_TRUSTED_ORIGINS = ['https://hollywood-paragraphs-messages-ellis.trycloudflare.com']
+
+CORS_REPLACE_HTTPS_REFERER = True
+
+CSRF_COOKIE_DOMAIN = 'bluemix.net'
+
+CORS_ORIGIN_WHITELIST = (
+    'https://hollywood-paragraphs-messages-ellis.trycloudflare.com',
+    'hollywood-paragraphs-messages-ellis.trycloudflare.com',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
