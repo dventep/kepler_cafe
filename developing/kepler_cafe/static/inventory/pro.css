@@ -1,0 +1,33 @@
+/* CSS Stylesheet */
+.product-image {
+    max-width: 100px; /* Adjust as needed */
+    max-height: 100px; /* Adjust as needed */
+}
+
+.product-details {
+    margin-left: 20px; /* Adjust as needed */
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.product-price {
+    color: green;
+}
+
+.product-points {
+    color: blue;
+}
+
+.product-weight {
+    color: #888;
+}
+
+.product-category {
+    font-style: italic;
+}
+
+.btn-add-cart {
+    margin-top: 10px; /* Adjust as needed */
+}

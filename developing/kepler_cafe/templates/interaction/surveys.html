@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% include 'partials/head.html' %}
+    <title>Encuestas - Kepler</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+    <style>
+        /* Estilos para el encabezado */
+        header {
+            background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url('/static/image/encuesta.jpeg');
+            background-size: cover;
+            background-position: center center;
+            color: #fff;
+            padding: 100px 0; /* Aumenta el espacio superior e inferior */
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 48px; /* Aumenta el tamaño del título */
+            margin: 0;
+        }
+
+        /* Estilos para el menú de navegación */
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra sutíl */
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #333; /* Cambia el color del texto del menú */
+            font-weight: bold; /* Agrega negritas */
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff;
+        }
+
+        /* Estilos para las encuestas */
+        .jumbotron {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            margin-bottom: 20px;
+            border: none; /* Quita el borde de las tarjetas */
+        }
+
+        .card-body {
+            text-align: center;
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 20px; /* Aumenta el tamaño del título de la tarjeta */
+        }
+
+        .card-text {
+            margin-top: 10px;
+            color: #777; /* Cambia el color del texto */
+        }
+
+        .btn-primary {
+            background-color: #c19875;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-weight: bold;
+            transition: background-color 0.3s; /* Agrega una transición suave */
+        }
+
+        .btn-primary:hover {
+            background-color: #c19875; /* Cambia el color al pasar el ratón */
+        }
+
+        /* Estilos para los selectores de calidad */
+        .form-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-select {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        /* Estilos para las encuestas realizadas */
+.container-form {
+    margin-top: 50px;
+}
+
+.mb-4 {
+    margin-bottom: 20px;
+}
+
+/* Estilos para cada encuesta realizada */
+.mb-3 {
+    padding: 20px;
+    background-color: #fff; /* Cambia el fondo de cada encuesta */
+    border: 1px solid #ddd; /* Agrega un borde */
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s; /* Agrega una animación de transformación */
+}
+
+.mb-3:hover {
+    transform: scale(1.02); /* Aumenta ligeramente el tamaño al pasar el ratón */
+}
+
+.form-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-select {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+}
+
+/* Estilos para los detalles de la encuesta realizada */
+.encuesta-details {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #777;
+}
+
+/* Estilos para la fecha de realización */
+.fecha-realizacion {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+        /* Estilos para el footer */
+        footer {
+            background-color: #fff;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        {% include 'partials/navbar.html' %}
+        <div class="container text-center">
+            <h1>Encuestas</h1>
+        </div>
+    </header>
+    <!-- ESTRELLAS PRODUCTOS  -->
+    <div class="jumbotron d-flex">
+        {% for survey in surveys_to_do_list %}
+        <div class="card col-md-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ survey.name }}</h5>
+                <p class="card-text">{{ survey.question_description }}</p>
+                {% if survey.with_product %}
+                <p>Producto: {{ survey.product_id }}. {{ survey.product_name }}</p>
+                {% endif %}
+                {% if survey.with_product %}
+                <a href="/surveys/do?product={{ survey.product_id }}&survey={{ survey.survey_id }}"
+                    class="btn btn-primary">Ir a contestar</a>
+                {% else %}
+                <a href="/surveys/do?survey={{ survey.survey_id }}" class="btn btn-primary">Ir a contestar</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- CALIFICACION DE PRODUCTOS  -->
+    <div class="container mt-5">
+        <h1 class="mb-4">Encuestas realizadas</h1>
+        <div>
+            {% for survey in surveys_done_list %}
+            <div class="mb-3">
+                <label for="qualityRating" class="form-label">{{ survey.question_description }}</label>
+                {% if survey.with_product %}
+                <p>Producto: {{ survey.product_id }}. {{ survey.product_name }}</p>
+                {% endif %}
+                <div>{{ survey.answer_description }}</div>
+                {% if survey.score %}
+                <select class="form-select" id="qualityRating" disabled>
+                    <option value="1" {% if survey.score == 1 %}selected{% endif %}>1 - Muy baja calidad</option>
+                    <option value="2" {% if survey.score == 2 %}selected{% endif %}>2 - Baja calidad</option>
+                    <option value="3" {% if survey.score == 3 %}selected{% endif %}>3 - Calidad promedio</option>
+                    <option value="4" {% if survey.score == 4 %}selected{% endif %}>4 - Buena calidad</option>
+                    <option value="5" {% if survey.score == 5 %}selected{% endif %}>5 - Excelente calidad</option>
+                </select>
+                {% endif %}
+                <div>Fecha de realización: {{ survey.creation_date_format }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Otras preguntas aquí -->
+    </div>
+
+    <footer>
+        {% include "partials/footer.html" %}
+    </footer>
+</body>
+
+</html>
+

@@ -1,0 +1,20 @@
+{% load static %} {% include "partials/head.html" %}
+    <link rel="stylesheet" href="{% static 'user/profile/profile.css' %}">
+    <title>KEPLER - Perfil</title>
+</head>
+
+{% if user.is_authenticated %} {# Para verificar si está autenticada la persona #}
+{% endif %}
+    <form action="post">
+        {% csrf_token %}
+        formulario
+        - {{ user.first_name }} {{ user.last_name }} - <!-- Así obtienes la info del usuario -->
+    </form>
+    {{ errors }}
+    {% include "partials/footer.html" %}
+    <script src="{% static 'user/profile/profile.js' %}"></script>
+    <input type="text" id="identification" value="{{ identification }}">
+    <p>holaaaa</p>
+</body>
+
+</html>

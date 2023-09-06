@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Productos</title>
+    <link rel="shortcut icon" href="/image/grano.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/editusu.css" />
+    <script
+      src="https://kit.fontawesome.com/7e5b2d153f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="/js/editusu.js"></script>
+    <link rel="stylesheet" href="/css/encuesta.css">
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="logo nav-link">Kepler</a>
+        <button class="nav-toggle" aria-label="Abrir menú">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu">
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link" onclick="redireccionpro()">Productos</a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link">Encuestas</a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link" onclick="redireccionusu()">Mi usuario</a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link nav-menu-link_active"
+              >Cerrar Sesion</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <body>
+        <div class="container mt-5">
+          <h1 class="mb-4">Editar Información de Productos</h1>
+          <form>
+            <div class="mb-3">
+              <label for="productName" class="form-label">Nombre del Producto</label>
+              <input type="text" class="form-control" id="productName" value="Producto 1">
+            </div>
+            <div class="mb-3">
+              <label for="productDescription" class="form-label">Descripción del Producto</label>
+              <textarea class="form-control" id="productDescription" rows="4">Descripción del producto 1.</textarea>
+            </div>
+            <div class="mb-3">
+              <label for="productPrice" class="form-label">Precio del Producto</label>
+              <input type="number" class="form-control" id="productPrice" value="10.00" step="0.01">
+            </div>
+            <div class="mb-3">
+              <label for="productStock" class="form-label">Stock del Producto</label>
+              <input type="number" class="form-control" id="productStock" value="20">
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </form>
+        </div>
+      
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      </body>
+  </body>
+</html>

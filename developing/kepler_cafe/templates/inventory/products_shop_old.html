@@ -1,0 +1,17 @@
+{% load static %} {% include "partials/head.html" %}
+    <link rel="stylesheet" href="{% static 'user/profile/profile.css' %}">
+    <title>KEPLER - Shop</title>
+</head>
+
+    <form action="post">
+        {% csrf_token %}
+        formulario
+        - {{ user.first_name }} {{ user.last_name }} - <!-- Así obtienes la info del usuario -->
+    </form>
+    {{ errors }}
+    {% include "partials/footer.html" %}
+    <script src="{% static 'user/profile/profile.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'partials/head.html' %}
+    <title>Tienda en línea</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        {% include 'partials/navbar.html' %}
+        </header>
+    <div class="container mt-5">
+        <h1>Tienda en línea</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <h3>Filtrar por Categoría</h3>
+                <select id="pk" class="form-control">
+                    <option value="">Todas las categorías</option>
+                    <option value="categoria1">Bebidas</option>
+                    <option value="categoria2">Comestibles</option>
+                    <option value="categoria3">Fertilizantes</option>
+                </select>
+            </div>
+            <div class="col-md-9">
+                <h3>Productos</h3>
+                <div id="products-container" class="row">
+                    <!-- Productos serán mostrados aquí -->
+                </div>
+                <a href="carrito.html" class="btn btn-primary">Ver Carrito</a>
+            </div>
+        </div>
+    </div>
+
+    {% include "partials/footer.html" %}
+	<script src="{% static 'products.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script></script>
+</body>
+</html>

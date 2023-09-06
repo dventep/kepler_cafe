@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encuestas</title>
+    <link rel="shortcut icon" href="/image/grano.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/editusu.css" />
+    <script
+      src="https://kit.fontawesome.com/7e5b2d153f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="/js/editusu.js"></script>
+    <link rel="stylesheet" href="/css/encuesta.css">
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="logo nav-link">Kepler</a>
+        <button class="nav-toggle" aria-label="Abrir menú">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu">
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link" onclick="redireccionpro()">Productos</a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link">Encuestas</a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link" onclick="redireccionusu()">Mi usuario</a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link nav-menu-link_active"
+              >Contacto</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="price container">
+        <h2 class="subtitle">Productos de la semana</h2>
+
+        <div class="price__table">
+            <div class="price__element">
+                <p class="price__name">Producto 2</p>
+                <h3 class="price__price">Galáctico </h3>
+
+                <div class="price__items">
+                    <p class="price__features">Latte</p>
+                    <p class="price__features">Café Espacial</p>
+                    <p class="price__features">Café Eclipse</p>
+                </div>
+
+                <a href="#" class="price__cta">Comprar</a>
+            </div>
+
+
+            <div class="price__element price__element--best">
+                <p class="price__name">Producto 1</p>
+                <h3 class="price__price">Tarta de Luna Llena</h3>
+
+                <div class="price__items">
+                    <p class="price__features">Pastel de Café Viajero</p>
+                    <p class="price__features">Dona Nebulosa de Caramelo</p>
+                    <p class="price__features">Tiramisú de Cometa</p>
+                </div>
+
+                <a href="#" class="price__cta">Comprar</a>
+            </div>
+
+
+            <div class="price__element">
+                <p class="price__name">Producto 3</p>
+                <h3 class="price__price">Energía Solar</h3>
+
+                <div class="price__items">
+                    <p class="price__features">Planeta Verde Orgánico</p>
+                    <p class="price__features">Luna Creciente</p>
+                    <p class="price__features">Estelar Todo en Uno</p>
+                </div>
+
+                <a href="#" class="price__cta">Compra</a>
+            </div>
+
+
+        </div>
+    </section>
+<!-- ESTRELLAS PRODUCTOS  -->
+    <div class="container mt-5">
+        <h1 class="mb-4">Calificar Productos</h1>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="product">
+              <h2>Producto 2</h2>
+              <div class="rating" data-product="product-2">
+                <span class="star" data-rating="1">&#9733;</span>
+                <span class="star" data-rating="2">&#9733;</span>
+                <span class="star" data-rating="3">&#9733;</span>
+                <span class="star" data-rating="4">&#9733;</span>
+                <span class="star" data-rating="5">&#9733;</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="product">
+              <h2>Producto 1</h2>
+              <div class="rating" data-product="product-1">
+                <span class="star" data-rating="1">&#9733;</span>
+                <span class="star" data-rating="2">&#9733;</span>
+                <span class="star" data-rating="3">&#9733;</span>
+                <span class="star" data-rating="4">&#9733;</span>
+                <span class="star" data-rating="5">&#9733;</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="product">
+              <h2>Producto 3</h2>
+              <div class="rating" data-product="product-3">
+                <span class="star" data-rating="1">&#9733;</span>
+                <span class="star" data-rating="2">&#9733;</span>
+                <span class="star" data-rating="3">&#9733;</span>
+                <span class="star" data-rating="4">&#9733;</span>
+                <span class="star" data-rating="5">&#9733;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+<!-- CALIFICACION DE PRODUCTOS  -->
+      <div class="container mt-5">
+        <h1 class="mb-4">Calificación de Productos</h1>
+        <form>
+          <div class="mb-3">
+            <label for="qualityRating" class="form-label">1. ¿Cómo calificarías la calidad del producto?</label>
+            <select class="form-select" id="qualityRating" required>
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="1">1 - Muy baja calidad</option>
+              <option value="2">2 - Baja calidad</option>
+              <option value="3">3 - Calidad promedio</option>
+              <option value="4">4 - Buena calidad</option>
+              <option value="5">5 - Excelente calidad</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="satisfactionRating" class="form-label">2. ¿Cómo evaluarías la satisfacción general con tu experiencia al utilizar el producto?</label>
+            <select class="form-select" id="satisfactionRating" required>
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="1">1 - Muy insatisfecho</option>
+              <option value="2">2 - Insatisfecho</option>
+              <option value="3">3 - Neutral</option>
+              <option value="4">4 - Satisfecho</option>
+              <option value="5">5 - Muy satisfecho</option>
+            </select>
+          </div>
+          <!-- Otras preguntas aquí -->
+          <div class="mb-3">
+            <label for="comments" class="form-label">5. ¿Hubo algún aspecto del producto que te decepcionó o te gustaría que fuera diferente?</label>
+            <textarea class="form-control" id="comments" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar Respuestas</button>
+        </form>
+      </div>
+    
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/js/encuesta.js"></script>
+    <script src="/js/link.js"></script>
+</body>
+</html>

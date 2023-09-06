@@ -1,0 +1,53 @@
+{% load static %}
+<footer class="footer">
+    <section class="footer__container container">
+        <nav class="nav nav--footer w-100">
+            <ul class="nav__link nav__link--footer w-100 d-flex justify-content-center align-center">
+                <li class="nav__items">
+                    <a href="{% url 'home' %}" class="nav__links">Inicio</a>
+                </li>
+                <li class="nav__items">
+                    <a href="{% url 'home' %}#about_us" class="nav__links">Nosotros</a>
+                </li>
+                <li class="nav__items">
+                    <a href="{% url 'shop' %}" class="nav__links">Tienda</a>
+                </li>
+                {% if not user.is_authenticated %}
+                    <li class="nav__items">
+                        <a href="/accounts/login/" class="nav__links">Iniciar sesión</a>
+                    </li>
+                {% else %}
+                    <li class="nav__items">
+                        <a href="/accounts/me/" class="nav__links">Mi perfil</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="/surveys/me/" class="nav__links">Encuestas</a>
+                    </li>
+                {% endif %}
+                <li class="nav__items">
+                    <a href="{% url 'terms' %}" class="nav__links">Términos y condiciones</a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+    <section class="footer__copy container">
+        <div class="footer__social">
+            <a href="#" class="footer__icons"><img src="{% static 'image/bd.svg' %}" class="footer__img"></a>
+            <a href="#" class="footer__icons"><img src="{% static 'image/django.svg' %}" class="footer__img"></a>
+            <a href="#" class="footer__icons"><img src="{% static 'image/git.svg' %}" class="footer__img"></a>
+        </div>
+
+        <h3 class="footer__copyright">Tienda de Cafe Kepler</h3>
+    </section>
+</footer>
+
+<script>
+    window.CSRF_TOKEN = "{{ csrf_token }}"; 
+</script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="{% static 'js/beneficios.js' %}"></script>
+<script src="{% static 'js/menu.js' %}"></script>
+<script src="{% static 'js/link.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

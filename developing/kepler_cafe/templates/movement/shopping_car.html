@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include 'partials/head.html' %}
+  <title>Mi Carrito</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <!-- Tus encabezados y estilos aquí -->
+  <style>
+        /* Estilos para el encabezado */
+        header {
+            background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url('/static/image/carrito.jpeg');
+            background-size: cover;
+            background-position: center center;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        /* Estilos para el menú de navegación */
+        .navbar {
+            background-color: #fff;
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff;
+        }
+  
+  
+  /* Estilos para la tabla */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .table th,
+    .table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    /* Resaltar las filas pares de la tabla con un color de fondo */
+    .table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    
+    /* Estilos para el encabezado de la tabla */
+    .table thead {
+        background-color: #007bff; /* Color de fondo del encabezado */
+        color: #fff; /* Color de texto del encabezado */
+    }
+    
+    /* Estilos para el texto del encabezado de la tabla */
+    .table th {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    /* Estilos para el mensaje cuando no hay productos en el carrito */
+    .no-products-message {
+        font-style: italic;
+        color: #777;
+    }
+    
+    /* Alineación del texto en la columna de cantidad */
+    .table td:nth-child(2) {
+        text-align: center;
+    }
+    
+    /* Estilos para los botones "Continuar Comprando" y "Ver Carrito" */
+    .btn-continue-shopping,
+    .btn-view-cart {
+        margin-top: 10px;
+    }
+    
+    /* Agregar espacio entre los botones "Continuar Comprando" y "Ver Carrito" */
+    .btn-continue-shopping {
+        margin-right: 10px;
+    }</style>
+</head>
+<body>
+    <header>
+        {% include 'partials/navbar.html' %}
+        <div class="container text-center">
+            <h1>Mi Carrito</h1>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Carrito de Compras</h1>
+        <!-- Tu tabla para mostrar los productos en el carrito aquí -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre del Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Eliminar</th>
+                    <!-- Otras columnas según tus datos -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in shopping_car_list %}
+                    <tr>
+                        <td>{{ item.name_product }}</td>
+                        <td>{{ item.quantity_shopping_car }}</td>
+                        <td>${{ item.money_unit_price }}</td>
+                        <td>
+                            <form action="/shopping_car/remove/" method="post">
+                                <input type="hidden" name="shopping_car_id" value="{{ item.pk }}">
+                                {% csrf_token %}
+                                <button class="remove-button" type="submit" data-shopping_car_id="{{ item.pk }}">Eliminar</button>
+                            </form>
+                        </td>
+                        <!-- Otras columnas según tus datos -->
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">No tienes productos en tu carrito.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="use_points">Usar todos los puntos posibles:</label>
+                <input type="radio" id="use_points" name="use_points" value="true">
+                <label for="use_points">Sí</label>
+                <input type="radio" id="use_points" name="use_points" value="false">
+                <label for="use_points">No</label>
+                <button class="btn btn-primary" id="realizar_compra_btn" type="submit">Hacer Compra</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+    <script>
+        // Configura el token CSRF en una variable global
+        window.CSRF_TOKEN = "{{ csrf_token }}";
+    
+        $(document).ready(function () {
+            // ...
+    
+            // Maneja el evento de hacer compra
+            $("#realizar_compra").click(function () {
+                var usePoints = true; // Cambia esto según tu lógica para usar o no puntos
+    
+                // Realiza la solicitud AJAX para realizar la compra
+                $.ajax({
+                    url: "/shopping_car/",
+                    method: "POST",
+                    data: {
+                        use_points: usePoints,
+                        csrfmiddlewaretoken: window.CSRF_TOKEN, // Agrega el token CSRF aquí
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        // Maneja la respuesta del servidor (por ejemplo, muestra un mensaje de éxito)
+                    }
+                });
+            });
+        });
+    </script>
+
+    {% include "partials/footer.html" %}
+
+    <!-- Tus scripts y cierre de etiquetas aquí -->
+</body>
+</html>
+
+

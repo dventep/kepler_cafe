@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'partials/head.html' %}
+    <link rel="stylesheet" href="{% static 'registration/login/login.css' %}">
+    <title>Regístrate - Kepler</title>
+</head>
+<body class="special-body">
+        {% include 'partials/navbar.html' %}
+        <main>
+            {% if user.is_authenticated %}
+                <a class="btn btn-info" href="{% url 'home' %}">Kepler</a>
+            {% else %}
+            <div class="contenedor__todo mt-5">
+                <div class="caja__trasera">
+
+                    <!--Formulario de Login y registro-->
+                    <div class="contenedor__login-register">
+                        <!--Login-->
+                        <!-- <form action="post" class="formulario__login" action="{% url 'login' %}"> -->
+                        <form id="container-form" method="post" action="/accounts/signup/"> 
+                        <!-- <form action="" class="formulario__register"> -->
+                            {% csrf_token %}
+                            <h2>Registrarse</h2>
+                            
+                            <input required id="identification" name="identification" type="number" placeholder="Cedula" value="{{identification}}">
+                          
+                            <input required id="first_name" name="first_name" type="text" placeholder="Nombre" value="{{first_name}}">
+    
+                            <input required id="last_name" name="last_name" type="text" placeholder="Apellido" value="{{last_name}}">
+    
+                            <input required id="email" name="email" type="email" placeholder="Correo" value="{{email}}">
+    
+                            <input required id="phone_number" name="phone_number" type="number" placeholder="Celular" value="{{phone_number}}">
+    
+                            <input required id="password" name="password" type="text" placeholder="Contraseña" value="{{password}}">
+    
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="">Fecha de nacimiento</span>
+                                </div>
+                                <input required type="date" class="form-control" name="birth_date" id="birth_date" value="{{ birth_date }}">
+                            </div>
+                            <button type="submit" class="btn btn-signup">Registrarse <span class="icon-buttons icon-upload"><i class="fas fa-sign-in-alt"></i></span></button>
+                            <div class="errorsContainer">
+                                {% if errors %}
+                                    {% for error in errors %}
+                                        <strong class="d-block">{{ error.title }}: {{ error.content }}</strong>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </form>
+    
+    
+                        <!--Register-->
+                        <form action="" class="formulario__register">
+                            <h2>Regístrarse</h2>
+                            <input type="text" placeholder="Nombre completo">
+                            <input type="text" placeholder="Correo Electronico">
+                            <input type="text" placeholder="Usuario">
+                            <input type="password" placeholder="Contraseña">
+                            <a href="/accounts/signup/">Regístrarse</a>
+                        </form>
+                    </div>
+                    <div class="caja__trasera-register">
+                        <h3>¿Ya tienes una cuenta?</h3>
+                        <p>Inicia sesión para entrar en la página</p>
+                        <!-- <button id="btn__registrarse">Regístrarse</button> -->
+                        <a href="/accounts/login/">Ingresa</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </main>
+
+        <!-- <script src="/js/login.js"></script> -->
+        <script src="{% static 'registration/login/login.js' %}"></script>
+</body>
+</html>
