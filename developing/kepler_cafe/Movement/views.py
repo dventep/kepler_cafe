@@ -86,7 +86,6 @@ def send_check_email(request, shopping_car_list, money_total_value, point_total_
 
 def make_purchasing(request):
     use_points = request.POST['use_points']
-    print(f"use_points: {use_points}")
     errors_list = []
     money_total_value = 0
     point_total_value = 0
@@ -97,6 +96,7 @@ def make_purchasing(request):
             creation_date = creation_date,
             user_id = request.user.pk
         )
+
         for shopping_car in shopping_car_list:
             if shopping_car['quantity'] > 0:
                 total_points = UserProfile.objects.get(pk = request.user.pk).point
@@ -124,6 +124,14 @@ def make_purchasing(request):
                     main_purchase = main_purchase,
                     product_id = shopping_car['product__pk']
                 )
+                if request.user.birth_date == datetime.now().date() and not Point_Transaction.objects.filter(purchase_detail__main_purchase__user_id = request.user.pk, action="birth_day", transaction_date__year = datetime.now().year).exists():
+                    Point_Transaction.objects.create(
+                        quantity_point = 300,
+                        action = 'birth_day',
+                        transaction_date = creation_date,
+                        purchase_detail = purchase_detail
+                    )
+
 
                 point_total_value += points_to_purchase if points_to_purchase != None else 0
                 money_total_value += money_to_purchase if money_to_purchase != None else 0

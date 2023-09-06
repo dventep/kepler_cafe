@@ -5,7 +5,7 @@
 -- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.2
 
--- Started on 2023-09-06 00:25:29
+-- Started on 2023-09-06 07:44:58
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -885,6 +885,9 @@ INSERT INTO public."Interaction_question" (id, name, description, creation_date,
 --
 
 INSERT INTO public."Interaction_question_answer" (id, score, description, creation_date, product_id, question_id, user_id) VALUES (1, 5, 'mee gggs', '2023-08-28 20:25:20.211727-05', 1, 2, 4512);
+INSERT INTO public."Interaction_question_answer" (id, score, description, creation_date, product_id, question_id, user_id) VALUES (2, 4, 'Lo calificaría de una buena forma', '2023-09-06 00:30:55.935001-05', NULL, 1, 12345151);
+INSERT INTO public."Interaction_question_answer" (id, score, description, creation_date, product_id, question_id, user_id) VALUES (3, 5, 'El mejor', '2023-09-06 00:52:26.844109-05', 5, 2, 4513);
+INSERT INTO public."Interaction_question_answer" (id, score, description, creation_date, product_id, question_id, user_id) VALUES (4, 3, 'No me gustó el azucar', '2023-09-06 00:52:48.0996-05', 7, 2, 4513);
 
 
 --
@@ -931,6 +934,9 @@ INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_p
 --
 
 INSERT INTO public."Movement_main_purchase" (id, money_total_value, point_total_value, creation_date, delivery_date, user_id) VALUES (9, 8244, 0, '2023-08-27 21:45:46.12528-05', NULL, 4512);
+INSERT INTO public."Movement_main_purchase" (id, money_total_value, point_total_value, creation_date, delivery_date, user_id) VALUES (10, 7700, 0, '2023-09-06 00:31:30.121732-05', NULL, 12345151);
+INSERT INTO public."Movement_main_purchase" (id, money_total_value, point_total_value, creation_date, delivery_date, user_id) VALUES (11, 48363, 0, '2023-09-06 00:38:43.2386-05', NULL, 4513);
+INSERT INTO public."Movement_main_purchase" (id, money_total_value, point_total_value, creation_date, delivery_date, user_id) VALUES (12, 5500, 0, '2023-09-06 00:46:25.901923-05', NULL, 4513);
 
 
 --
@@ -940,6 +946,9 @@ INSERT INTO public."Movement_main_purchase" (id, money_total_value, point_total_
 --
 
 INSERT INTO public."Movement_point_transaction" (id, quantity_point, action, transaction_date, purchase_detail_id) VALUES (8, 10, 'in', '2023-08-27 21:45:46.121351-05', 8);
+INSERT INTO public."Movement_point_transaction" (id, quantity_point, action, transaction_date, purchase_detail_id) VALUES (9, 35, 'in', '2023-09-06 00:31:30.118791-05', 9);
+INSERT INTO public."Movement_point_transaction" (id, quantity_point, action, transaction_date, purchase_detail_id) VALUES (10, 35, 'in', '2023-09-06 00:38:43.23567-05', 10);
+INSERT INTO public."Movement_point_transaction" (id, quantity_point, action, transaction_date, purchase_detail_id) VALUES (11, 25, 'in', '2023-09-06 00:46:25.898998-05', 11);
 
 
 --
@@ -949,6 +958,9 @@ INSERT INTO public."Movement_point_transaction" (id, quantity_point, action, tra
 --
 
 INSERT INTO public."Movement_purchase_detail" (id, money_unit_value, point_unit_value, quantity, main_purchase_id, product_id, description, status) VALUES (8, 4122, NULL, 2, 9, 1, NULL, 'waiting');
+INSERT INTO public."Movement_purchase_detail" (id, money_unit_value, point_unit_value, quantity, main_purchase_id, product_id, description, status) VALUES (9, 1100, NULL, 7, 10, 7, NULL, 'waiting');
+INSERT INTO public."Movement_purchase_detail" (id, money_unit_value, point_unit_value, quantity, main_purchase_id, product_id, description, status) VALUES (10, 6909, NULL, 7, 11, 5, 'Holaaa', 'waiting');
+INSERT INTO public."Movement_purchase_detail" (id, money_unit_value, point_unit_value, quantity, main_purchase_id, product_id, description, status) VALUES (11, 1100, NULL, 5, 12, 7, NULL, 'waiting');
 
 
 --
@@ -957,7 +969,6 @@ INSERT INTO public."Movement_purchase_detail" (id, money_unit_value, point_unit_
 -- Data for Name: Movement_shopping_car; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Movement_shopping_car" (id, quantity, creation_date, description, product_id, user_id) VALUES (3, 6, '2023-09-06 00:19:57.823276-05', 'Quiero que sea en salsa de mora', 7, 12345151);
 
 
 --
@@ -975,8 +986,8 @@ INSERT INTO public."Movement_shopping_car" (id, quantity, creation_date, descrip
 --
 
 INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$yRjXULy6Vlfw5GK85N8y1B$21yhDND9AIH8Ho/COJ5GcgU2EtXpYPEJb8PJ2xF++mg=', '2023-09-05 21:27:36.882076-05', 5122, 'David', 'Agua', 'shadow@gmail.com', '3125123', 0, NULL, '2023-09-05 20:16:12.788711-05', '2023-09-05 20:16:12.788711-05', NULL, true, false, false, NULL, '2023-09-05 20:16:12.870086-05', '2003-12-29');
-INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$hg4wgfrge2h1aGtdcDgFBB$qRTrPh3be5EXrfTgaMrdxfz6HR/89OzU1nYbgit/rTU=', '2023-09-05 23:10:05.562716-05', 12345151, 'Admin Kepler', 'Papita Amarilla', 'admin@kepler.com', '', 0, 0, '2023-08-16 14:57:18.303094-05', '2023-08-16 14:57:18.303094-05', NULL, true, true, true, NULL, '2023-08-20 08:46:22.491677-05', '2023-09-08');
-INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$sxQoGnAmSwh2pel7S87XIk$Jyv8HXEbvHHdmI4ynan9hawd8Tigsdo8O3R8PNgqR+E=', '2023-08-20 10:41:55.875309-05', 4513, 'Camargo Alf', 'Calargo', 'camargo1@gmail.com', '441232', 0, NULL, '2023-08-19 14:26:25.475358-05', '2023-08-19 14:26:25.475358-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05', '2023-09-08');
+INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$hg4wgfrge2h1aGtdcDgFBB$qRTrPh3be5EXrfTgaMrdxfz6HR/89OzU1nYbgit/rTU=', '2023-09-06 00:34:26.772491-05', 12345151, 'Admin Kepler', 'Papita Amarilla', 'admin@kepler.com', '2123', 35, 0, '2023-08-16 14:57:18-05', '2023-08-16 14:57:18-05', NULL, true, true, true, NULL, '2023-08-20 08:46:22.491677-05', '2023-09-06');
+INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$c7c3HwmWVlB1Vk1IXAU6tR$kT4fqSw0QSXSFMw+symX1tR8dbjKpVAJP+3zcABChUI=', '2023-09-06 00:38:14.734065-05', 4513, 'Camargo Alf', 'Calargo', 'camargo1@gmail.com', '441232', 60, NULL, '2023-08-19 14:26:25-05', '2023-08-19 14:26:25-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05', '2023-09-06');
 INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$Z6yoc7jpWJGLv1UNGwwT3i$VM8QEIu2BtLCHvO7c48UaiATJGwBCux91AcMXKMyxvo=', '2023-08-27 20:13:22.352742-05', 4512, 'Camargo', 'Castañeda', 'davidventepolo@gmail.com', '5123', 10, 0, '2023-08-18 22:57:22.956075-05', '2023-08-18 22:57:22.956075-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05', '2023-09-08');
 
 
@@ -1135,6 +1146,9 @@ INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, ac
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (39, '2023-09-06 00:15:37.266729-05', '11', 'ID 11 - Fertilizante Estelar de Café', 1, '[{"added": {}}]', 5, 12345151);
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (40, '2023-09-06 00:16:18.397216-05', '9', 'ID 9 - Composts', 1, '[{"added": {}}]', 4, 12345151);
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (41, '2023-09-06 00:17:54.86929-05', '12', 'ID 12 - Compost Cósmico de Café', 1, '[{"added": {}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (42, '2023-09-06 00:53:43.446025-05', '12345151', '12345151 - Admin Kepler Papita Amarilla', 2, '[{"changed": {"fields": ["N\u00famero telef\u00f3nico", "Fecha de nacimiento"]}}]', 16, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (43, '2023-09-06 00:55:42.031575-05', '12345151', '12345151 - Admin Kepler Papita Amarilla', 2, '[]', 16, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (44, '2023-09-06 00:56:09.921334-05', '4513', '4513 - Camargo Alf Calargo', 2, '[{"changed": {"fields": ["Fecha de nacimiento"]}}]', 16, 12345151);
 
 
 --
@@ -1218,10 +1232,10 @@ INSERT INTO public.django_session (session_key, session_data, expire_date) VALUE
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('vwa5hl5yxgta7jgkv4xvmpphu6qusuou', '.eJxVjMsOwiAUBf-FtSFQ3i7d9xsIXC5SNZCUdmX8d0vShW7PzJw38WHfit87rn5J5Eqk4oJcfucY4Il1sPQI9d4otLqtS6RDoSftdG4JX7fT_TsooZejztZY52ACEIAGwGamRBKBOwOcGRXjgXFiLpuoh6WZwJyjNDpIdIx8vmEEOLg:1qXkYt:mYr7Y36XnSQ7bP1oM-Cb35qxOALyc0nEh91W7NeNMG4', '2023-09-03 10:41:55.879303-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('ufar9jq88vm3i4obadvdtc0pwmnombyc', '.eJxVjDEOwjAMRe-SGUWNEzsVIztniOw4JQXUSk07Ie4OlTrA-t97_2USb2tNWytLGtWcTUAH5vQ7C-dHmXamd55us83ztC6j2F2xB232Omt5Xg7376Byq996iADaY4yhMAYgzIFAgLNToaKdkM_eB5KIDjtB7Zl87MPgIYIrZN4fP6A3pw:1qZ25i:_OkYvCjqMsZwCyuM9uJXDoygunsIC92OaSg0_El2XrE', '2023-09-06 23:37:06.837698-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('l4gsoo7bpb02oat8n70r036hwfoqp1dv', '.eJxVjDEOwjAMRe-SGUWNEzsVIztniOw4JQXUSk07Ie4OlTrA-t97_2USb2tNWytLGtWcTUAH5vQ7C-dHmXamd55us83ztC6j2F2xB232Omt5Xg7376Byq996iADaY4yhMAYgzIFAgLNToaKdkM_eB5KIDjtB7Zl87MPgIYIrZN4fP6A3pw:1qaQok:l6G3DtKM_Je5iPja_nX6EEt9T4U0-yJFDoTrFKwYomo', '2023-09-10 20:13:22.355674-05');
-INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('kushy6v82xhqgi5ivm09pkdt34hzr916', '.eJxVjEEOwiAQRe_C2hChDBSX7nsGMjMMUjVtUtqV8e7apAvd_vfef6mE21rT1mRJY1YXBcZadfqdCfkh087yHafbrHme1mUkvSv6oE0Pc5bn9XD_Diq2-q1RrMkAwbtMXVd6AO8wFiieY3Bs-si2ZAnnYHx0JnpGSywknQMUIvX-AE65ONw:1qdi5F:39DEZSdfqXHhBq4xHwcrbLFEr-8OCN3-QJWMRU59F2M', '2023-09-19 21:15:57.180113-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('s5ptwczawlazplaeolpxanl2l5ie4mru', '.eJxVjEEOwiAQRe_C2hChDBSX7nsGMjMMUjVtUtqV8e7apAvd_vfef6mE21rT1mRJY1YXBcZadfqdCfkh087yHafbrHme1mUkvSv6oE0Pc5bn9XD_Diq2-q1RrMkAwbtMXVd6AO8wFiieY3Bs-si2ZAnnYHx0JnpGSywknQMUIvX-AE65ONw:1qdi5i:ru4Srv9KuSWQYyDO4MxP8lKjJAPu24p1Gl-hOygmgZk', '2023-09-19 21:16:26.291844-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('n8latrksid8efa3d7h04h5zahkvq7m4v', '.eJxVjEEOwiAQRe_C2hChDBSX7nsGMjMMUjVtUtqV8e7apAvd_vfef6mE21rT1mRJY1YXBcZadfqdCfkh087yHafbrHme1mUkvSv6oE0Pc5bn9XD_Diq2-q1RrMkAwbtMXVd6AO8wFiieY3Bs-si2ZAnnYHx0JnpGSywknQMUIvX-AE65ONw:1qdiGW:m5IkTAZBPq-bKQ0_U07HDXwFQViVqorOuIonS2d0LME', '2023-09-19 21:27:36.892693-05');
-INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('cf06hivp5vkyg7hepy8tf64u1af5l284', '.eJxVjMsOwiAQRf-FtSHlMQVcuvcbyAwDtmpKUtqV8d-VpAvd3eScc18i4r5NcW95jTOLs1DaWFCgxOkXEaZHXjrnOy63KlNdtnUm2RV50CavlfPzcrh_BxO2qddcvLYFR2WVA0_AAJoDBrIAYSijceSCJ-2Lx-SsxQG_M5SkyTAq8f4A5Wk5UA:1qdjrh:9tpSm9u0S8IVZU6Wofr7xMEfSJfohfX6rfAi4OoQYhQ', '2023-09-19 23:10:05.569611-05');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('x5lyohejv8gb5r7evj9ucth11ga0pf13', '.eJxVjMsOwiAQRf-FtSHlMQVcuvcbyAwDtmpKUtqV8d-VpAvd3eScc18i4r5NcW95jTOLs1DaWFCgxOkXEaZHXjrnOy63KlNdtnUm2RV50CavlfPzcrh_BxO2qddcvLYFR2WVA0_AAJoDBrIAYSijceSCJ-2Lx-SsxQG_M5SkyTAq8f4A5Wk5UA:1qdlEv:a9_VyRXUwTZ0QTVadBdhm7X3QvoopSzL8tzSpOpibGw', '2023-09-20 00:38:09.676493-05');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('colrizhz4126h5wq9uw7n511avxvi3en', '.eJxVjMsOwiAQRf-FtSE8BkpduvcbyMAMUjU0Ke3K-O_apAvd3nPOfYmI21rj1nmJE4mzAKetOP3OCfOD287oju02yzy3dZmS3BV50C6vM_Hzcrh_BxV7_dbWWpc0jd4rgFIMUA6EQwhM2rOzyihNrJI3NAQGSAXZIBNY78cMWrw_SCE4aQ:1qdlF0:vpHaCLFkiI9fWuA-xpUE2Bg6Iq5R-PCQGJeNHpOxB-4', '2023-09-20 00:38:14.736995-05');
 
 
 --
@@ -1230,7 +1244,7 @@ INSERT INTO public.django_session (session_key, session_data, expire_date) VALUE
 -- Name: Interaction_question_answer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Interaction_question_answer_id_seq"', 1, true);
+SELECT pg_catalog.setval('public."Interaction_question_answer_id_seq"', 4, true);
 
 
 --
@@ -1266,7 +1280,7 @@ SELECT pg_catalog.setval('public."Inventory_product_id_seq"', 12, true);
 -- Name: Movement_main_purchase_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Movement_main_purchase_id_seq"', 9, true);
+SELECT pg_catalog.setval('public."Movement_main_purchase_id_seq"', 12, true);
 
 
 --
@@ -1275,7 +1289,7 @@ SELECT pg_catalog.setval('public."Movement_main_purchase_id_seq"', 9, true);
 -- Name: Movement_point_transaction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Movement_point_transaction_id_seq"', 8, true);
+SELECT pg_catalog.setval('public."Movement_point_transaction_id_seq"', 11, true);
 
 
 --
@@ -1284,7 +1298,7 @@ SELECT pg_catalog.setval('public."Movement_point_transaction_id_seq"', 8, true);
 -- Name: Movement_purchase_detail_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Movement_purchase_detail_id_seq"', 8, true);
+SELECT pg_catalog.setval('public."Movement_purchase_detail_id_seq"', 11, true);
 
 
 --
@@ -1293,7 +1307,7 @@ SELECT pg_catalog.setval('public."Movement_purchase_detail_id_seq"', 8, true);
 -- Name: Movement_shopping_car_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Movement_shopping_car_id_seq"', 3, true);
+SELECT pg_catalog.setval('public."Movement_shopping_car_id_seq"', 8, true);
 
 
 --
@@ -1356,7 +1370,7 @@ SELECT pg_catalog.setval('public.auth_permission_id_seq', 68, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 41, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 44, true);
 
 
 --
@@ -2034,7 +2048,7 @@ ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_User_user" FOREIGN KEY (user_id) REFERENCES public."User_userprofile"(identification) DEFERRABLE INITIALLY DEFERRED;
 
 
--- Completed on 2023-09-06 00:25:29
+-- Completed on 2023-09-06 07:44:59
 
 --
 -- PostgreSQL database dump complete
