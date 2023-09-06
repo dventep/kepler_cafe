@@ -3,7 +3,7 @@
 <html lang="en">
 <head>    
     {% include 'partials/head.html' %}
-    <title>Product Details</title>
+    <title>Producto</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 
@@ -167,7 +167,7 @@
 
 
             <form class="product-card" id="addToCartForm" action="POST">
-                <h5 class="product-card-title">Product Name</h5>
+                <h5 class="product-card-title">Producto</h5>
                 <img
                     src="/media/{{ image_product }}"
                     alt="{{ name }}"
@@ -176,9 +176,9 @@
                 <div class="product-details">
                     <p class="product-price">{{ name }}</p>
                     <p class="product-price">Precio: ${{ money_unit_price }}</p>
-                    <p class="product-points">Points: {{ point_unit_price }}</p>
-                    <p class="product-quantity">Quantity: {{ quantity }}</p>
-                    <p class="product-weight">Weight: {{ weight }} {{ measure_unit }}</p>
+                    <p class="product-points">Puntos: {{ point_unit_price }}</p>
+                    <p class="product-quantity">Cantidad: {{ quantity }}</p>
+                    <p class="product-weight">Peso: {{ weight }} {{ measure_unit }}</p>
                     <p class="product-category">Category: {{ category_name }}</p>
                     <!-- You can add more product details as needed -->
                 </div>

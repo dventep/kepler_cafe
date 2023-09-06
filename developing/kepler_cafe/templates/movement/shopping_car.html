@@ -120,7 +120,13 @@
                         <td>{{ item.name_product }}</td>
                         <td>{{ item.quantity_shopping_car }}</td>
                         <td>${{ item.money_unit_price }}</td>
-                        <td><button class="remove-button" data-shopping_car_id="{{ item.pk }}">Eliminar</button></td>
+                        <td>
+                            <form action="/shopping_car/remove/" method="post">
+                                <input type="hidden" name="shopping_car_id" value="{{ item.pk }}">
+                                {% csrf_token %}
+                                <button class="remove-button" type="submit" data-shopping_car_id="{{ item.pk }}">Eliminar</button>
+                            </form>
+                        </td>
                         <!-- Otras columnas según tus datos -->
                     </tr>
                 {% empty %}
@@ -130,14 +136,17 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div class="form-group">
-          <label for="use_points">Usar todos los puntos posibles:</label>
-          <input type="radio" id="use_points" name="use_points" value="true">
-          <label for="use_points">Sí</label>
-          <input type="radio" id="use_points" name="use_points" value="false">
-          <label for="use_points">No</label>
-      </div>
-      <button class="btn btn-primary" id="realizar_compra">Hacer Compra</button>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="use_points">Usar todos los puntos posibles:</label>
+                <input type="radio" id="use_points" name="use_points" value="true">
+                <label for="use_points">Sí</label>
+                <input type="radio" id="use_points" name="use_points" value="false">
+                <label for="use_points">No</label>
+                <button class="btn btn-primary" id="realizar_compra_btn" type="submit">Hacer Compra</button>
+            </div>
+        </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -165,16 +174,6 @@
                     dataType: "json",
                     success: function (data) {
                         // Maneja la respuesta del servidor (por ejemplo, muestra un mensaje de éxito)
-                        if (data.success) {
-                            alert("Compra realizada con éxito.");
-                            // Puedes realizar otras acciones aquí, como redirigir al usuario a otra página.
-                        } else {
-                            alert("Error al realizar la compra.");
-                        }
-                    },
-                    error: function () {
-                        // Maneja errores de la solicitud AJAX
-                        alert("Error al realizar la compra.");
                     }
                 });
             });

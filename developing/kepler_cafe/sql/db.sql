@@ -5,7 +5,7 @@
 -- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.2
 
--- Started on 2023-09-05 21:31:54
+-- Started on 2023-09-06 00:25:29
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -895,6 +895,13 @@ INSERT INTO public."Interaction_question_answer" (id, score, description, creati
 
 INSERT INTO public."Inventory_category" (id, name, description) VALUES (1, 'Bebidas calientes', 'Calienteee');
 INSERT INTO public."Inventory_category" (id, name, description) VALUES (2, 'Bebidas frías', 'Fríassssss');
+INSERT INTO public."Inventory_category" (id, name, description) VALUES (3, 'Galletas', 'Categoría de Galletas');
+INSERT INTO public."Inventory_category" (id, name, description) VALUES (4, 'Brownie', 'Brownie');
+INSERT INTO public."Inventory_category" (id, name, description) VALUES (5, 'Trufa de chocolate', 'Trufa de chocolate');
+INSERT INTO public."Inventory_category" (id, name, description) VALUES (6, 'Tarta', 'Tarta');
+INSERT INTO public."Inventory_category" (id, name, description) VALUES (7, 'Magdalenas', 'Magdalenas');
+INSERT INTO public."Inventory_category" (id, name, description) VALUES (8, 'Fertilizantes', 'Fertilizantes');
+INSERT INTO public."Inventory_category" (id, name, description) VALUES (9, 'Composts', 'Composts');
 
 
 --
@@ -903,9 +910,18 @@ INSERT INTO public."Inventory_category" (id, name, description) VALUES (2, 'Bebi
 -- Data for Name: Inventory_product; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (3, 'Café Alcabo', 2512, 160, 'Papita pal cuello', 155, 600, 'mililitros', '2023-08-20 23:33:10.258459-05', 2, true, NULL);
-INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (1, 'Café Alcanfort', 4122, 400, 'Cafecitos', 51, 400, 'mililitros', '2023-08-20 23:32:22.529467-05', 1, true, NULL);
-INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (2, 'Café Qbano', 5122, 421, 'Cafecito', 51, 400, 'mililitros', '2023-08-20 23:32:22.565324-05', 1, true, 'inventory/products/bebida.svg');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (3, 'Café Nebulosa Frío', 2512, 360, 'Esta refrescante bebida fría es una mezcla celestial de café suave, leche condensada y un toque de vainilla. Está adornada con una capa de crema batida y un polvo de cacao que simula las estrellas de una nebulosa. Su sabor suave y dulce te transporta', 160, 350, 'mililitros', '2023-08-20 23:33:10.258459-05', 2, true, 'inventory/products/1.png');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (1, 'Espresso Galáctico', 4122, 400, 'Este intenso espresso galáctico es una explosión de sabor. Preparado con granos de café de alta calidad y un toque de licor de avellana, este espresso se sirve en una taza de porcelana negra, que parece una ventana al espacio exterior. Su aroma y sab', 51, 120, 'mililitros', '2023-08-20 23:32:22.529467-05', 1, true, 'inventory/products/2.png');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (2, 'Latte Solar', 5122, 421, 'El Latte Solar es una mezcla cálida y reconfortante de café espresso suave, leche caliente y jarabe de caramelo dorado. La leche vaporizada crea un efecto de remolino que recuerda a las llamaradas solares. Un toque de canela en la parte superior comp', 69, 300, 'mililitros', '2023-08-20 23:32:22.565324-05', 1, true, 'inventory/products/3.png');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (4, 'Mocha Meteorito', 6700, 700, 'El Mocha Meteorito combina el rico sabor del chocolate negro con el espresso y la leche caliente. Una pizca de polvo de cacao y un pequeño meteorito de malvavisco flotan en la superficie de esta bebida indulgente que te hará sentir como si estuvieras', 520, 220, 'mililitros', '2023-09-05 23:46:13.318435-05', 2, true, 'inventory/products/4.png');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (5, 'Café Exoplaneta', 6909, 780, 'El Café Exoplaneta es una bebida fría y refrescante que combina café helado con crema de coco y sirope de maracuyá. Su color naranja brillante evoca la imagen de un exoplaneta en el espacio. El toque tropical del maracuyá te hará sentir como si estu', 62, 450, 'mililitros', '2023-09-05 23:57:50.529561-05', 2, true, 'inventory/products/5.png');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (6, 'Galletas Galácticas de Café', 400, 90, 'Estas galletas son una mezcla celestial de café molido, chocolate negro y trozos de nueces tostadas. Cada galleta tiene forma de una pequeña galaxia con un centro de café y motas de chocolate que simulan las estrellas. Son crujientes por fuera y suav', 290, 20, 'gramos', '2023-09-06 00:05:36.453971-05', 3, true, 'inventory/products/C1.png');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (7, 'Brownie Planetario de Café', 1100, 120, 'Este brownie de café es una deliciosa obra maestra cósmica. Con capas de brownie de café oscuro y crema de café espiralada, cada porción se asemeja a un pequeño planeta en un plato. El sabor es una combinación perfecta de rico café y chocolate.', 512, 100, 'gramos', '2023-09-06 00:08:06.650178-05', 4, true, 'inventory/products/c2.png');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (8, 'Trufas Lunares de Café', 400, 70, 'Estas trufas son pequeñas joyas de café y chocolate. Cada trufa tiene un corazón de café espresso cubierto de chocolate negro y polvo de cacao. Su forma redonda y su aspecto brillante recuerdan a la superficie de la luna.', 523, 10, 'gramos', '2023-09-06 00:08:55.333491-05', 5, true, 'inventory/products/c3.png');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (9, 'Tartaleta de Café Nebulosa', 700, 90, 'Esta tartaleta es una obra de arte cósmica en forma de un pequeño planeta. Está rellena de crema de café suave y se adorna con espirales de caramelo que representan las nubes de una nebulosa. La base de la tartaleta es crujiente y deliciosa.', 51, 50, 'gramos', '2023-09-06 00:10:58.136908-05', 6, true, 'inventory/products/c4.png');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (10, 'Magdalenas Espaciales de Café', 1500, 140, 'Estas magdalenas son pequeñas obras maestras inspiradas en el espacio. Hechas con café recién molido, cada magdalena tiene un remolino de glaseado de café en la parte superior que simula una galaxia. Su interior es esponjoso y lleno de sabor a café.', 70, 30, 'gramos', '2023-09-06 00:11:46.598183-05', 7, true, 'inventory/products/c5.png');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (11, 'Fertilizante Estelar de Café', 60000, 890, 'El Fertilizante Estelar de Café es una mezcla especial de restos de café orgánico y nutrientes naturales. Este abono de alta calidad se inspira en la belleza del espacio, con pequeños gránulos que se asemejan a estrellas y planetas. Mejora la calid', 67, 500, 'gramos', '2023-09-06 00:15:37.261692-05', 8, true, 'inventory/products/f1.png');
+INSERT INTO public."Inventory_product" (id, name, money_unit_price, point_unit_price, description, quantity, weight, measure_unit, creation_date, category_id, status, image_product) VALUES (12, 'Compost Cósmico de Café', 40000, 11200, 'El Compost Cósmico de Café es una mezcla enriquecida de posos de café, materia orgánica y nutrientes esenciales. Este abono celestial está diseñado para revitalizar el suelo y nutrir tus plantas como si estuvieran en un fértil planeta. Sus componente', 20, 750, 'gramos', '2023-09-06 00:17:54.863432-05', 9, true, 'inventory/products/f2.png');
 
 
 --
@@ -941,6 +957,7 @@ INSERT INTO public."Movement_purchase_detail" (id, money_unit_value, point_unit_
 -- Data for Name: Movement_shopping_car; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public."Movement_shopping_car" (id, quantity, creation_date, description, product_id, user_id) VALUES (3, 6, '2023-09-06 00:19:57.823276-05', 'Quiero que sea en salsa de mora', 7, 12345151);
 
 
 --
@@ -957,8 +974,8 @@ INSERT INTO public."Movement_purchase_detail" (id, money_unit_value, point_unit_
 -- Data for Name: User_userprofile; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$hg4wgfrge2h1aGtdcDgFBB$qRTrPh3be5EXrfTgaMrdxfz6HR/89OzU1nYbgit/rTU=', '2023-09-05 21:07:54.173823-05', 12345151, 'Admin Kepler', 'Papita Amarilla', 'admin@kepler.com', '', 0, 0, '2023-08-16 14:57:18.303094-05', '2023-08-16 14:57:18.303094-05', NULL, true, true, true, NULL, '2023-08-20 08:46:22.491677-05', '2023-09-08');
 INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$yRjXULy6Vlfw5GK85N8y1B$21yhDND9AIH8Ho/COJ5GcgU2EtXpYPEJb8PJ2xF++mg=', '2023-09-05 21:27:36.882076-05', 5122, 'David', 'Agua', 'shadow@gmail.com', '3125123', 0, NULL, '2023-09-05 20:16:12.788711-05', '2023-09-05 20:16:12.788711-05', NULL, true, false, false, NULL, '2023-09-05 20:16:12.870086-05', '2003-12-29');
+INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$hg4wgfrge2h1aGtdcDgFBB$qRTrPh3be5EXrfTgaMrdxfz6HR/89OzU1nYbgit/rTU=', '2023-09-05 23:10:05.562716-05', 12345151, 'Admin Kepler', 'Papita Amarilla', 'admin@kepler.com', '', 0, 0, '2023-08-16 14:57:18.303094-05', '2023-08-16 14:57:18.303094-05', NULL, true, true, true, NULL, '2023-08-20 08:46:22.491677-05', '2023-09-08');
 INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$sxQoGnAmSwh2pel7S87XIk$Jyv8HXEbvHHdmI4ynan9hawd8Tigsdo8O3R8PNgqR+E=', '2023-08-20 10:41:55.875309-05', 4513, 'Camargo Alf', 'Calargo', 'camargo1@gmail.com', '441232', 0, NULL, '2023-08-19 14:26:25.475358-05', '2023-08-19 14:26:25.475358-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05', '2023-09-08');
 INSERT INTO public."User_userprofile" (password, last_login, identification, first_name, last_name, email, phone_number, point, salary, creation_date, entrance_date, inactive_date, is_active, is_staff, is_superuser, charge_id, date_joined, birth_date) VALUES ('pbkdf2_sha256$600000$Z6yoc7jpWJGLv1UNGwwT3i$VM8QEIu2BtLCHvO7c48UaiATJGwBCux91AcMXKMyxvo=', '2023-08-27 20:13:22.352742-05', 4512, 'Camargo', 'Castañeda', 'davidventepolo@gmail.com', '5123', 10, 0, '2023-08-18 22:57:22.956075-05', '2023-08-18 22:57:22.956075-05', NULL, true, false, false, NULL, '2023-08-20 08:46:22-05', '2023-09-08');
 
@@ -1096,6 +1113,28 @@ INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, ac
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (17, '2023-08-27 21:41:27.8031-05', '8', 'ID 8 - Camargo Castañeda -> 8244.0 ~ 0', 3, '', 8, 12345151);
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (18, '2023-08-28 19:34:31.190989-05', '1', 'ID 1 - Calificación de servicio de la aplicación', 1, '[{"added": {}}]', 13, 12345151);
 INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (19, '2023-08-28 19:58:58.039892-05', '2', 'ID 2 - Calificación del producto', 1, '[{"added": {}}]', 13, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (20, '2023-09-05 23:32:37.247724-05', '3', 'ID 3 - Café Nebulosa Frío', 2, '[{"changed": {"fields": ["Name", "Valor de puntos unitario", "Descripci\u00f3n", "Cantidad", "Peso", "Image product"]}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (21, '2023-09-05 23:33:50.990263-05', '1', 'ID 1 - Espresso Galáctico', 2, '[{"changed": {"fields": ["Name", "Descripci\u00f3n", "Peso", "Image product"]}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (22, '2023-09-05 23:35:59.680991-05', '2', 'ID 2 - Latte Solar', 2, '[{"changed": {"fields": ["Name", "Descripci\u00f3n", "Cantidad", "Peso", "Image product"]}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (23, '2023-09-05 23:46:13.324281-05', '4', 'ID 4 - Mocha Meteorito', 1, '[{"added": {}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (24, '2023-09-05 23:57:50.535442-05', '5', 'ID 5 - Café Exoplaneta', 1, '[{"added": {}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (25, '2023-09-05 23:58:17.354685-05', '4', 'ID 4 - Mocha Meteorito', 2, '[{"changed": {"fields": ["Image product"]}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (26, '2023-09-05 23:59:56.306116-05', '5', 'ID 5 - Café Exoplaneta', 2, '[{"changed": {"fields": ["Valor de puntos unitario", "Cantidad"]}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (27, '2023-09-06 00:04:04.030093-05', '3', 'ID 3 - Galletas', 1, '[{"added": {}}]', 4, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (28, '2023-09-06 00:05:36.458854-05', '6', 'ID 6 - Galletas Galácticas de Café', 1, '[{"added": {}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (29, '2023-09-06 00:06:28.437897-05', '4', 'ID 4 - Brownie', 1, '[{"added": {}}]', 4, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (30, '2023-09-06 00:08:06.655072-05', '7', 'ID 7 - Brownie Planetario de Café', 1, '[{"added": {}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (31, '2023-09-06 00:08:53.624072-05', '5', 'ID 5 - Trufa de chocolate', 1, '[{"added": {}}]', 4, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (32, '2023-09-06 00:08:55.341304-05', '8', 'ID 8 - Trufas Lunares de Café', 1, '[{"added": {}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (33, '2023-09-06 00:09:51.152873-05', '6', 'ID 6 - Tarta', 1, '[{"added": {}}]', 4, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (34, '2023-09-06 00:10:58.143731-05', '9', 'ID 9 - Tartaleta de Café Nebulosa', 1, '[{"added": {}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (35, '2023-09-06 00:11:44.555361-05', '7', 'ID 7 - Magdalenas', 1, '[{"added": {}}]', 4, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (36, '2023-09-06 00:11:46.599164-05', '10', 'ID 10 - Magdalenas Espaciales de Café', 1, '[{"added": {}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (37, '2023-09-06 00:12:42.725621-05', '10', 'ID 10 - Magdalenas Espaciales de Café', 2, '[{"changed": {"fields": ["Image product"]}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (38, '2023-09-06 00:14:15.235777-05', '8', 'ID 8 - Fertilizantes', 1, '[{"added": {}}]', 4, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (39, '2023-09-06 00:15:37.266729-05', '11', 'ID 11 - Fertilizante Estelar de Café', 1, '[{"added": {}}]', 5, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (40, '2023-09-06 00:16:18.397216-05', '9', 'ID 9 - Composts', 1, '[{"added": {}}]', 4, 12345151);
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (41, '2023-09-06 00:17:54.86929-05', '12', 'ID 12 - Compost Cósmico de Café', 1, '[{"added": {}}]', 5, 12345151);
 
 
 --
@@ -1182,6 +1221,7 @@ INSERT INTO public.django_session (session_key, session_data, expire_date) VALUE
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('kushy6v82xhqgi5ivm09pkdt34hzr916', '.eJxVjEEOwiAQRe_C2hChDBSX7nsGMjMMUjVtUtqV8e7apAvd_vfef6mE21rT1mRJY1YXBcZadfqdCfkh087yHafbrHme1mUkvSv6oE0Pc5bn9XD_Diq2-q1RrMkAwbtMXVd6AO8wFiieY3Bs-si2ZAnnYHx0JnpGSywknQMUIvX-AE65ONw:1qdi5F:39DEZSdfqXHhBq4xHwcrbLFEr-8OCN3-QJWMRU59F2M', '2023-09-19 21:15:57.180113-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('s5ptwczawlazplaeolpxanl2l5ie4mru', '.eJxVjEEOwiAQRe_C2hChDBSX7nsGMjMMUjVtUtqV8e7apAvd_vfef6mE21rT1mRJY1YXBcZadfqdCfkh087yHafbrHme1mUkvSv6oE0Pc5bn9XD_Diq2-q1RrMkAwbtMXVd6AO8wFiieY3Bs-si2ZAnnYHx0JnpGSywknQMUIvX-AE65ONw:1qdi5i:ru4Srv9KuSWQYyDO4MxP8lKjJAPu24p1Gl-hOygmgZk', '2023-09-19 21:16:26.291844-05');
 INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('n8latrksid8efa3d7h04h5zahkvq7m4v', '.eJxVjEEOwiAQRe_C2hChDBSX7nsGMjMMUjVtUtqV8e7apAvd_vfef6mE21rT1mRJY1YXBcZadfqdCfkh087yHafbrHme1mUkvSv6oE0Pc5bn9XD_Diq2-q1RrMkAwbtMXVd6AO8wFiieY3Bs-si2ZAnnYHx0JnpGSywknQMUIvX-AE65ONw:1qdiGW:m5IkTAZBPq-bKQ0_U07HDXwFQViVqorOuIonS2d0LME', '2023-09-19 21:27:36.892693-05');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('cf06hivp5vkyg7hepy8tf64u1af5l284', '.eJxVjMsOwiAQRf-FtSHlMQVcuvcbyAwDtmpKUtqV8d-VpAvd3eScc18i4r5NcW95jTOLs1DaWFCgxOkXEaZHXjrnOy63KlNdtnUm2RV50CavlfPzcrh_BxO2qddcvLYFR2WVA0_AAJoDBrIAYSijceSCJ-2Lx-SsxQG_M5SkyTAq8f4A5Wk5UA:1qdjrh:9tpSm9u0S8IVZU6Wofr7xMEfSJfohfX6rfAi4OoQYhQ', '2023-09-19 23:10:05.569611-05');
 
 
 --
@@ -1208,7 +1248,7 @@ SELECT pg_catalog.setval('public."Interaction_question_id_seq"', 2, true);
 -- Name: Inventory_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Inventory_category_id_seq"', 2, true);
+SELECT pg_catalog.setval('public."Inventory_category_id_seq"', 9, true);
 
 
 --
@@ -1217,7 +1257,7 @@ SELECT pg_catalog.setval('public."Inventory_category_id_seq"', 2, true);
 -- Name: Inventory_product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Inventory_product_id_seq"', 3, true);
+SELECT pg_catalog.setval('public."Inventory_product_id_seq"', 12, true);
 
 
 --
@@ -1253,7 +1293,7 @@ SELECT pg_catalog.setval('public."Movement_purchase_detail_id_seq"', 8, true);
 -- Name: Movement_shopping_car_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Movement_shopping_car_id_seq"', 2, true);
+SELECT pg_catalog.setval('public."Movement_shopping_car_id_seq"', 3, true);
 
 
 --
@@ -1316,7 +1356,7 @@ SELECT pg_catalog.setval('public.auth_permission_id_seq', 68, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 19, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 41, true);
 
 
 --
@@ -1994,7 +2034,7 @@ ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_User_user" FOREIGN KEY (user_id) REFERENCES public."User_userprofile"(identification) DEFERRABLE INITIALLY DEFERRED;
 
 
--- Completed on 2023-09-05 21:31:55
+-- Completed on 2023-09-06 00:25:29
 
 --
 -- PostgreSQL database dump complete

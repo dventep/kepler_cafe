@@ -10,11 +10,14 @@ from django.utils.timezone import make_aware, utc
 from django.contrib.auth.decorators import login_required
 
 from .models import UserProfile, Charge
-from Movement.models import Shopping_Car
+from Movement.models import Shopping_Car, Point_Transaction
 
 def home(request):
     shopping_car_quantity = 0
     if  request.user and request.user.is_authenticated:
+        # print("datetime.now():", datetime.now().date())
+        # if request.user.birth_date == datetime.now().date() and not Point_Transaction.objects.filter(user_id = request.user.pk, action="birth_day", transaction_date__year = datetime.now().year).exists():
+            # print("No ha habido transacción de cumpleaños")
         shopping_car_quantity = Shopping_Car.objects.filter(user_id = request.user.identification).count()
     return render(request, "index.html", {'shopping_car_quantity': shopping_car_quantity})
 

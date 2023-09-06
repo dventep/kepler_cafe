@@ -62,7 +62,8 @@ def remove_product_shopping_car(request):
             return_errors.append({ 'title': 'Adición a carrito', 'content': 'No se ha podido remover el producto del carrito debido a que no se recibió la información completa.' })
         return_content['shopping_car_quantity'] = Shopping_Car.objects.filter(user_id = request.user.pk).count()
         return_content['errors'] = return_errors
-    return JsonResponse(return_content)
+    # return JsonResponse(return_content)
+    return redirect("/shopping_car/")
 
 def send_check_email(request, shopping_car_list, money_total_value, point_total_value, order_purchase):
     template = get_template("movement/email_check/send.html")
@@ -85,6 +86,7 @@ def send_check_email(request, shopping_car_list, money_total_value, point_total_
 
 def make_purchasing(request):
     use_points = request.POST['use_points']
+    print(f"use_points: {use_points}")
     errors_list = []
     money_total_value = 0
     point_total_value = 0
